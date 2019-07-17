@@ -40,6 +40,10 @@ type Config struct {
 	// if populated, only types that are true in this map
 	// will be selected.
 	allowTypes map[xml.Name]bool
+
+	// if set, all decimals values would be marshalled/unmarshalled as string
+	// to avoid precision loss (by representing number as float64 type)
+	decimalsAsString bool
 }
 
 type typeTransform func(xsd.Schema, xsd.Type) xsd.Type
@@ -433,7 +437,7 @@ func (cfg *Config) filterFields(t *xsd.ComplexType) ([]xsd.Attribute, []xsd.Elem
 // mapped to the built-in type.
 func (cfg *Config) expr(t xsd.Type) (ast.Expr, error) {
 	if t, ok := t.(xsd.Builtin); ok {
-		ex := builtinExpr(t)
+		ex := builtinExpr(cfg, t)
 		if ex == nil {
 			return nil, fmt.Errorf("Unknown built-in type %q", t.Name().Local)
 		}
@@ -618,7 +622,7 @@ func (cfg *Config) addStandardHelpers() {
 		name := "xsd" + timeType.String()
 		cfg.helperTypes[xsd.XMLName(timeType)] = spec{
 			name:    name,
-			expr:    builtinExpr(timeType),
+			expr:    builtinExpr(cfg, timeType),
 			private: true,
 			xsdType: timeType,
 			methods: []*ast.FuncDecl{
@@ -666,7 +670,7 @@ func (cfg *Config) addStandardHelpers() {
 
 	cfg.helperTypes[xsd.XMLName(xsd.HexBinary)] = spec{
 		name:    "xsd" + xsd.HexBinary.String(),
-		expr:    builtinExpr(xsd.HexBinary),
+		expr:    builtinExpr(cfg, xsd.HexBinary),
 		private: true,
 		xsdType: xsd.HexBinary,
 		methods: []*ast.FuncDecl{
@@ -692,7 +696,7 @@ func (cfg *Config) addStandardHelpers() {
 
 	cfg.helperTypes[xsd.XMLName(xsd.Base64Binary)] = spec{
 		name:    "xsd" + xsd.Base64Binary.String(),
-		expr:    builtinExpr(xsd.Base64Binary),
+		expr:    builtinExpr(cfg, xsd.Base64Binary),
 		private: true,
 		xsdType: xsd.Base64Binary,
 		methods: []*ast.FuncDecl{
@@ -849,4 +853,12 @@ func (cfg *Config) soapArrayToSlice(s spec) spec {
 	s.methods = append(s.methods, marshal)
 	s.methods = append(s.methods, unmarshal)
 	return s
+}
+
+func DecimalsAsString(enabled bool) Option {
+	return func(cfg *Config) Option {
+		prev := cfg.decimalsAsString
+		cfg.decimalsAsString = enabled
+		return DecimalsAsString(prev)
+	}
 }

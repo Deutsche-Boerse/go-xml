@@ -105,8 +105,8 @@ func ExampleIgnoreElements() {
 	// Output: package ws
 	//
 	// type Person struct {
-	// 	Name     string `xml:"http://www.example.com/ name"`
-	// 	Deceased bool   `xml:"http://www.example.com/ deceased"`
+	// 	Name     string `json:"name,omitempty" xml:"http://www.example.com/ name"`
+	//	Deceased bool   `json:"deceased,omitempty" xml:"http://www.example.com/ deceased"`
 	// }
 }
 
@@ -277,16 +277,16 @@ func ExampleUseFieldNames() {
 	// )
 	//
 	// type Book struct {
-	// 	Title     string    `xml:"http://www.example.com/ title"`
-	// 	Published time.Time `xml:"http://www.example.com/ published"`
-	// 	Author    string    `xml:"http://www.example.com/ author"`
+	//	Title     string    `json:"title,omitempty" xml:"http://www.example.com/ title"`
+	//	Published time.Time `json:"published,omitempty" xml:"http://www.example.com/ published"`
+	//	Author    string    `json:"author,omitempty" xml:"http://www.example.com/ author"`
 	// }
 	//
 	// func (t *Book) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	// 	type T Book
 	// 	var layout struct {
 	// 		*T
-	// 		Published *xsdDate `xml:"http://www.example.com/ published"`
+	// 		Published *xsdDate `json:"published,omitempty" xml:"http://www.example.com/ published"`
 	// 	}
 	// 	layout.T = (*T)(t)
 	// 	layout.Published = (*xsdDate)(&layout.T.Published)
@@ -296,7 +296,7 @@ func ExampleUseFieldNames() {
 	// 	type T Book
 	// 	var overlay struct {
 	// 		*T
-	// 		Published *xsdDate `xml:"http://www.example.com/ published"`
+	// 		Published *xsdDate `json:"published,omitempty" xml:"http://www.example.com/ published"`
 	// 	}
 	// 	overlay.T = (*T)(t)
 	// 	overlay.Published = (*xsdDate)(&overlay.T.Published)
@@ -304,7 +304,7 @@ func ExampleUseFieldNames() {
 	// }
 	//
 	// type Library struct {
-	// 	Book []Book `xml:"http://www.example.com/ book"`
+	// 	Book []Book `json:"book,omitempty" xml:"http://www.example.com/ book"`
 	// }
 	//
 	// type xsdDate time.Time
@@ -340,5 +340,137 @@ func ExampleUseFieldNames() {
 	// 	}
 	// 	return err
 	// }
+
+}
+
+func ExampleOptionalDatetimeNoPointer() {
+	doc := xsdfile(`
+	  <complexType name="timeType">
+	    <sequence>
+	      <element name="clock" maxOccurs="unbounded">
+	        <complexType>
+	          <all>
+	            <element name="timestamp" type="xs:dateTime" minOccurs="0" />
+	          </all>
+	        </complexType>
+	      </element>
+	    </sequence>
+	  </complexType>`)
+
+	var cfg xsdgen.Config
+	cfg.Option(xsdgen.UseFieldNames())
+
+	out, err := cfg.GenSource(doc)
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Printf("%s\n", out)
+
+	// Output: package ws
+	//
+	//import (
+	//	"bytes"
+	//	"encoding/xml"
+	//	"time"
+	//)
+	//
+	//type Clock struct {
+	//	Timestamp time.Time `json:"timestamp,omitempty" xml:"http://www.example.com/ timestamp,omitempty"`
+	//}
+	//
+	//func (t *Clock) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	//	type T Clock
+	//	var layout struct {
+	//		*T
+	//		Timestamp *xsdDateTime `json:"timestamp,omitempty" xml:"http://www.example.com/ timestamp,omitempty"`
+	//	}
+	//	layout.T = (*T)(t)
+	//	layout.Timestamp = (*xsdDateTime)(&layout.T.Timestamp)
+	//	return e.EncodeElement(layout, start)
+	//}
+	//func (t *Clock) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
+	//	type T Clock
+	//	var overlay struct {
+	//		*T
+	//		Timestamp *xsdDateTime `json:"timestamp,omitempty" xml:"http://www.example.com/ timestamp,omitempty"`
+	//	}
+	//	overlay.T = (*T)(t)
+	//	overlay.Timestamp = (*xsdDateTime)(&overlay.T.Timestamp)
+	//	return d.DecodeElement(&overlay, &start)
+	//}
+	//
+	//type TimeType struct {
+	//	Clock []Clock `json:"clock,omitempty" xml:"http://www.example.com/ clock"`
+	//}
+	//
+	//type xsdDateTime time.Time
+	//
+	//func (t *xsdDateTime) UnmarshalText(text []byte) error {
+	//	return _unmarshalTime(text, (*time.Time)(t), "2006-01-02T15:04:05.999999999")
+	//}
+	//func (t xsdDateTime) MarshalText() ([]byte, error) {
+	//	return []byte((time.Time)(t).Format("2006-01-02T15:04:05.999999999")), nil
+	//}
+	//func (t xsdDateTime) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	//	if (time.Time)(t).IsZero() {
+	//		return nil
+	//	}
+	//	m, err := t.MarshalText()
+	//	if err != nil {
+	//		return err
+	//	}
+	//	return e.EncodeElement(m, start)
+	//}
+	//func (t xsdDateTime) MarshalXMLAttr(name xml.Name) (xml.Attr, error) {
+	//	if (time.Time)(t).IsZero() {
+	//		return xml.Attr{}, nil
+	//	}
+	//	m, err := t.MarshalText()
+	//	return xml.Attr{Name: name, Value: string(m)}, err
+	//}
+	//func _unmarshalTime(text []byte, t *time.Time, format string) (err error) {
+	//	s := string(bytes.TrimSpace(text))
+	//	*t, err = time.Parse(format, s)
+	//	if _, ok := err.(*time.ParseError); ok {
+	//		*t, err = time.Parse(format+"Z07:00", s)
+	//	}
+	//	return err
+	//}
+
+}
+
+func ExampleDecimalsAsString() {
+	doc := xsdfile(`
+	  <complexType name="monetary">
+	    <sequence>
+	      <element name="wallet" maxOccurs="unbounded">
+	        <complexType>
+	          <all>
+	            <element name="amount" type="xs:string" />
+	          </all>
+	        </complexType>
+	      </element>
+	    </sequence>
+	  </complexType>`)
+
+	var cfg xsdgen.Config
+	cfg.Option(xsdgen.UseFieldNames())
+	cfg.Option(xsdgen.DecimalsAsString(false))
+
+	out, err := cfg.GenSource(doc)
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Printf("%s\n", out)
+
+	// Output: package ws
+	//
+	//type Monetary struct {
+	//	Wallet []Wallet `json:"wallet,omitempty" xml:"http://www.example.com/ wallet"`
+	//}
+	//
+	//type Wallet struct {
+	//	Amount string `json:"amount,omitempty" xml:"http://www.example.com/ amount"`
+	//}
 
 }
