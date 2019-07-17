@@ -6,11 +6,22 @@ import (
 	"aqwari.net/xml/xsd"
 )
 
-func builtinExpr(b xsd.Builtin) ast.Expr {
+func builtinExpr(cfg *Config, b xsd.Builtin) ast.Expr {
 	if int(b) > len(builtinTbl) || b < 0 {
 		return nil
 	}
-	return builtinTbl[b]
+
+	if !cfg.decimalsAsString {
+		// default behaviour
+		return builtinTbl[b]
+	}
+
+	switch b {
+	case xsd.Float, xsd.Double, xsd.Decimal:
+		return &ast.Ident{Name: "string"}
+	default:
+		return builtinTbl[b]
+	}
 }
 
 // Returns true if t is an xsd.Builtin that is not trivially mapped to a
@@ -54,7 +65,7 @@ var builtinTbl = []ast.Expr{
 	// the "duration" built-in is especially broken, so we
 	// don't parse it at all.
 	xsd.Duration:           &ast.Ident{Name: "string"},
-	xsd.Float:              &ast.Ident{Name: "float32"},
+	xsd.Float:              &ast.Ident{Name: "float64"},
 	xsd.GDay:               &ast.Ident{Name: "time.Time"},
 	xsd.GMonth:             &ast.Ident{Name: "time.Time"},
 	xsd.GMonthDay:          &ast.Ident{Name: "time.Time"},

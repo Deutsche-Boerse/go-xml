@@ -97,7 +97,7 @@ func (c *Code) NameOf(name xml.Name) string {
 	}
 
 	if b, err := xsd.ParseBuiltin(name); err == nil {
-		s, err := gen.ToString(builtinExpr(b))
+		s, err := gen.ToString(builtinExpr(c.cfg, b))
 		if err != nil {
 			return "ERROR" + name.Local
 		}
@@ -697,14 +697,14 @@ func (cfg *Config) genComplexType(t *xsd.ComplexType) ([]spec, error) {
 			}
 			if b, ok := el.Type.(xsd.Builtin); ok && b == xsd.AnyType {
 				cfg.debugf("complexType %s: defaulting wildcard element to []string", t.Name.Local)
-				base = builtinExpr(xsd.String)
+				base = builtinExpr(cfg, xsd.String)
 			}
 		}
 		if el.Plural {
 			base = &ast.ArrayType{Elt: base}
 		} else if _, ok := el.Type.(*xsd.ComplexType); ok && (el.Nillable || el.Optional) {
 			base = &ast.StarExpr{X: base}
-		} else if nonTrivialBuiltin(el.Type) && (el.Nillable || el.Optional) {
+		} else if nonTrivialBuiltin(el.Type) && isNotDatetimeData(el.Type) && (el.Nillable || el.Optional) {
 			base = &ast.StarExpr{X: base}
 		}
 
@@ -800,6 +800,15 @@ func (cfg *Config) genComplexType(t *xsd.ComplexType) ([]spec, error) {
 	return result, nil
 }
 
+func isNotDatetimeData(t xsd.Type) bool {
+	switch t {
+	case xsd.Date, xsd.Time, xsd.DateTime,
+		xsd.GDay, xsd.GMonth, xsd.GMonthDay, xsd.GYear, xsd.GYearMonth:
+		return false
+	}
+	return true
+}
+
 func (cfg *Config) genComplexTypeMethods(t *xsd.ComplexType, overrides []fieldOverride) (marshal, unmarshal *ast.FuncDecl, err error) {
 	var data struct {
 		Overrides []fieldOverride
@@ -883,7 +892,7 @@ func (cfg *Config) genSimpleType(t *xsd.SimpleType) ([]spec, error) {
 		result = append(result, spec{
 			doc:     t.Doc,
 			name:    cfg.public(t.Name),
-			expr:    builtinExpr(xsd.String),
+			expr:    builtinExpr(cfg, xsd.String),
 			xsdType: t,
 		})
 		return result, nil
@@ -1031,7 +1040,7 @@ func (cfg *Config) genSimpleListSpec(t *xsd.SimpleType) ([]spec, error) {
 				}
 				*x = append(*x, t)
 			}
-		`, builtinExpr(base.(xsd.Builtin)).(*ast.Ident).Name)
+		`, builtinExpr(cfg, base.(xsd.Builtin)).(*ast.Ident).Name)
 	case xsd.Long:
 		marshalFn = marshalFn.Body(`
 			result := make([][]byte, 0, len(*x))
@@ -1050,8 +1059,23 @@ func (cfg *Config) genSimpleListSpec(t *xsd.SimpleType) ([]spec, error) {
 			}
 			return nil
 		`)
-	case xsd.Decimal, xsd.Double:
-		marshalFn = marshalFn.Body(`
+	case xsd.Float, xsd.Decimal, xsd.Double:
+		if cfg.decimalsAsString {
+			marshalFn = marshalFn.Body(`
+			result := make([][]byte, 0, len(*x))
+			for _, v := range *x {
+				result = append(result, []byte(v))
+			}
+			return bytes.Join(result, []byte(" ")), nil
+		`)
+			unmarshalFn = unmarshalFn.Body(`
+			for _, v := range bytes.Fields(text) {
+				*x = append(*x, string(v))
+			}
+			return nil
+		`)
+		} else {
+			marshalFn = marshalFn.Body(`
 			result := make([][]byte, 0, len(*x))
 			for _, v := range *x {
 				s := strconv.FormatFloat(v, 'g', -1, 64)
@@ -1059,7 +1083,7 @@ func (cfg *Config) genSimpleListSpec(t *xsd.SimpleType) ([]spec, error) {
 			}
 			return bytes.Join(result, []byte(" ")), nil
 		`)
-		unmarshalFn = unmarshalFn.Body(`
+			unmarshalFn = unmarshalFn.Body(`
 			for _, v := range strings.Fields(string(text)) {
 				if f, err := strconv.ParseFloat(v, 64); err != nil {
 					return err
@@ -1069,6 +1093,7 @@ func (cfg *Config) genSimpleListSpec(t *xsd.SimpleType) ([]spec, error) {
 			}
 			return nil
 		`)
+		}
 	case xsd.Int, xsd.Integer, xsd.NegativeInteger, xsd.NonNegativeInteger, xsd.NonPositiveInteger, xsd.Short:
 		marshalFn = marshalFn.Body(`
 			result := make([][]byte, 0, len(*x))

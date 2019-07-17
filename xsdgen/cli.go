@@ -87,14 +87,15 @@ func (cfg *Config) GenSource(files ...string) ([]byte, error) {
 // same as those passed to the xsdgen command.
 func (cfg *Config) GenCLI(arguments ...string) error {
 	var (
-		err          error
-		replaceRules commandline.ReplaceRuleList
-		xmlns        commandline.Strings
-		fs           = flag.NewFlagSet("xsdgen", flag.ExitOnError)
-		packageName  = fs.String("pkg", "", "name of the the generated package")
-		output       = fs.String("o", "xsdgen_output.go", "name of the output file")
-		verbose      = fs.Bool("v", false, "print verbose output")
-		debug        = fs.Bool("vv", false, "print debug output")
+		err              error
+		replaceRules     commandline.ReplaceRuleList
+		xmlns            commandline.Strings
+		fs               = flag.NewFlagSet("xsdgen", flag.ExitOnError)
+		packageName      = fs.String("pkg", "", "name of the the generated package")
+		output           = fs.String("o", "xsdgen_output.go", "name of the output file")
+		verbose          = fs.Bool("v", false, "print verbose output")
+		debug            = fs.Bool("vv", false, "print debug output")
+		decimalsAsString = fs.Bool("decimalsAsString", false, "represent decimals as string")
 	)
 	fs.Var(&replaceRules, "r", "replacement rule 'regex -> repl' (can be used multiple times)")
 	fs.Var(&xmlns, "ns", "target namespace(s) to generate types for")
@@ -114,6 +115,10 @@ func (cfg *Config) GenCLI(arguments ...string) error {
 	}
 	if *packageName != "" {
 		cfg.Option(PackageName(*packageName))
+	}
+
+	if *decimalsAsString {
+		cfg.Option(DecimalsAsString(true))
 	}
 
 	file, err := cfg.GenAST(fs.Args()...)
