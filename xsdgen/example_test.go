@@ -1,11 +1,12 @@
 package xsdgen_test
 
 import (
-	"aqwari.net/xml/xsdgen"
 	"fmt"
 	"io/ioutil"
 	"log"
 	"os"
+
+	"aqwari.net/xml/xsdgen"
 )
 
 func tmpfile() *os.File {
