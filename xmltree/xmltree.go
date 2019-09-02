@@ -49,6 +49,19 @@ type Element struct {
 	Content []byte
 	// Sub-elements contained within this element.
 	Children []Element
+	// if complex type elements are defined as choice,
+	// only one of them can be present and all others should be nil.
+	// Therefore all (accept Plural) elements should be pointers
+	IsChoice bool
+}
+
+func (el *Element) IsComplexTypeChoice() bool {
+	for _, child := range el.Children {
+		if child.Name.Local == "choice" {
+			return true
+		}
+	}
+	return false
 }
 
 // Attr gets the value of the first attribute whose name matches the

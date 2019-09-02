@@ -588,6 +588,8 @@ func (gen *nameGenerator) element(base xml.Name) ast.Expr {
 }
 
 func (cfg *Config) genComplexType(t *xsd.ComplexType) ([]spec, error) {
+	//cfg.debugf("genComplexType: %+v", t)
+	//defer cfg.debugf("DONE genComplexType: %+v", t.Name)
 	var result []spec
 	var fields []ast.Expr
 	var overrides []fieldOverride
@@ -679,7 +681,7 @@ func (cfg *Config) genComplexType(t *xsd.ComplexType) ([]spec, error) {
 
 	for _, el := range elements {
 		options := ""
-		if el.Nillable || el.Optional {
+		if el.Nillable || el.Optional || t.IsChoice {
 			options = ",omitempty"
 		}
 		tag := fmt.Sprintf(`json:"%s,omitempty" xml:"%s %s%s"`, toJsonName(el.Name.Local), el.Name.Space, el.Name.Local, options)
@@ -702,11 +704,11 @@ func (cfg *Config) genComplexType(t *xsd.ComplexType) ([]spec, error) {
 		}
 		if el.Plural {
 			base = &ast.ArrayType{Elt: base}
-		} else if _, ok := el.Type.(*xsd.ComplexType); ok && (el.Nillable || el.Optional) {
+		} else if _, ok := el.Type.(*xsd.ComplexType); ok && (el.Nillable || el.Optional || t.IsChoice) {
 			base = &ast.StarExpr{X: base}
-		} else if _, ok := el.Type.(*xsd.SimpleType); ok && (el.Nillable || el.Optional) {
+		} else if _, ok := el.Type.(*xsd.SimpleType); ok && (el.Nillable || el.Optional || t.IsChoice) {
 			base = &ast.StarExpr{X: base}
-		} else if nonTrivialBuiltin(el.Type) && isNotDatetimeData(el.Type) && (el.Nillable || el.Optional) {
+		} else if nonTrivialBuiltin(el.Type) && (el.Nillable || el.Optional || t.IsChoice) {
 			base = &ast.StarExpr{X: base}
 		}
 
