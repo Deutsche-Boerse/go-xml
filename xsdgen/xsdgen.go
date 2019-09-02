@@ -704,6 +704,8 @@ func (cfg *Config) genComplexType(t *xsd.ComplexType) ([]spec, error) {
 			base = &ast.ArrayType{Elt: base}
 		} else if _, ok := el.Type.(*xsd.ComplexType); ok && (el.Nillable || el.Optional) {
 			base = &ast.StarExpr{X: base}
+		} else if _, ok := el.Type.(*xsd.SimpleType); ok && (el.Nillable || el.Optional) {
+			base = &ast.StarExpr{X: base}
 		} else if nonTrivialBuiltin(el.Type) && isNotDatetimeData(el.Type) && (el.Nillable || el.Optional) {
 			base = &ast.StarExpr{X: base}
 		}
