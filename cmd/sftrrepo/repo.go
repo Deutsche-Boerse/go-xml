@@ -23,8 +23,8 @@ type ActiveOrHistoricCurrencyAndAmount struct {
 type ActiveOrHistoricCurrencyCode string
 
 type AgreementType1Choice struct {
-	Tp    ExternalAgreementType1Code `json:"tp,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Tp"`
-	Prtry Max35Text                  `json:"prtry,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Prtry"`
+	Tp    *ExternalAgreementType1Code `json:"tp,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Tp,omitempty"`
+	Prtry *Max35Text                  `json:"prtry,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Prtry,omitempty"`
 }
 
 type AgriculturalCommodityDairy1 struct {
@@ -90,74 +90,74 @@ type AmountAndDirection61 struct {
 type AnyBICDec2014Identifier string
 
 type AssetClassCommodity5Choice struct {
-	Agrcltrl          AssetClassCommodityAgricultural5Choice         `json:"agrcltrl,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Agrcltrl"`
-	Nrgy              AssetClassCommodityEnergy2Choice               `json:"nrgy,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Nrgy"`
-	Envttl            AssetClassCommodityEnvironmental2Choice        `json:"envttl,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Envttl"`
-	Frtlzr            AssetClassCommodityFertilizer3Choice           `json:"frtlzr,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Frtlzr"`
-	Frght             AssetClassCommodityFreight3Choice              `json:"frght,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Frght"`
-	IndstrlPdct       AssetClassCommodityIndustrialProduct1Choice    `json:"indstrlPdct,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 IndstrlPdct"`
-	Metl              AssetClassCommodityMetal1Choice                `json:"metl,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Metl"`
-	OthrC10           AssetClassCommodityOtherC102Choice             `json:"othrC10,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 OthrC10"`
-	Ppr               AssetClassCommodityPaper3Choice                `json:"ppr,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Ppr"`
-	Plprpln           AssetClassCommodityPolypropylene3Choice        `json:"plprpln,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Plprpln"`
-	Infltn            AssetClassCommodityInflation1                  `json:"infltn,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Infltn"`
-	MultiCmmdtyExtc   AssetClassCommodityMultiCommodityExotic1       `json:"multiCmmdtyExtc,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 MultiCmmdtyExtc"`
-	OffclEcnmcSttstcs AssetClassCommodityOfficialEconomicStatistics1 `json:"offclEcnmcSttstcs,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 OffclEcnmcSttstcs"`
-	Othr              AssetClassCommodityOther1                      `json:"othr,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Othr"`
+	Agrcltrl          *AssetClassCommodityAgricultural5Choice         `json:"agrcltrl,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Agrcltrl,omitempty"`
+	Nrgy              *AssetClassCommodityEnergy2Choice               `json:"nrgy,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Nrgy,omitempty"`
+	Envttl            *AssetClassCommodityEnvironmental2Choice        `json:"envttl,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Envttl,omitempty"`
+	Frtlzr            *AssetClassCommodityFertilizer3Choice           `json:"frtlzr,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Frtlzr,omitempty"`
+	Frght             *AssetClassCommodityFreight3Choice              `json:"frght,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Frght,omitempty"`
+	IndstrlPdct       *AssetClassCommodityIndustrialProduct1Choice    `json:"indstrlPdct,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 IndstrlPdct,omitempty"`
+	Metl              *AssetClassCommodityMetal1Choice                `json:"metl,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Metl,omitempty"`
+	OthrC10           *AssetClassCommodityOtherC102Choice             `json:"othrC10,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 OthrC10,omitempty"`
+	Ppr               *AssetClassCommodityPaper3Choice                `json:"ppr,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Ppr,omitempty"`
+	Plprpln           *AssetClassCommodityPolypropylene3Choice        `json:"plprpln,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Plprpln,omitempty"`
+	Infltn            *AssetClassCommodityInflation1                  `json:"infltn,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Infltn,omitempty"`
+	MultiCmmdtyExtc   *AssetClassCommodityMultiCommodityExotic1       `json:"multiCmmdtyExtc,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 MultiCmmdtyExtc,omitempty"`
+	OffclEcnmcSttstcs *AssetClassCommodityOfficialEconomicStatistics1 `json:"offclEcnmcSttstcs,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 OffclEcnmcSttstcs,omitempty"`
+	Othr              *AssetClassCommodityOther1                      `json:"othr,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Othr,omitempty"`
 }
 
 type AssetClassCommodityAgricultural5Choice struct {
-	GrnOilSeed AgriculturalCommodityOilSeed1   `json:"grnOilSeed,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 GrnOilSeed"`
-	Soft       AgriculturalCommoditySoft1      `json:"soft,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Soft"`
-	Ptt        AgriculturalCommodityPotato1    `json:"ptt,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Ptt"`
-	OlvOil     AgriculturalCommodityOliveOil2  `json:"olvOil,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 OlvOil"`
-	Dairy      AgriculturalCommodityDairy1     `json:"dairy,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Dairy"`
-	Frstry     AgriculturalCommodityForestry1  `json:"frstry,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Frstry"`
-	Sfd        AgriculturalCommoditySeafood1   `json:"sfd,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Sfd"`
-	LiveStock  AgriculturalCommodityLiveStock1 `json:"liveStock,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 LiveStock"`
-	Grn        AgriculturalCommodityGrain2     `json:"grn,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Grn"`
-	Othr       AgriculturalCommodityOther1     `json:"othr,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Othr"`
+	GrnOilSeed *AgriculturalCommodityOilSeed1   `json:"grnOilSeed,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 GrnOilSeed,omitempty"`
+	Soft       *AgriculturalCommoditySoft1      `json:"soft,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Soft,omitempty"`
+	Ptt        *AgriculturalCommodityPotato1    `json:"ptt,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Ptt,omitempty"`
+	OlvOil     *AgriculturalCommodityOliveOil2  `json:"olvOil,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 OlvOil,omitempty"`
+	Dairy      *AgriculturalCommodityDairy1     `json:"dairy,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Dairy,omitempty"`
+	Frstry     *AgriculturalCommodityForestry1  `json:"frstry,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Frstry,omitempty"`
+	Sfd        *AgriculturalCommoditySeafood1   `json:"sfd,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Sfd,omitempty"`
+	LiveStock  *AgriculturalCommodityLiveStock1 `json:"liveStock,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 LiveStock,omitempty"`
+	Grn        *AgriculturalCommodityGrain2     `json:"grn,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Grn,omitempty"`
+	Othr       *AgriculturalCommodityOther1     `json:"othr,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Othr,omitempty"`
 }
 
 type AssetClassCommodityEnergy2Choice struct {
-	Elctrcty  EnergyCommodityElectricity1     `json:"elctrcty,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Elctrcty"`
-	NtrlGas   EnergyCommodityNaturalGas2      `json:"ntrlGas,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 NtrlGas"`
-	Oil       EnergyCommodityOil2             `json:"oil,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Oil"`
-	Coal      EnergyCommodityCoal1            `json:"coal,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Coal"`
-	IntrNrgy  EnergyCommodityInterEnergy1     `json:"intrNrgy,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 IntrNrgy"`
-	RnwblNrgy EnergyCommodityRenewableEnergy1 `json:"rnwblNrgy,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 RnwblNrgy"`
-	LghtEnd   EnergyCommodityLightEnd1        `json:"lghtEnd,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 LghtEnd"`
-	Dstllts   EnergyCommodityDistillates1     `json:"dstllts,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Dstllts"`
-	Othr      EnergyCommodityOther1           `json:"othr,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Othr"`
+	Elctrcty  *EnergyCommodityElectricity1     `json:"elctrcty,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Elctrcty,omitempty"`
+	NtrlGas   *EnergyCommodityNaturalGas2      `json:"ntrlGas,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 NtrlGas,omitempty"`
+	Oil       *EnergyCommodityOil2             `json:"oil,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Oil,omitempty"`
+	Coal      *EnergyCommodityCoal1            `json:"coal,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Coal,omitempty"`
+	IntrNrgy  *EnergyCommodityInterEnergy1     `json:"intrNrgy,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 IntrNrgy,omitempty"`
+	RnwblNrgy *EnergyCommodityRenewableEnergy1 `json:"rnwblNrgy,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 RnwblNrgy,omitempty"`
+	LghtEnd   *EnergyCommodityLightEnd1        `json:"lghtEnd,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 LghtEnd,omitempty"`
+	Dstllts   *EnergyCommodityDistillates1     `json:"dstllts,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Dstllts,omitempty"`
+	Othr      *EnergyCommodityOther1           `json:"othr,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Othr,omitempty"`
 }
 
 type AssetClassCommodityEnvironmental2Choice struct {
-	Emssns   EnvironmentalCommodityEmission2      `json:"emssns,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Emssns"`
-	Wthr     EnvironmentalCommodityWeather1       `json:"wthr,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Wthr"`
-	CrbnRltd EnvironmentalCommodityCarbonRelated1 `json:"crbnRltd,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 CrbnRltd"`
-	Othr     EnvironmentCommodityOther1           `json:"othr,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Othr"`
+	Emssns   *EnvironmentalCommodityEmission2      `json:"emssns,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Emssns,omitempty"`
+	Wthr     *EnvironmentalCommodityWeather1       `json:"wthr,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Wthr,omitempty"`
+	CrbnRltd *EnvironmentalCommodityCarbonRelated1 `json:"crbnRltd,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 CrbnRltd,omitempty"`
+	Othr     *EnvironmentCommodityOther1           `json:"othr,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Othr,omitempty"`
 }
 
 type AssetClassCommodityFertilizer3Choice struct {
-	Ammn             FertilizerCommodityAmmonia1                `json:"ammn,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Ammn"`
-	DmmnmPhspht      FertilizerCommodityDiammoniumPhosphate1    `json:"dmmnmPhspht,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 DmmnmPhspht"`
-	Ptsh             FertilizerCommodityPotash1                 `json:"ptsh,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Ptsh"`
-	Slphr            FertilizerCommoditySulphur1                `json:"slphr,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Slphr"`
-	Urea             FertilizerCommodityUrea1                   `json:"urea,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Urea"`
-	UreaAndAmmnmNtrt FertilizerCommodityUreaAndAmmoniumNitrate1 `json:"ureaAndAmmnmNtrt,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 UreaAndAmmnmNtrt"`
-	Othr             FertilizerCommodityOther1                  `json:"othr,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Othr"`
+	Ammn             *FertilizerCommodityAmmonia1                `json:"ammn,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Ammn,omitempty"`
+	DmmnmPhspht      *FertilizerCommodityDiammoniumPhosphate1    `json:"dmmnmPhspht,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 DmmnmPhspht,omitempty"`
+	Ptsh             *FertilizerCommodityPotash1                 `json:"ptsh,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Ptsh,omitempty"`
+	Slphr            *FertilizerCommoditySulphur1                `json:"slphr,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Slphr,omitempty"`
+	Urea             *FertilizerCommodityUrea1                   `json:"urea,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Urea,omitempty"`
+	UreaAndAmmnmNtrt *FertilizerCommodityUreaAndAmmoniumNitrate1 `json:"ureaAndAmmnmNtrt,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 UreaAndAmmnmNtrt,omitempty"`
+	Othr             *FertilizerCommodityOther1                  `json:"othr,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Othr,omitempty"`
 }
 
 type AssetClassCommodityFreight3Choice struct {
-	Dry       FreightCommodityDry2           `json:"dry,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Dry"`
-	Wet       FreightCommodityWet2           `json:"wet,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Wet"`
-	CntnrShip FreightCommodityContainerShip1 `json:"cntnrShip,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 CntnrShip"`
-	Othr      FreightCommodityOther1         `json:"othr,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Othr"`
+	Dry       *FreightCommodityDry2           `json:"dry,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Dry,omitempty"`
+	Wet       *FreightCommodityWet2           `json:"wet,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Wet,omitempty"`
+	CntnrShip *FreightCommodityContainerShip1 `json:"cntnrShip,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 CntnrShip,omitempty"`
+	Othr      *FreightCommodityOther1         `json:"othr,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Othr,omitempty"`
 }
 
 type AssetClassCommodityIndustrialProduct1Choice struct {
-	Cnstrctn IndustrialProductCommodityConstruction1  `json:"cnstrctn,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Cnstrctn"`
-	Manfctg  IndustrialProductCommodityManufacturing1 `json:"manfctg,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Manfctg"`
+	Cnstrctn *IndustrialProductCommodityConstruction1  `json:"cnstrctn,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Cnstrctn,omitempty"`
+	Manfctg  *IndustrialProductCommodityManufacturing1 `json:"manfctg,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Manfctg,omitempty"`
 }
 
 type AssetClassCommodityInflation1 struct {
@@ -165,8 +165,8 @@ type AssetClassCommodityInflation1 struct {
 }
 
 type AssetClassCommodityMetal1Choice struct {
-	NonPrcs MetalCommodityNonPrecious1 `json:"nonPrcs,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 NonPrcs"`
-	Prcs    MetalCommodityPrecious1    `json:"prcs,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Prcs"`
+	NonPrcs *MetalCommodityNonPrecious1 `json:"nonPrcs,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 NonPrcs,omitempty"`
+	Prcs    *MetalCommodityPrecious1    `json:"prcs,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Prcs,omitempty"`
 }
 
 type AssetClassCommodityMultiCommodityExotic1 struct {
@@ -182,21 +182,21 @@ type AssetClassCommodityOther1 struct {
 }
 
 type AssetClassCommodityOtherC102Choice struct {
-	Dlvrbl    OtherC10CommodityDeliverable2    `json:"dlvrbl,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Dlvrbl"`
-	NonDlvrbl OtherC10CommodityNonDeliverable2 `json:"nonDlvrbl,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 NonDlvrbl"`
+	Dlvrbl    *OtherC10CommodityDeliverable2    `json:"dlvrbl,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Dlvrbl,omitempty"`
+	NonDlvrbl *OtherC10CommodityNonDeliverable2 `json:"nonDlvrbl,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 NonDlvrbl,omitempty"`
 }
 
 type AssetClassCommodityPaper3Choice struct {
-	CntnrBrd PaperCommodityContainerBoard1 `json:"cntnrBrd,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 CntnrBrd"`
-	Nwsprnt  PaperCommodityNewsprint1      `json:"nwsprnt,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Nwsprnt"`
-	Pulp     PaperCommodityPulp1           `json:"pulp,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Pulp"`
-	RcvrdPpr PaperCommodityRecoveredPaper1 `json:"rcvrdPpr,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 RcvrdPpr"`
-	Othr     PaperCommodityRecoveredPaper2 `json:"othr,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Othr"`
+	CntnrBrd *PaperCommodityContainerBoard1 `json:"cntnrBrd,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 CntnrBrd,omitempty"`
+	Nwsprnt  *PaperCommodityNewsprint1      `json:"nwsprnt,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Nwsprnt,omitempty"`
+	Pulp     *PaperCommodityPulp1           `json:"pulp,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Pulp,omitempty"`
+	RcvrdPpr *PaperCommodityRecoveredPaper1 `json:"rcvrdPpr,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 RcvrdPpr,omitempty"`
+	Othr     *PaperCommodityRecoveredPaper2 `json:"othr,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Othr,omitempty"`
 }
 
 type AssetClassCommodityPolypropylene3Choice struct {
-	Plstc PolypropyleneCommodityPlastic1 `json:"plstc,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Plstc"`
-	Othr  PolypropyleneCommodityOther1   `json:"othr,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Othr"`
+	Plstc *PolypropyleneCommodityPlastic1 `json:"plstc,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Plstc,omitempty"`
+	Othr  *PolypropyleneCommodityOther1   `json:"othr,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Othr,omitempty"`
 }
 
 // May be one of ALUM, ALUA, CBLT, COPR, IRON, MOLY, NASC, NICK, STEL, TINN, ZINC, OTHR, LEAD
@@ -404,13 +404,13 @@ type AssetClassSubProductType8Code string
 type BenchmarkCurveName2Code string
 
 type BenchmarkCurveName8Choice struct {
-	Indx BenchmarkCurveName2Code `json:"indx,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Indx"`
-	Nm   Max350Text              `json:"nm,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Nm"`
+	Indx *BenchmarkCurveName2Code `json:"indx,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Indx,omitempty"`
+	Nm   *Max350Text              `json:"nm,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Nm,omitempty"`
 }
 
 type Branch2Choice struct {
-	Id   OrganisationIdentification9Choice `json:"id,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Id"`
-	Ctry CountryCode                       `json:"ctry,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Ctry"`
+	Id   *OrganisationIdentification9Choice `json:"id,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Id,omitempty"`
+	Ctry *CountryCode                       `json:"ctry,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Ctry,omitempty"`
 }
 
 // Must match the pattern [A-Z]{6,6}
@@ -418,12 +418,12 @@ type CFIOct2015Identifier string
 
 type Cleared2Choice struct {
 	Clrd    *ClearingPartyAndTime7 `json:"clrd,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Clrd,omitempty"`
-	NonClrd NoReasonCode           `json:"nonClrd,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 NonClrd"`
+	NonClrd *NoReasonCode          `json:"nonClrd,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 NonClrd,omitempty"`
 }
 
 type Cleared8Choice struct {
-	Clrd    ClearingPartyAndTime7 `json:"clrd,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Clrd"`
-	NonClrd NoReasonCode          `json:"nonClrd,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 NonClrd"`
+	Clrd    *ClearingPartyAndTime7 `json:"clrd,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Clrd,omitempty"`
+	NonClrd *NoReasonCode          `json:"nonClrd,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 NonClrd,omitempty"`
 }
 
 type ClearingPartyAndTime7 struct {
@@ -461,8 +461,8 @@ type CollateralFlag6 struct {
 }
 
 type CollateralFlag6Choice struct {
-	Collsd   CollaterisedData4 `json:"collsd,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Collsd"`
-	Uncollsd NoReasonCode      `json:"uncollsd,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Uncollsd"`
+	Collsd   *CollaterisedData4 `json:"collsd,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Collsd,omitempty"`
+	Uncollsd *NoReasonCode      `json:"uncollsd,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Uncollsd,omitempty"`
 }
 
 // May be one of INVG, NIVG, NOTR, NOAP
@@ -472,9 +472,9 @@ type CollateralQualityType1Code string
 type CollateralRole1Code string
 
 type CollateralType7Choice struct {
-	Scty   []HaircutPortfolioSecurityIdentification1 `json:"scty,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Scty"`
-	Csh    []ActiveOrHistoricCurrencyAndAmount       `json:"csh,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Csh"`
-	Cmmdty []Commodity3                              `json:"cmmdty,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Cmmdty"`
+	Scty   []HaircutPortfolioSecurityIdentification1 `json:"scty,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Scty,omitempty"`
+	Csh    []ActiveOrHistoricCurrencyAndAmount       `json:"csh,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Csh,omitempty"`
+	Cmmdty []Commodity3                              `json:"cmmdty,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Cmmdty,omitempty"`
 }
 
 type CollaterisedData4 struct {
@@ -492,8 +492,8 @@ type Commodity3 struct {
 }
 
 type ContractTerm2Choice struct {
-	Opn NoReasonCode       `json:"opn,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Opn"`
-	Fxd FixedTermContract2 `json:"fxd,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Fxd"`
+	Opn *NoReasonCode       `json:"opn,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Opn,omitempty"`
+	Fxd *FixedTermContract2 `json:"fxd,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Fxd,omitempty"`
 }
 
 type CounterpartyData48 struct {
@@ -534,8 +534,8 @@ type CounterpartyIdentification2 struct {
 }
 
 type CounterpartyTradeNature3Choice struct {
-	FI  FinancialPartyClassification1Choice `json:"fi,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 FI"`
-	NFI []NACEDomainIdentifier              `json:"nfi,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 NFI"`
+	FI  *FinancialPartyClassification1Choice `json:"fi,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 FI,omitempty"`
+	NFI []NACEDomainIdentifier               `json:"nfi,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 NFI,omitempty"`
 }
 
 // Must match the pattern [A-Z]{2,2}
@@ -659,7 +659,7 @@ type FertilizerCommodityUreaAndAmmoniumNitrate1 struct {
 }
 
 type FinancialPartyClassification1Choice struct {
-	Clssfctn           []FinancialPartySectorType2Code `json:"clssfctn,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Clssfctn"`
+	Clssfctn           []FinancialPartySectorType2Code `json:"clssfctn,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Clssfctn,omitempty"`
 	InvstmtFndClssfctn *FundType2Code                  `json:"invstmtFndClssfctn,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 InvstmtFndClssfctn,omitempty"`
 }
 
@@ -783,23 +783,23 @@ type IndustrialProductCommodityManufacturing1 struct {
 type InterestComputationMethod1Code string
 
 type InterestComputationMethodFormat6Choice struct {
-	Cd    InterestComputationMethod1Code `json:"cd,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Cd"`
-	Prtry Max35Text                      `json:"prtry,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Prtry"`
+	Cd    *InterestComputationMethod1Code `json:"cd,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Cd,omitempty"`
+	Prtry *Max35Text                      `json:"prtry,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Prtry,omitempty"`
 }
 
 type InterestRate14Choice struct {
-	Fxd  FixedRate2             `json:"fxd,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Fxd"`
-	Fltg FloatingInterestRate12 `json:"fltg,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Fltg"`
+	Fxd  *FixedRate2             `json:"fxd,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Fxd,omitempty"`
+	Fltg *FloatingInterestRate12 `json:"fltg,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Fltg,omitempty"`
 }
 
 type InterestRate15Choice struct {
-	Amt        ActiveOrHistoricCurrencyAndAmount `json:"amt,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Amt"`
-	IntrstRate InterestRate7Choice               `json:"intrstRate,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 IntrstRate"`
+	Amt        *ActiveOrHistoricCurrencyAndAmount `json:"amt,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Amt,omitempty"`
+	IntrstRate *InterestRate7Choice               `json:"intrstRate,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 IntrstRate,omitempty"`
 }
 
 type InterestRate7Choice struct {
-	Fxd  FixedRate7             `json:"fxd,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Fxd"`
-	Fltg FloatingInterestRate16 `json:"fltg,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Fltg"`
+	Fxd  *FixedRate7             `json:"fxd,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Fxd,omitempty"`
+	Fltg *FloatingInterestRate16 `json:"fltg,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Fltg,omitempty"`
 }
 
 type InterestRateContractTerm2 struct {
@@ -989,9 +989,9 @@ type NoReasonCode string
 type NotAvailable1Code string
 
 type OrganisationIdentification9Choice struct {
-	LEI    LEIIdentifier           `json:"lei,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 LEI"`
-	ClntId Max50Text               `json:"clntId,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 ClntId"`
-	AnyBIC AnyBICDec2014Identifier `json:"anyBIC,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 AnyBIC"`
+	LEI    *LEIIdentifier           `json:"lei,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 LEI,omitempty"`
+	ClntId *Max50Text               `json:"clntId,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 ClntId,omitempty"`
+	AnyBIC *AnyBICDec2014Identifier `json:"anyBIC,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 AnyBIC,omitempty"`
 }
 
 type OtherC10CommodityDeliverable2 struct {
@@ -1051,8 +1051,8 @@ type Quantity13 struct {
 }
 
 type QuantityNominalValue1Choice struct {
-	Qty     float64                           `json:"qty,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Qty"`
-	NmnlVal ActiveOrHistoricCurrencyAndAmount `json:"nmnlVal,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 NmnlVal"`
+	Qty     float64                            `json:"qty,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Qty,omitempty"`
+	NmnlVal *ActiveOrHistoricCurrencyAndAmount `json:"nmnlVal,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 NmnlVal,omitempty"`
 }
 
 type RateAdjustment1 struct {
@@ -1064,8 +1064,8 @@ type RateAdjustment1 struct {
 type RateBasis1Code string
 
 type RebateRate1Choice struct {
-	Fxd  float64                `json:"fxd,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Fxd"`
-	Fltg FloatingInterestRate10 `json:"fltg,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Fltg"`
+	Fxd  float64                 `json:"fxd,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Fxd,omitempty"`
+	Fltg *FloatingInterestRate10 `json:"fltg,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Fltg,omitempty"`
 }
 
 // May be one of EGRN, EGAE, ETSB, NOAP
@@ -1077,15 +1077,15 @@ type SecuritiesFinancingReportingTransactionReportV01 struct {
 }
 
 type SecuritiesLendingType3Choice struct {
-	Cd    ExternalSecuritiesLendingType1Code `json:"cd,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Cd"`
-	Prtry Max35Text                          `json:"prtry,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Prtry"`
+	Cd    *ExternalSecuritiesLendingType1Code `json:"cd,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Cd,omitempty"`
+	Prtry *Max35Text                          `json:"prtry,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Prtry,omitempty"`
 }
 
 type SecuritiesTransactionPrice2Choice struct {
-	MntryVal AmountAndDirection61 `json:"mntryVal,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 MntryVal"`
-	Pctg     float64              `json:"pctg,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Pctg"`
-	Yld      float64              `json:"yld,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Yld"`
-	BsisPts  float64              `json:"bsisPts,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 BsisPts"`
+	MntryVal *AmountAndDirection61 `json:"mntryVal,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 MntryVal,omitempty"`
+	Pctg     float64               `json:"pctg,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Pctg,omitempty"`
+	Yld      float64               `json:"yld,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Yld,omitempty"`
+	BsisPts  float64               `json:"bsisPts,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 BsisPts,omitempty"`
 }
 
 type Security3 struct {
@@ -1116,13 +1116,13 @@ type Security4 struct {
 }
 
 type SecurityCommodity2Choice struct {
-	Scty   Security4  `json:"scty,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Scty"`
-	Cmmdty Commodity3 `json:"cmmdty,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Cmmdty"`
+	Scty   *Security4  `json:"scty,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Scty,omitempty"`
+	Cmmdty *Commodity3 `json:"cmmdty,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Cmmdty,omitempty"`
 }
 
 type SecurityIdentification26Choice struct {
-	Id       ISINOct2015Identifier `json:"id,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Id"`
-	NotAvlbl NotAvailable1Code     `json:"notAvlbl,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 NotAvlbl"`
+	Id       *ISINOct2015Identifier `json:"id,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Id,omitempty"`
+	NotAvlbl *NotAvailable1Code     `json:"notAvlbl,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 NotAvlbl,omitempty"`
 }
 
 type SecurityIssuer1 struct {
@@ -1131,8 +1131,8 @@ type SecurityIssuer1 struct {
 }
 
 type SettlementParties31Choice struct {
-	CntrlSctiesDpstryPtcpt LEIIdentifier `json:"cntrlSctiesDpstryPtcpt,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 CntrlSctiesDpstryPtcpt"`
-	IndrctPtcpt            LEIIdentifier `json:"indrctPtcpt,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 IndrctPtcpt"`
+	CntrlSctiesDpstryPtcpt *LEIIdentifier `json:"cntrlSctiesDpstryPtcpt,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 CntrlSctiesDpstryPtcpt,omitempty"`
+	IndrctPtcpt            *LEIIdentifier `json:"indrctPtcpt,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 IndrctPtcpt,omitempty"`
 }
 
 // May be one of GENE, SPEC
@@ -1207,14 +1207,14 @@ type TradeTransactionPositionComponent2 struct {
 }
 
 type TradeTransactionReport6Choice struct {
-	New          TradeNewTransaction6               `json:"new,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 New"`
-	Mod          TradeTransactionModification7      `json:"mod,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Mod"`
-	Err          TradeError2                        `json:"err,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Err"`
-	EarlyTermntn TradeEarlyTermination2             `json:"earlyTermntn,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 EarlyTermntn"`
-	PosCmpnt     TradeTransactionPositionComponent2 `json:"posCmpnt,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 PosCmpnt"`
-	CollUpd      TradeTransactionCollateralUpdate2  `json:"collUpd,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 CollUpd"`
-	Crrctn       TradeTransactionCorrection6        `json:"crrctn,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Crrctn"`
-	ValtnUpd     TradeValuationUpdate2              `json:"valtnUpd,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 ValtnUpd"`
+	New          *TradeNewTransaction6               `json:"new,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 New,omitempty"`
+	Mod          *TradeTransactionModification7      `json:"mod,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Mod,omitempty"`
+	Err          *TradeError2                        `json:"err,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Err,omitempty"`
+	EarlyTermntn *TradeEarlyTermination2             `json:"earlyTermntn,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 EarlyTermntn,omitempty"`
+	PosCmpnt     *TradeTransactionPositionComponent2 `json:"posCmpnt,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 PosCmpnt,omitempty"`
+	CollUpd      *TradeTransactionCollateralUpdate2  `json:"collUpd,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 CollUpd,omitempty"`
+	Crrctn       *TradeTransactionCorrection6        `json:"crrctn,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Crrctn,omitempty"`
+	ValtnUpd     *TradeValuationUpdate2              `json:"valtnUpd,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 ValtnUpd,omitempty"`
 }
 
 type TradeValuationUpdate2 struct {
@@ -1227,22 +1227,22 @@ type TradeValuationUpdate2 struct {
 }
 
 type TransactionCollateralData1Choice struct {
-	RpTrad     Collateral15           `json:"rpTrad,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 RpTrad"`
-	BuySellBck Collateral15           `json:"buySellBck,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 BuySellBck"`
+	RpTrad     *Collateral15          `json:"rpTrad,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 RpTrad,omitempty"`
+	BuySellBck *Collateral15          `json:"buySellBck,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 BuySellBck,omitempty"`
 	SctiesLndg *CollateralFlag6Choice `json:"sctiesLndg,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 SctiesLndg,omitempty"`
-	MrgnLndg   Security3              `json:"mrgnLndg,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 MrgnLndg"`
+	MrgnLndg   *Security3             `json:"mrgnLndg,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 MrgnLndg,omitempty"`
 }
 
 type TransactionCollateralData8Choice struct {
-	RpTrad     Collateral27           `json:"rpTrad,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 RpTrad"`
-	BuySellBck Collateral27           `json:"buySellBck,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 BuySellBck"`
+	RpTrad     *Collateral27          `json:"rpTrad,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 RpTrad,omitempty"`
+	BuySellBck *Collateral27          `json:"buySellBck,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 BuySellBck,omitempty"`
 	SctiesLndg *CollateralFlag6Choice `json:"sctiesLndg,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 SctiesLndg,omitempty"`
 }
 
 type TransactionCounterpartyData3Choice struct {
-	RpTrad     TransactionCounterpartyData7 `json:"rpTrad,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 RpTrad"`
-	BuySellBck TransactionCounterpartyData7 `json:"buySellBck,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 BuySellBck"`
-	SctiesLndg TransactionCounterpartyData7 `json:"sctiesLndg,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 SctiesLndg"`
+	RpTrad     *TransactionCounterpartyData7 `json:"rpTrad,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 RpTrad,omitempty"`
+	BuySellBck *TransactionCounterpartyData7 `json:"buySellBck,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 BuySellBck,omitempty"`
+	SctiesLndg *TransactionCounterpartyData7 `json:"sctiesLndg,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 SctiesLndg,omitempty"`
 }
 
 type TransactionCounterpartyData7 struct {
@@ -1255,23 +1255,23 @@ type TransactionCounterpartyData7 struct {
 }
 
 type TransactionLoanData4Choice struct {
-	RpTrad     LoanData29 `json:"rpTrad,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 RpTrad"`
-	BuySellBck LoanData29 `json:"buySellBck,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 BuySellBck"`
-	SctiesLndg LoanData29 `json:"sctiesLndg,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 SctiesLndg"`
-	MrgnLndg   LoanData13 `json:"mrgnLndg,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 MrgnLndg"`
+	RpTrad     *LoanData29 `json:"rpTrad,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 RpTrad,omitempty"`
+	BuySellBck *LoanData29 `json:"buySellBck,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 BuySellBck,omitempty"`
+	SctiesLndg *LoanData29 `json:"sctiesLndg,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 SctiesLndg,omitempty"`
+	MrgnLndg   *LoanData13 `json:"mrgnLndg,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 MrgnLndg,omitempty"`
 }
 
 type TransactionLoanData5Choice struct {
-	RpTrad     LoanData1  `json:"rpTrad,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 RpTrad"`
-	BuySellBck LoanData2  `json:"buySellBck,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 BuySellBck"`
-	SctiesLndg LoanData39 `json:"sctiesLndg,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 SctiesLndg"`
-	MrgnLndg   LoanData32 `json:"mrgnLndg,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 MrgnLndg"`
+	RpTrad     *LoanData1  `json:"rpTrad,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 RpTrad,omitempty"`
+	BuySellBck *LoanData2  `json:"buySellBck,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 BuySellBck,omitempty"`
+	SctiesLndg *LoanData39 `json:"sctiesLndg,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 SctiesLndg,omitempty"`
+	MrgnLndg   *LoanData32 `json:"mrgnLndg,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 MrgnLndg,omitempty"`
 }
 
 type TransactionLoanData6Choice struct {
-	RpTrad     LoanData37 `json:"rpTrad,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 RpTrad"`
-	BuySellBck LoanData27 `json:"buySellBck,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 BuySellBck"`
-	SctiesLndg LoanData41 `json:"sctiesLndg,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 SctiesLndg"`
+	RpTrad     *LoanData37 `json:"rpTrad,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 RpTrad,omitempty"`
+	BuySellBck *LoanData27 `json:"buySellBck,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 BuySellBck,omitempty"`
+	SctiesLndg *LoanData41 `json:"sctiesLndg,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 SctiesLndg,omitempty"`
 }
 
 // May be one of PIEC, TONS, FOOT, GBGA, USGA, GRAM, INCH, KILO, PUND, METR, CMET, MMET, LITR, CELI, MILI, GBOU, USOU, GBQA, USQA, GBPI, USPI, MILE, KMET, YARD, SQKI, HECT, ARES, SMET, SCMT, SMIL, SQMI, SQYA, SQFO, SQIN, ACRE
