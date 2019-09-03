@@ -83,7 +83,7 @@ type AgriculturalCommoditySoft1 struct {
 
 type AmountAndDirection61 struct {
 	Amt ActiveCurrencyAnd13DecimalAmount `json:"amt,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Amt"`
-	Sgn bool                             `json:"sgn,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Sgn,omitempty"`
+	Sgn *bool                            `json:"sgn,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Sgn,omitempty"`
 }
 
 // Must match the pattern [A-Z0-9]{4,4}[A-Z]{2,2}[A-Z0-9]{2,2}([A-Z0-9]{3,3}){0,1}
@@ -436,7 +436,7 @@ type ClearingPartyAndTime7 struct {
 type Collateral15 struct {
 	CollValDt         *ISODate                        `json:"collValDt,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 CollValDt,omitempty"`
 	AsstTp            []CollateralType7Choice         `json:"asstTp,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 AsstTp,omitempty"`
-	NetXpsrCollstnInd bool                            `json:"netXpsrCollstnInd,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 NetXpsrCollstnInd,omitempty"`
+	NetXpsrCollstnInd *bool                           `json:"netXpsrCollstnInd,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 NetXpsrCollstnInd,omitempty"`
 	BsktIdr           *SecurityIdentification26Choice `json:"bsktIdr,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 BsktIdr,omitempty"`
 }
 
@@ -480,7 +480,7 @@ type CollateralType7Choice struct {
 type CollaterisedData4 struct {
 	CollValDt         *ISODate                        `json:"collValDt,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 CollValDt,omitempty"`
 	AsstTp            *CollateralType7Choice          `json:"asstTp,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 AsstTp,omitempty"`
-	NetXpsrCollstnInd bool                            `json:"netXpsrCollstnInd,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 NetXpsrCollstnInd,omitempty"`
+	NetXpsrCollstnInd *bool                           `json:"netXpsrCollstnInd,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 NetXpsrCollstnInd,omitempty"`
 	BsktIdr           *SecurityIdentification26Choice `json:"bsktIdr,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 BsktIdr,omitempty"`
 }
 
@@ -488,7 +488,7 @@ type Commodity3 struct {
 	Clssfctn *AssetClassCommodity5Choice        `json:"clssfctn,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Clssfctn,omitempty"`
 	Qty      *Quantity13                        `json:"qty,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Qty,omitempty"`
 	UnitPric *SecuritiesTransactionPrice2Choice `json:"unitPric,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 UnitPric,omitempty"`
-	MktVal   string                             `json:"mktVal,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 MktVal,omitempty"`
+	MktVal   *string                            `json:"mktVal,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 MktVal,omitempty"`
 }
 
 type ContractTerm2Choice struct {
@@ -672,7 +672,7 @@ type FixedRate2 struct {
 }
 
 type FixedRate7 struct {
-	Rate       string                                 `json:"rate,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Rate,omitempty"`
+	Rate       *string                                `json:"rate,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Rate,omitempty"`
 	DayCntBsis InterestComputationMethodFormat6Choice `json:"dayCntBsis,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 DayCntBsis"`
 	MrgnLnAmt  *ActiveOrHistoricCurrencyAndAmount     `json:"mrgnLnAmt,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 MrgnLnAmt,omitempty"`
 }
@@ -705,7 +705,7 @@ type FloatingInterestRate16 struct {
 	Term       *InterestRateContractTerm2             `json:"term,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Term,omitempty"`
 	PmtFrqcy   *InterestRateContractTerm2             `json:"pmtFrqcy,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 PmtFrqcy,omitempty"`
 	RstFrqcy   *InterestRateContractTerm2             `json:"rstFrqcy,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 RstFrqcy,omitempty"`
-	BsisPtSprd string                                 `json:"bsisPtSprd,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 BsisPtSprd,omitempty"`
+	BsisPtSprd *string                                `json:"bsisPtSprd,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 BsisPtSprd,omitempty"`
 	DayCntBsis InterestComputationMethodFormat6Choice `json:"dayCntBsis,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 DayCntBsis"`
 }
 
@@ -735,7 +735,7 @@ type FreightCommodityWet2 struct {
 type FundType2Code string
 
 type HaircutPortfolioSecurityIdentification1 struct {
-	PrtflHrcutOrMrgn string    `json:"prtflHrcutOrMrgn,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 PrtflHrcutOrMrgn,omitempty"`
+	PrtflHrcutOrMrgn *string   `json:"prtflHrcutOrMrgn,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 PrtflHrcutOrMrgn,omitempty"`
 	Id               Security3 `json:"id,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Id"`
 }
 
@@ -815,10 +815,10 @@ type LoanData1 struct {
 	TradgVn         *MICIdentifier                 `json:"tradgVn,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 TradgVn,omitempty"`
 	MstrAgrmt       *MasterAgreement1              `json:"mstrAgrmt,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 MstrAgrmt,omitempty"`
 	ValDt           *ISODate                       `json:"valDt,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 ValDt,omitempty"`
-	MinNtcePrd      string                         `json:"minNtcePrd,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 MinNtcePrd,omitempty"`
+	MinNtcePrd      *string                        `json:"minNtcePrd,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 MinNtcePrd,omitempty"`
 	EarlstCallBckDt *ISODate                       `json:"earlstCallBckDt,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 EarlstCallBckDt,omitempty"`
 	GnlColl         *SpecialCollateral1Code        `json:"gnlColl,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 GnlColl,omitempty"`
-	DlvryByVal      bool                           `json:"dlvryByVal,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 DlvryByVal,omitempty"`
+	DlvryByVal      *bool                          `json:"dlvryByVal,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 DlvryByVal,omitempty"`
 	CollDlvryMtd    *CollateralDeliveryMethod1Code `json:"collDlvryMtd,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 CollDlvryMtd,omitempty"`
 	Term            []ContractTerm2Choice          `json:"term,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Term,omitempty"`
 	IntrstRate      *InterestRate14Choice          `json:"intrstRate,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 IntrstRate,omitempty"`
@@ -858,8 +858,8 @@ type LoanData29 struct {
 
 type LoanData32 struct {
 	CollDlvryMtd     *CollateralDeliveryMethod1Code `json:"collDlvryMtd,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 CollDlvryMtd,omitempty"`
-	OutsdngMrgnLnAmt string                         `json:"outsdngMrgnLnAmt,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 OutsdngMrgnLnAmt,omitempty"`
-	ShrtMktValAmt    string                         `json:"shrtMktValAmt,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 ShrtMktValAmt,omitempty"`
+	OutsdngMrgnLnAmt *string                        `json:"outsdngMrgnLnAmt,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 OutsdngMrgnLnAmt,omitempty"`
+	ShrtMktValAmt    *string                        `json:"shrtMktValAmt,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 ShrtMktValAmt,omitempty"`
 	Ccy              *ActiveOrHistoricCurrencyCode  `json:"ccy,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Ccy,omitempty"`
 	MrgnLnAttr       []InterestRate15Choice         `json:"mrgnLnAttr,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 MrgnLnAttr,omitempty"`
 }
@@ -878,14 +878,14 @@ type LoanData39 struct {
 	MstrAgrmt     *MasterAgreement1              `json:"mstrAgrmt,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 MstrAgrmt,omitempty"`
 	ValDt         *ISODate                       `json:"valDt,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 ValDt,omitempty"`
 	GnlColl       *SpecialCollateral1Code        `json:"gnlColl,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 GnlColl,omitempty"`
-	DlvryByVal    bool                           `json:"dlvryByVal,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 DlvryByVal,omitempty"`
+	DlvryByVal    *bool                          `json:"dlvryByVal,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 DlvryByVal,omitempty"`
 	CollDlvryMtd  *CollateralDeliveryMethod1Code `json:"collDlvryMtd,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 CollDlvryMtd,omitempty"`
 	Term          []ContractTerm2Choice          `json:"term,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Term,omitempty"`
 	AsstTp        *SecurityCommodity2Choice      `json:"asstTp,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 AsstTp,omitempty"`
-	LnVal         string                         `json:"lnVal,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 LnVal,omitempty"`
+	LnVal         *string                        `json:"lnVal,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 LnVal,omitempty"`
 	RbtRate       *RebateRate1Choice             `json:"rbtRate,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 RbtRate,omitempty"`
-	LndgFee       string                         `json:"lndgFee,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 LndgFee,omitempty"`
-	ExclsvArrgmnt bool                           `json:"exclsvArrgmnt,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 ExclsvArrgmnt,omitempty"`
+	LndgFee       *string                        `json:"lndgFee,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 LndgFee,omitempty"`
+	ExclsvArrgmnt *bool                          `json:"exclsvArrgmnt,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 ExclsvArrgmnt,omitempty"`
 }
 
 type LoanData4 struct {
@@ -1051,7 +1051,7 @@ type Quantity13 struct {
 }
 
 type QuantityNominalValue1Choice struct {
-	Qty     string                             `json:"qty,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Qty,omitempty"`
+	Qty     *string                            `json:"qty,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Qty,omitempty"`
 	NmnlVal *ActiveOrHistoricCurrencyAndAmount `json:"nmnlVal,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 NmnlVal,omitempty"`
 }
 
@@ -1064,7 +1064,7 @@ type RateAdjustment1 struct {
 type RateBasis1Code string
 
 type RebateRate1Choice struct {
-	Fxd  string                  `json:"fxd,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Fxd,omitempty"`
+	Fxd  *string                 `json:"fxd,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Fxd,omitempty"`
 	Fltg *FloatingInterestRate10 `json:"fltg,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Fltg,omitempty"`
 }
 
@@ -1083,9 +1083,9 @@ type SecuritiesLendingType3Choice struct {
 
 type SecuritiesTransactionPrice2Choice struct {
 	MntryVal *AmountAndDirection61 `json:"mntryVal,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 MntryVal,omitempty"`
-	Pctg     string                `json:"pctg,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Pctg,omitempty"`
-	Yld      string                `json:"yld,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Yld,omitempty"`
-	BsisPts  string                `json:"bsisPts,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 BsisPts,omitempty"`
+	Pctg     *string               `json:"pctg,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Pctg,omitempty"`
+	Yld      *string               `json:"yld,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Yld,omitempty"`
+	BsisPts  *string               `json:"bsisPts,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 BsisPts,omitempty"`
 }
 
 type Security3 struct {
@@ -1093,13 +1093,13 @@ type Security3 struct {
 	ClssfctnTp        *CFIOct2015Identifier              `json:"clssfctnTp,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 ClssfctnTp,omitempty"`
 	QtyOrNmnlVal      *QuantityNominalValue1Choice       `json:"qtyOrNmnlVal,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 QtyOrNmnlVal,omitempty"`
 	UnitPric          *SecuritiesTransactionPrice2Choice `json:"unitPric,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 UnitPric,omitempty"`
-	MktVal            string                             `json:"mktVal,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 MktVal,omitempty"`
-	HrcutOrMrgn       string                             `json:"hrcutOrMrgn,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 HrcutOrMrgn,omitempty"`
+	MktVal            *string                            `json:"mktVal,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 MktVal,omitempty"`
+	HrcutOrMrgn       *string                            `json:"hrcutOrMrgn,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 HrcutOrMrgn,omitempty"`
 	Qlty              *CollateralQualityType1Code        `json:"qlty,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Qlty,omitempty"`
 	Mtrty             *ISODate                           `json:"mtrty,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Mtrty,omitempty"`
 	Issr              *SecurityIssuer1                   `json:"issr,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Issr,omitempty"`
 	Tp                *SecuritiesLendingType3Choice      `json:"tp,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Tp,omitempty"`
-	AvlblForCollReuse bool                               `json:"avlblForCollReuse,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 AvlblForCollReuse,omitempty"`
+	AvlblForCollReuse *bool                              `json:"avlblForCollReuse,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 AvlblForCollReuse,omitempty"`
 }
 
 type Security4 struct {
@@ -1111,8 +1111,8 @@ type Security4 struct {
 	Issr          *SecurityIssuer1                   `json:"issr,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Issr,omitempty"`
 	Tp            []SecuritiesLendingType3Choice     `json:"tp,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Tp,omitempty"`
 	UnitPric      *SecuritiesTransactionPrice2Choice `json:"unitPric,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 UnitPric,omitempty"`
-	ExclsvArrgmnt bool                               `json:"exclsvArrgmnt,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 ExclsvArrgmnt,omitempty"`
-	MktVal        string                             `json:"mktVal,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 MktVal,omitempty"`
+	ExclsvArrgmnt *bool                              `json:"exclsvArrgmnt,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 ExclsvArrgmnt,omitempty"`
+	MktVal        *string                            `json:"mktVal,omitempty" xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 MktVal,omitempty"`
 }
 
 type SecurityCommodity2Choice struct {
