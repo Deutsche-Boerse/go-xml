@@ -204,12 +204,9 @@ func saveFile(file sftrrepo.Document, filepath string) error {
 	}
 
 	_, err = f.Write(xmlData)
-	//
-	//err = ioutil.WriteFile(filepath, xmlData, 0644)
-	//if err != nil {
-	//	return err
-	//}
-
+	if err != nil {
+		return err
+	}
 
 	//if err = iso.XsdValidator.ValidateAgainstXsd(ctx, originalFileLocation1); err != nil {
 	//	return err
