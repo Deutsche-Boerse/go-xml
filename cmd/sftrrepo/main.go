@@ -3,15 +3,16 @@ package main
 import (
 	"aqwari.net/xml/cmd/sftrrepo/sftrrepo"
 	"encoding/xml"
+	"fmt"
 	"log"
 	"os"
+	"reflect"
 	"strings"
 	"time"
 )
 
 const (
-	NameSpace = "urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01"
-	Document  = "Document"
+	schemaInstanceNS = "http://www.w3.org/2001/XMLSchema-instance"
 )
 
 func createLEI(in string) *sftrrepo.LEIIdentifier {
@@ -174,25 +175,26 @@ func saveFile(file sftrrepo.Document, filepath string) error {
 
 	tmp := struct {
 		sftrrepo.Document
-		XMLName xml.Name `xml:"urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 Document"`
+		XMLName xml.Name
 		Attr []xml.Attr `xml:",attr"`
 	}{
 		Document: file,
-		//XMLName:  createXMLName(),
+		XMLName:  xml.Name{
+			Space: sftrrepo.Namespace0,
+			Local: reflect.TypeOf(file).Name(),
+		},
 		Attr: []xml.Attr{
 			{
 				Name: xml.Name{
-					//Space: "slapte",
 					Local: "xmlns:xsi",
 				},
-				Value: "http://www.w3.org/2001/XMLSchema-instance",
+				Value: schemaInstanceNS,
 			},
 			{
 				Name: xml.Name{
-					//Space: "slapte",
 					Local: "xsi:schemaLocation",
 				},
-				Value: "urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 DRAFT2auth.052.001.01.xsd",
+				Value: fmt.Sprintf("%s %s", sftrrepo.Namespace0, sftrrepo.Filename0),
 			},
 		},
 	}
@@ -215,9 +217,3 @@ func saveFile(file sftrrepo.Document, filepath string) error {
 	return f.Close()
 }
 
-func createXMLName() xml.Name {
-	return xml.Name{
-		Space: NameSpace,
-		Local: Document,
-	}
-}
