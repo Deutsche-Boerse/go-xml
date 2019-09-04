@@ -44,6 +44,8 @@ type Config struct {
 	// if set, all decimals values would be marshalled/unmarshalled as string
 	// to avoid precision loss (by representing number as float64 type)
 	decimalsAsString bool
+
+	xsdFileNames []string
 }
 
 type typeTransform func(xsd.Schema, xsd.Type) xsd.Type
