@@ -57,6 +57,7 @@ func lookupTargetNS(data ...[]byte) []string {
 			}
 		}
 	}
+
 	return result
 }
 
@@ -224,11 +225,41 @@ func (cfg *Config) gen(primaries, deps []xsd.Schema) (*Code, error) {
 	return code, nil
 }
 
+func getConstValueSpec(constName, constVal string) *ast.ValueSpec {
+	return &ast.ValueSpec{
+		Names:  []*ast.Ident{ast.NewIdent(constName)},
+		Type:   &ast.Ident{Name: "string"},
+		Values: []ast.Expr{&ast.Ident{Name: fmt.Sprintf("\"%s\"", constVal)}},
+	}
+}
+
+func (cfg *Config) getConstants() ast.Decl {
+
+	nameDecl := ast.GenDecl{
+		Tok: token.CONST,
+	}
+	for i, namespaceVal := range cfg.namespaces {
+		namespaceName := fmt.Sprintf("Namespace%v", i)
+		nameDecl.Specs = append(nameDecl.Specs, getConstValueSpec(namespaceName, namespaceVal))
+	}
+	for i, xsdFileName := range cfg.xsdFileNames {
+		fileConstName := fmt.Sprintf("Filename%v", i)
+		nameDecl.Specs = append(nameDecl.Specs, getConstValueSpec(fileConstName, xsdFileName))
+	}
+	if len(nameDecl.Specs) == 0 {
+		return nil
+	}
+	return &nameDecl
+}
+
 // GenAST generates a Go abstract syntax tree with
 // the type declarations contained in the xml schema document.
 func (code *Code) GenAST() (*ast.File, error) {
 	var file ast.File
-
+	namespacesDecl := code.cfg.getConstants()
+	if namespacesDecl != nil {
+		file.Decls = append(file.Decls, namespacesDecl)
+	}
 	keys := make([]string, 0, len(code.decls))
 	for name := range code.decls {
 		keys = append(keys, name)
@@ -251,6 +282,7 @@ func (code *Code) GenAST() (*ast.File, error) {
 			file.Decls = append(file.Decls, f)
 		}
 	}
+
 	pkgname := code.cfg.pkgname
 	if pkgname == "" {
 		pkgname = "ws"
@@ -588,6 +620,7 @@ func (gen *nameGenerator) element(base xml.Name) ast.Expr {
 }
 
 func (cfg *Config) genComplexType(t *xsd.ComplexType) ([]spec, error) {
+
 	var result []spec
 	var fields []ast.Expr
 	var overrides []fieldOverride
@@ -679,10 +712,10 @@ func (cfg *Config) genComplexType(t *xsd.ComplexType) ([]spec, error) {
 
 	for _, el := range elements {
 		options := ""
-		if el.Nillable || el.Optional {
+		if el.Nillable || el.Optional || t.IsChoice {
 			options = ",omitempty"
 		}
-		tag := fmt.Sprintf(`json:"%s,omitempty" xml:"%s %s%s"`, toJsonName(el.Name.Local), el.Name.Space, el.Name.Local, options)
+		tag := fmt.Sprintf(`json:"%s,omitempty" xml:"%s%s"`, toJsonName(el.Name.Local), el.Name.Local, options)
 		base, err := cfg.expr(el.Type)
 		if err != nil {
 			return nil, fmt.Errorf("%s element %s: %v", t.Name.Local, el.Name.Local, err)
@@ -702,9 +735,7 @@ func (cfg *Config) genComplexType(t *xsd.ComplexType) ([]spec, error) {
 		}
 		if el.Plural {
 			base = &ast.ArrayType{Elt: base}
-		} else if _, ok := el.Type.(*xsd.ComplexType); ok && (el.Nillable || el.Optional) {
-			base = &ast.StarExpr{X: base}
-		} else if nonTrivialBuiltin(el.Type) && isNotDatetimeData(el.Type) && (el.Nillable || el.Optional) {
+		} else if el.Nillable || el.Optional || t.IsChoice {
 			base = &ast.StarExpr{X: base}
 		}
 
