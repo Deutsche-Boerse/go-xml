@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Document xmlns="urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 DRAFT2auth.052.001.01.xsd">
-<SctiesFincgRptgTxRpt xmlns="urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01">
-    <TradData xmlns="urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01">
-        <New xmlns="urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01">
-            <CtrPtyData xmlns="urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01">
-                <RptgDtTm xmlns="urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01">2019-02-03T02:03:03</RptgDtTm>
-                <RptSubmitgNtty xmlns="urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01">
-                    <LEI xmlns="urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01">22222222222222222222</LEI>
-                </RptSubmitgNtty>
-                <CtrPtyData xmlns="urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01">
-                    <RptgCtrPty xmlns="urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01">
-                        <Id xmlns="urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01">
-                            <LEI xmlns="urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01">00000000000000000000</LEI>
-                        </Id>
-                    </RptgCtrPty>
-                    <OthrCtrPty xmlns="urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01">
-                        <Id xmlns="urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01">
-                            <LEI xmlns="urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01">11111111111111111111</LEI>
-                        </Id>
-                    </OthrCtrPty>
-                </CtrPtyData>
+   <SctiesFincgRptgTxRpt>
+      <TradData>
+         <New>
+            <CtrPtyData>
+               <RptgDtTm>2019-02-03T02:03:03</RptgDtTm>
+               <RptSubmitgNtty>
+                  <LEI>22222222222222222222</LEI>
+               </RptSubmitgNtty>
+               <CtrPtyData>
+                  <RptgCtrPty>
+                     <Id>
+                        <LEI>00000000000000000000</LEI>
+                     </Id>
+                  </RptgCtrPty>
+                  <OthrCtrPty>
+                     <Id>
+                        <LEI>11111111111111111111</LEI>
+                     </Id>
+                  </OthrCtrPty>
+               </CtrPtyData>
             </CtrPtyData>
-            <LnData xmlns="urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01">
-                <UnqTradIdr xmlns="urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01">aaaaa</UnqTradIdr>
-                <EvtDt xmlns="urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01">2019-02-03</EvtDt>
-                <CtrctTp xmlns="urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01">REPO</CtrctTp>
-                <ExctnDtTm xmlns="urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01">2019-02-03T02:03:03</ExctnDtTm>
-                <TxLnData xmlns="urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01">
-                    <RpTrad xmlns="urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01"></RpTrad>
-                </TxLnData>
+            <LnData>
+               <UnqTradIdr>aaaaa</UnqTradIdr>
+               <EvtDt>2019-02-03</EvtDt>
+               <CtrctTp>REPO</CtrctTp>
+               <ExctnDtTm>2019-02-03T02:03:03</ExctnDtTm>
+               <TxLnData>
+                  <RpTrad></RpTrad>
+               </TxLnData>
             </LnData>
-            <LvlTp xmlns="urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01">PSTN</LvlTp>
-        </New>
-    </TradData>
-</SctiesFincgRptgTxRpt>
+            <LvlTp>PSTN</LvlTp>
+         </New>
+      </TradData>
+   </SctiesFincgRptgTxRpt>
 </Document>

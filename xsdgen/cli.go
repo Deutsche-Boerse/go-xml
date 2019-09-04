@@ -55,6 +55,7 @@ func (cfg *Config) GenCode(data ...[]byte) (*Code, error) {
 // associated methods based on a set of XML schema.
 func (cfg *Config) GenAST(files ...string) (*ast.File, error) {
 	data := make([][]byte, 0, len(files))
+
 	for _, filename := range files {
 		b, err := ioutil.ReadFile(filename)
 		if err != nil {
@@ -120,6 +121,7 @@ func (cfg *Config) GenCLI(arguments ...string) error {
 	if *decimalsAsString {
 		cfg.Option(DecimalsAsString(true))
 	}
+	cfg.xsdFileNames = trimmedFilenames(fs.Args())
 
 	file, err := cfg.GenAST(fs.Args()...)
 	if err != nil {
@@ -131,4 +133,15 @@ func (cfg *Config) GenCLI(arguments ...string) error {
 		return err
 	}
 	return ioutil.WriteFile(*output, data, 0666)
+}
+
+func trimmedFilenames(in []string) []string {
+	var out []string
+	for _, name := range in {
+		parts := strings.Split(name, "/")
+		if len(parts[len(parts)-1]) != 0 {
+			out = append(out, parts[len(parts)-1])
+		}
+	}
+	return out
 }
