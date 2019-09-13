@@ -19,6 +19,14 @@ type ActiveCurrencyAnd13DecimalAmount struct {
 // Must match the pattern [A-Z]{3,3}
 type ActiveCurrencyCode string
 
+func GetActiveCurrencyCodePointer(in string) *ActiveCurrencyCode {
+	if in == "" {
+		return nil
+	}
+	out := ActiveCurrencyCode(in)
+	return &out
+}
+
 type ActiveOrHistoricCurrencyAndAmount struct {
 	Value string                       `xml:",chardata"`
 	Ccy   ActiveOrHistoricCurrencyCode `xml:"Ccy,attr"`
@@ -26,6 +34,14 @@ type ActiveOrHistoricCurrencyAndAmount struct {
 
 // Must match the pattern [A-Z]{3,3}
 type ActiveOrHistoricCurrencyCode string
+
+func GetActiveOrHistoricCurrencyCodePointer(in string) *ActiveOrHistoricCurrencyCode {
+	if in == "" {
+		return nil
+	}
+	out := ActiveOrHistoricCurrencyCode(in)
+	return &out
+}
 
 type AgreementType1Choice struct {
 	Tp    *ExternalAgreementType1Code `json:"tp,omitempty" xml:"Tp,omitempty"`
@@ -93,6 +109,14 @@ type AmountAndDirection61 struct {
 
 // Must match the pattern [A-Z0-9]{4,4}[A-Z]{2,2}[A-Z0-9]{2,2}([A-Z0-9]{3,3}){0,1}
 type AnyBICDec2014Identifier string
+
+func GetAnyBICDec2014IdentifierPointer(in string) *AnyBICDec2014Identifier {
+	if in == "" {
+		return nil
+	}
+	out := AnyBICDec2014Identifier(in)
+	return &out
+}
 
 type AssetClassCommodity5Choice struct {
 	Agrcltrl          *AssetClassCommodityAgricultural5Choice         `json:"agrcltrl,omitempty" xml:"Agrcltrl,omitempty"`
@@ -207,206 +231,750 @@ type AssetClassCommodityPolypropylene3Choice struct {
 // May be one of ALUM, ALUA, CBLT, COPR, IRON, MOLY, NASC, NICK, STEL, TINN, ZINC, OTHR, LEAD
 type AssetClassDetailedSubProductType10Code string
 
+func GetAssetClassDetailedSubProductType10CodePointer(in string) *AssetClassDetailedSubProductType10Code {
+	if in == "" {
+		return nil
+	}
+	out := AssetClassDetailedSubProductType10Code(in)
+	return &out
+}
+
 // May be one of GOLD, OTHR, PLDM, PTNM, SLVR
 type AssetClassDetailedSubProductType11Code string
+
+func GetAssetClassDetailedSubProductType11CodePointer(in string) *AssetClassDetailedSubProductType11Code {
+	if in == "" {
+		return nil
+	}
+	out := AssetClassDetailedSubProductType11Code(in)
+	return &out
+}
 
 // May be one of FWHT, SOYB, RPSD, OTHR, CORN, RICE
 type AssetClassDetailedSubProductType1Code string
 
+func GetAssetClassDetailedSubProductType1CodePointer(in string) *AssetClassDetailedSubProductType1Code {
+	if in == "" {
+		return nil
+	}
+	out := AssetClassDetailedSubProductType1Code(in)
+	return &out
+}
+
 // May be one of LAMP, OTHR
 type AssetClassDetailedSubProductType29Code string
+
+func GetAssetClassDetailedSubProductType29CodePointer(in string) *AssetClassDetailedSubProductType29Code {
+	if in == "" {
+		return nil
+	}
+	out := AssetClassDetailedSubProductType29Code(in)
+	return &out
+}
 
 // May be one of ROBU, CCOA, BRWN, WHSG, OTHR
 type AssetClassDetailedSubProductType2Code string
 
+func GetAssetClassDetailedSubProductType2CodePointer(in string) *AssetClassDetailedSubProductType2Code {
+	if in == "" {
+		return nil
+	}
+	out := AssetClassDetailedSubProductType2Code(in)
+	return &out
+}
+
 // May be one of MWHT, OTHR
 type AssetClassDetailedSubProductType30Code string
+
+func GetAssetClassDetailedSubProductType30CodePointer(in string) *AssetClassDetailedSubProductType30Code {
+	if in == "" {
+		return nil
+	}
+	out := AssetClassDetailedSubProductType30Code(in)
+	return &out
+}
 
 // May be one of GASP, LNGG, NCGG, TTFG, NBPG, OTHR
 type AssetClassDetailedSubProductType31Code string
 
+func GetAssetClassDetailedSubProductType31CodePointer(in string) *AssetClassDetailedSubProductType31Code {
+	if in == "" {
+		return nil
+	}
+	out := AssetClassDetailedSubProductType31Code(in)
+	return &out
+}
+
 // May be one of BAKK, BDSL, BRNT, BRNX, CNDA, COND, DSEL, DUBA, ESPO, ETHA, FUEL, FOIL, GOIL, GSLN, HEAT, JTFL, KERO, LLSO, MARS, NAPH, NGLO, TAPI, WTIO, URAL, OTHR
 type AssetClassDetailedSubProductType32Code string
+
+func GetAssetClassDetailedSubProductType32CodePointer(in string) *AssetClassDetailedSubProductType32Code {
+	if in == "" {
+		return nil
+	}
+	out := AssetClassDetailedSubProductType32Code(in)
+	return &out
+}
 
 // May be one of DBCR, OTHR
 type AssetClassDetailedSubProductType33Code string
 
+func GetAssetClassDetailedSubProductType33CodePointer(in string) *AssetClassDetailedSubProductType33Code {
+	if in == "" {
+		return nil
+	}
+	out := AssetClassDetailedSubProductType33Code(in)
+	return &out
+}
+
 // May be one of TNKR, OTHR
 type AssetClassDetailedSubProductType34Code string
+
+func GetAssetClassDetailedSubProductType34CodePointer(in string) *AssetClassDetailedSubProductType34Code {
+	if in == "" {
+		return nil
+	}
+	out := AssetClassDetailedSubProductType34Code(in)
+	return &out
+}
 
 // May be one of BSLD, FITR, PKLD, OFFP, OTHR
 type AssetClassDetailedSubProductType5Code string
 
+func GetAssetClassDetailedSubProductType5CodePointer(in string) *AssetClassDetailedSubProductType5Code {
+	if in == "" {
+		return nil
+	}
+	out := AssetClassDetailedSubProductType5Code(in)
+	return &out
+}
+
 // May be one of CERE, ERUE, EUAE, EUAA, OTHR
 type AssetClassDetailedSubProductType8Code string
+
+func GetAssetClassDetailedSubProductType8CodePointer(in string) *AssetClassDetailedSubProductType8Code {
+	if in == "" {
+		return nil
+	}
+	out := AssetClassDetailedSubProductType8Code(in)
+	return &out
+}
 
 // May be one of OTHC
 type AssetClassProductType11Code string
 
+func GetAssetClassProductType11CodePointer(in string) *AssetClassProductType11Code {
+	if in == "" {
+		return nil
+	}
+	out := AssetClassProductType11Code(in)
+	return &out
+}
+
 // May be one of INFL
 type AssetClassProductType12Code string
+
+func GetAssetClassProductType12CodePointer(in string) *AssetClassProductType12Code {
+	if in == "" {
+		return nil
+	}
+	out := AssetClassProductType12Code(in)
+	return &out
+}
 
 // May be one of MCEX
 type AssetClassProductType13Code string
 
+func GetAssetClassProductType13CodePointer(in string) *AssetClassProductType13Code {
+	if in == "" {
+		return nil
+	}
+	out := AssetClassProductType13Code(in)
+	return &out
+}
+
 // May be one of OEST
 type AssetClassProductType14Code string
+
+func GetAssetClassProductType14CodePointer(in string) *AssetClassProductType14Code {
+	if in == "" {
+		return nil
+	}
+	out := AssetClassProductType14Code(in)
+	return &out
+}
 
 // May be one of OTHR
 type AssetClassProductType15Code string
 
+func GetAssetClassProductType15CodePointer(in string) *AssetClassProductType15Code {
+	if in == "" {
+		return nil
+	}
+	out := AssetClassProductType15Code(in)
+	return &out
+}
+
 // May be one of AGRI
 type AssetClassProductType1Code string
+
+func GetAssetClassProductType1CodePointer(in string) *AssetClassProductType1Code {
+	if in == "" {
+		return nil
+	}
+	out := AssetClassProductType1Code(in)
+	return &out
+}
 
 // May be one of NRGY
 type AssetClassProductType2Code string
 
+func GetAssetClassProductType2CodePointer(in string) *AssetClassProductType2Code {
+	if in == "" {
+		return nil
+	}
+	out := AssetClassProductType2Code(in)
+	return &out
+}
+
 // May be one of ENVR
 type AssetClassProductType3Code string
+
+func GetAssetClassProductType3CodePointer(in string) *AssetClassProductType3Code {
+	if in == "" {
+		return nil
+	}
+	out := AssetClassProductType3Code(in)
+	return &out
+}
 
 // May be one of FRGT
 type AssetClassProductType4Code string
 
+func GetAssetClassProductType4CodePointer(in string) *AssetClassProductType4Code {
+	if in == "" {
+		return nil
+	}
+	out := AssetClassProductType4Code(in)
+	return &out
+}
+
 // May be one of FRTL
 type AssetClassProductType5Code string
+
+func GetAssetClassProductType5CodePointer(in string) *AssetClassProductType5Code {
+	if in == "" {
+		return nil
+	}
+	out := AssetClassProductType5Code(in)
+	return &out
+}
 
 // May be one of INDP
 type AssetClassProductType6Code string
 
+func GetAssetClassProductType6CodePointer(in string) *AssetClassProductType6Code {
+	if in == "" {
+		return nil
+	}
+	out := AssetClassProductType6Code(in)
+	return &out
+}
+
 // May be one of METL
 type AssetClassProductType7Code string
+
+func GetAssetClassProductType7CodePointer(in string) *AssetClassProductType7Code {
+	if in == "" {
+		return nil
+	}
+	out := AssetClassProductType7Code(in)
+	return &out
+}
 
 // May be one of PAPR
 type AssetClassProductType8Code string
 
+func GetAssetClassProductType8CodePointer(in string) *AssetClassProductType8Code {
+	if in == "" {
+		return nil
+	}
+	out := AssetClassProductType8Code(in)
+	return &out
+}
+
 // May be one of POLY
 type AssetClassProductType9Code string
+
+func GetAssetClassProductType9CodePointer(in string) *AssetClassProductType9Code {
+	if in == "" {
+		return nil
+	}
+	out := AssetClassProductType9Code(in)
+	return &out
+}
 
 // May be one of EMIS
 type AssetClassSubProductType10Code string
 
+func GetAssetClassSubProductType10CodePointer(in string) *AssetClassSubProductType10Code {
+	if in == "" {
+		return nil
+	}
+	out := AssetClassSubProductType10Code(in)
+	return &out
+}
+
 // May be one of NPRM
 type AssetClassSubProductType15Code string
+
+func GetAssetClassSubProductType15CodePointer(in string) *AssetClassSubProductType15Code {
+	if in == "" {
+		return nil
+	}
+	out := AssetClassSubProductType15Code(in)
+	return &out
+}
 
 // May be one of PRME
 type AssetClassSubProductType16Code string
 
+func GetAssetClassSubProductType16CodePointer(in string) *AssetClassSubProductType16Code {
+	if in == "" {
+		return nil
+	}
+	out := AssetClassSubProductType16Code(in)
+	return &out
+}
+
 // May be one of PLST
 type AssetClassSubProductType18Code string
+
+func GetAssetClassSubProductType18CodePointer(in string) *AssetClassSubProductType18Code {
+	if in == "" {
+		return nil
+	}
+	out := AssetClassSubProductType18Code(in)
+	return &out
+}
 
 // May be one of GROS
 type AssetClassSubProductType1Code string
 
+func GetAssetClassSubProductType1CodePointer(in string) *AssetClassSubProductType1Code {
+	if in == "" {
+		return nil
+	}
+	out := AssetClassSubProductType1Code(in)
+	return &out
+}
+
 // May be one of DIRY
 type AssetClassSubProductType20Code string
+
+func GetAssetClassSubProductType20CodePointer(in string) *AssetClassSubProductType20Code {
+	if in == "" {
+		return nil
+	}
+	out := AssetClassSubProductType20Code(in)
+	return &out
+}
 
 // May be one of FRST
 type AssetClassSubProductType21Code string
 
+func GetAssetClassSubProductType21CodePointer(in string) *AssetClassSubProductType21Code {
+	if in == "" {
+		return nil
+	}
+	out := AssetClassSubProductType21Code(in)
+	return &out
+}
+
 // May be one of LSTK
 type AssetClassSubProductType22Code string
+
+func GetAssetClassSubProductType22CodePointer(in string) *AssetClassSubProductType22Code {
+	if in == "" {
+		return nil
+	}
+	out := AssetClassSubProductType22Code(in)
+	return &out
+}
 
 // May be one of SEAF
 type AssetClassSubProductType23Code string
 
+func GetAssetClassSubProductType23CodePointer(in string) *AssetClassSubProductType23Code {
+	if in == "" {
+		return nil
+	}
+	out := AssetClassSubProductType23Code(in)
+	return &out
+}
+
 // May be one of COAL
 type AssetClassSubProductType24Code string
+
+func GetAssetClassSubProductType24CodePointer(in string) *AssetClassSubProductType24Code {
+	if in == "" {
+		return nil
+	}
+	out := AssetClassSubProductType24Code(in)
+	return &out
+}
 
 // May be one of DIST
 type AssetClassSubProductType25Code string
 
+func GetAssetClassSubProductType25CodePointer(in string) *AssetClassSubProductType25Code {
+	if in == "" {
+		return nil
+	}
+	out := AssetClassSubProductType25Code(in)
+	return &out
+}
+
 // May be one of INRG
 type AssetClassSubProductType26Code string
+
+func GetAssetClassSubProductType26CodePointer(in string) *AssetClassSubProductType26Code {
+	if in == "" {
+		return nil
+	}
+	out := AssetClassSubProductType26Code(in)
+	return &out
+}
 
 // May be one of LGHT
 type AssetClassSubProductType27Code string
 
+func GetAssetClassSubProductType27CodePointer(in string) *AssetClassSubProductType27Code {
+	if in == "" {
+		return nil
+	}
+	out := AssetClassSubProductType27Code(in)
+	return &out
+}
+
 // May be one of RNNG
 type AssetClassSubProductType28Code string
+
+func GetAssetClassSubProductType28CodePointer(in string) *AssetClassSubProductType28Code {
+	if in == "" {
+		return nil
+	}
+	out := AssetClassSubProductType28Code(in)
+	return &out
+}
 
 // May be one of CRBR
 type AssetClassSubProductType29Code string
 
+func GetAssetClassSubProductType29CodePointer(in string) *AssetClassSubProductType29Code {
+	if in == "" {
+		return nil
+	}
+	out := AssetClassSubProductType29Code(in)
+	return &out
+}
+
 // May be one of SOFT
 type AssetClassSubProductType2Code string
+
+func GetAssetClassSubProductType2CodePointer(in string) *AssetClassSubProductType2Code {
+	if in == "" {
+		return nil
+	}
+	out := AssetClassSubProductType2Code(in)
+	return &out
+}
 
 // May be one of WTHR
 type AssetClassSubProductType30Code string
 
+func GetAssetClassSubProductType30CodePointer(in string) *AssetClassSubProductType30Code {
+	if in == "" {
+		return nil
+	}
+	out := AssetClassSubProductType30Code(in)
+	return &out
+}
+
 // May be one of DRYF
 type AssetClassSubProductType31Code string
+
+func GetAssetClassSubProductType31CodePointer(in string) *AssetClassSubProductType31Code {
+	if in == "" {
+		return nil
+	}
+	out := AssetClassSubProductType31Code(in)
+	return &out
+}
 
 // May be one of WETF
 type AssetClassSubProductType32Code string
 
+func GetAssetClassSubProductType32CodePointer(in string) *AssetClassSubProductType32Code {
+	if in == "" {
+		return nil
+	}
+	out := AssetClassSubProductType32Code(in)
+	return &out
+}
+
 // May be one of CSTR
 type AssetClassSubProductType33Code string
+
+func GetAssetClassSubProductType33CodePointer(in string) *AssetClassSubProductType33Code {
+	if in == "" {
+		return nil
+	}
+	out := AssetClassSubProductType33Code(in)
+	return &out
+}
 
 // May be one of MFTG
 type AssetClassSubProductType34Code string
 
+func GetAssetClassSubProductType34CodePointer(in string) *AssetClassSubProductType34Code {
+	if in == "" {
+		return nil
+	}
+	out := AssetClassSubProductType34Code(in)
+	return &out
+}
+
 // May be one of CBRD
 type AssetClassSubProductType35Code string
+
+func GetAssetClassSubProductType35CodePointer(in string) *AssetClassSubProductType35Code {
+	if in == "" {
+		return nil
+	}
+	out := AssetClassSubProductType35Code(in)
+	return &out
+}
 
 // May be one of NSPT
 type AssetClassSubProductType36Code string
 
+func GetAssetClassSubProductType36CodePointer(in string) *AssetClassSubProductType36Code {
+	if in == "" {
+		return nil
+	}
+	out := AssetClassSubProductType36Code(in)
+	return &out
+}
+
 // May be one of PULP
 type AssetClassSubProductType37Code string
+
+func GetAssetClassSubProductType37CodePointer(in string) *AssetClassSubProductType37Code {
+	if in == "" {
+		return nil
+	}
+	out := AssetClassSubProductType37Code(in)
+	return &out
+}
 
 // May be one of RCVP
 type AssetClassSubProductType38Code string
 
+func GetAssetClassSubProductType38CodePointer(in string) *AssetClassSubProductType38Code {
+	if in == "" {
+		return nil
+	}
+	out := AssetClassSubProductType38Code(in)
+	return &out
+}
+
 // May be one of AMMO
 type AssetClassSubProductType39Code string
+
+func GetAssetClassSubProductType39CodePointer(in string) *AssetClassSubProductType39Code {
+	if in == "" {
+		return nil
+	}
+	out := AssetClassSubProductType39Code(in)
+	return &out
+}
 
 // May be one of OOLI
 type AssetClassSubProductType3Code string
 
+func GetAssetClassSubProductType3CodePointer(in string) *AssetClassSubProductType3Code {
+	if in == "" {
+		return nil
+	}
+	out := AssetClassSubProductType3Code(in)
+	return &out
+}
+
 // May be one of DAPH
 type AssetClassSubProductType40Code string
+
+func GetAssetClassSubProductType40CodePointer(in string) *AssetClassSubProductType40Code {
+	if in == "" {
+		return nil
+	}
+	out := AssetClassSubProductType40Code(in)
+	return &out
+}
 
 // May be one of PTSH
 type AssetClassSubProductType41Code string
 
+func GetAssetClassSubProductType41CodePointer(in string) *AssetClassSubProductType41Code {
+	if in == "" {
+		return nil
+	}
+	out := AssetClassSubProductType41Code(in)
+	return &out
+}
+
 // May be one of SLPH
 type AssetClassSubProductType42Code string
+
+func GetAssetClassSubProductType42CodePointer(in string) *AssetClassSubProductType42Code {
+	if in == "" {
+		return nil
+	}
+	out := AssetClassSubProductType42Code(in)
+	return &out
+}
 
 // May be one of UREA
 type AssetClassSubProductType43Code string
 
+func GetAssetClassSubProductType43CodePointer(in string) *AssetClassSubProductType43Code {
+	if in == "" {
+		return nil
+	}
+	out := AssetClassSubProductType43Code(in)
+	return &out
+}
+
 // May be one of UAAN
 type AssetClassSubProductType44Code string
+
+func GetAssetClassSubProductType44CodePointer(in string) *AssetClassSubProductType44Code {
+	if in == "" {
+		return nil
+	}
+	out := AssetClassSubProductType44Code(in)
+	return &out
+}
 
 // May be one of POTA
 type AssetClassSubProductType45Code string
 
+func GetAssetClassSubProductType45CodePointer(in string) *AssetClassSubProductType45Code {
+	if in == "" {
+		return nil
+	}
+	out := AssetClassSubProductType45Code(in)
+	return &out
+}
+
 // May be one of CSHP
 type AssetClassSubProductType46Code string
+
+func GetAssetClassSubProductType46CodePointer(in string) *AssetClassSubProductType46Code {
+	if in == "" {
+		return nil
+	}
+	out := AssetClassSubProductType46Code(in)
+	return &out
+}
 
 // May be one of DLVR
 type AssetClassSubProductType47Code string
 
+func GetAssetClassSubProductType47CodePointer(in string) *AssetClassSubProductType47Code {
+	if in == "" {
+		return nil
+	}
+	out := AssetClassSubProductType47Code(in)
+	return &out
+}
+
 // May be one of NDLV
 type AssetClassSubProductType48Code string
+
+func GetAssetClassSubProductType48CodePointer(in string) *AssetClassSubProductType48Code {
+	if in == "" {
+		return nil
+	}
+	out := AssetClassSubProductType48Code(in)
+	return &out
+}
 
 // May be one of OTHR
 type AssetClassSubProductType49Code string
 
+func GetAssetClassSubProductType49CodePointer(in string) *AssetClassSubProductType49Code {
+	if in == "" {
+		return nil
+	}
+	out := AssetClassSubProductType49Code(in)
+	return &out
+}
+
 // May be one of GRIN
 type AssetClassSubProductType5Code string
+
+func GetAssetClassSubProductType5CodePointer(in string) *AssetClassSubProductType5Code {
+	if in == "" {
+		return nil
+	}
+	out := AssetClassSubProductType5Code(in)
+	return &out
+}
 
 // May be one of ELEC
 type AssetClassSubProductType6Code string
 
+func GetAssetClassSubProductType6CodePointer(in string) *AssetClassSubProductType6Code {
+	if in == "" {
+		return nil
+	}
+	out := AssetClassSubProductType6Code(in)
+	return &out
+}
+
 // May be one of NGAS
 type AssetClassSubProductType7Code string
+
+func GetAssetClassSubProductType7CodePointer(in string) *AssetClassSubProductType7Code {
+	if in == "" {
+		return nil
+	}
+	out := AssetClassSubProductType7Code(in)
+	return &out
+}
 
 // May be one of OILP
 type AssetClassSubProductType8Code string
 
+func GetAssetClassSubProductType8CodePointer(in string) *AssetClassSubProductType8Code {
+	if in == "" {
+		return nil
+	}
+	out := AssetClassSubProductType8Code(in)
+	return &out
+}
+
 // May be one of WIBO, TREA, TIBO, TLBO, SWAP, STBO, PRBO, PFAN, NIBO, MAAA, MOSP, LIBO, LIBI, JIBA, ISDA, GCFR, FUSW, EUCH, EUUS, EURI, EONS, EONA, CIBO, CDOR, BUBO, BBSW
 type BenchmarkCurveName2Code string
+
+func GetBenchmarkCurveName2CodePointer(in string) *BenchmarkCurveName2Code {
+	if in == "" {
+		return nil
+	}
+	out := BenchmarkCurveName2Code(in)
+	return &out
+}
 
 type BenchmarkCurveName8Choice struct {
 	Indx *BenchmarkCurveName2Code `json:"indx,omitempty" xml:"Indx,omitempty"`
@@ -420,6 +988,14 @@ type Branch2Choice struct {
 
 // Must match the pattern [A-Z]{6,6}
 type CFIOct2015Identifier string
+
+func GetCFIOct2015IdentifierPointer(in string) *CFIOct2015Identifier {
+	if in == "" {
+		return nil
+	}
+	out := CFIOct2015Identifier(in)
+	return &out
+}
 
 type Cleared2Choice struct {
 	Clrd    *ClearingPartyAndTime7 `json:"clrd,omitempty" xml:"Clrd,omitempty"`
@@ -461,6 +1037,14 @@ type CollateralData7 struct {
 // May be one of SICA, SIUR, TTCA
 type CollateralDeliveryMethod1Code string
 
+func GetCollateralDeliveryMethod1CodePointer(in string) *CollateralDeliveryMethod1Code {
+	if in == "" {
+		return nil
+	}
+	out := CollateralDeliveryMethod1Code(in)
+	return &out
+}
+
 type CollateralFlag6 struct {
 	HrcutOrMrgn string `json:"hrcutOrMrgn,omitempty" xml:"HrcutOrMrgn"`
 }
@@ -473,8 +1057,24 @@ type CollateralFlag6Choice struct {
 // May be one of INVG, NIVG, NOTR, NOAP
 type CollateralQualityType1Code string
 
+func GetCollateralQualityType1CodePointer(in string) *CollateralQualityType1Code {
+	if in == "" {
+		return nil
+	}
+	out := CollateralQualityType1Code(in)
+	return &out
+}
+
 // May be one of GIVE, TAKE
 type CollateralRole1Code string
+
+func GetCollateralRole1CodePointer(in string) *CollateralRole1Code {
+	if in == "" {
+		return nil
+	}
+	out := CollateralRole1Code(in)
+	return &out
+}
 
 type CollateralType7Choice struct {
 	Scty   []HaircutPortfolioSecurityIdentification1 `json:"scty,omitempty" xml:"Scty,omitempty"`
@@ -545,6 +1145,14 @@ type CounterpartyTradeNature3Choice struct {
 
 // Must match the pattern [A-Z]{2,2}
 type CountryCode string
+
+func GetCountryCodePointer(in string) *CountryCode {
+	if in == "" {
+		return nil
+	}
+	out := CountryCode(in)
+	return &out
+}
 
 type Document struct {
 	SctiesFincgRptgTxRpt SecuritiesFinancingReportingTransactionReportV01 `json:"sctiesFincgRptgTxRpt,omitempty" xml:"SctiesFincgRptgTxRpt"`
@@ -622,11 +1230,35 @@ type EnvironmentalCommodityWeather1 struct {
 // May be one of SBSC, MGLD, REPO, SLEB
 type ExposureType6Code string
 
+func GetExposureType6CodePointer(in string) *ExposureType6Code {
+	if in == "" {
+		return nil
+	}
+	out := ExposureType6Code(in)
+	return &out
+}
+
 // Must be at least 1 items long
 type ExternalAgreementType1Code string
 
+func GetExternalAgreementType1CodePointer(in string) *ExternalAgreementType1Code {
+	if in == "" {
+		return nil
+	}
+	out := ExternalAgreementType1Code(in)
+	return &out
+}
+
 // Must be at least 1 items long
 type ExternalSecuritiesLendingType1Code string
+
+func GetExternalSecuritiesLendingType1CodePointer(in string) *ExternalSecuritiesLendingType1Code {
+	if in == "" {
+		return nil
+	}
+	out := ExternalSecuritiesLendingType1Code(in)
+	return &out
+}
 
 type FertilizerCommodityAmmonia1 struct {
 	BasePdct AssetClassProductType5Code     `json:"basePdct,omitempty" xml:"BasePdct"`
@@ -670,6 +1302,14 @@ type FinancialPartyClassification1Choice struct {
 
 // May be one of AIFD, CSDS, CCPS, CDTI, INUN, ORPI, INVF, REIN, UCIT
 type FinancialPartySectorType2Code string
+
+func GetFinancialPartySectorType2CodePointer(in string) *FinancialPartySectorType2Code {
+	if in == "" {
+		return nil
+	}
+	out := FinancialPartySectorType2Code(in)
+	return &out
+}
 
 type FixedRate2 struct {
 	Rate       string                                 `json:"rate,omitempty" xml:"Rate"`
@@ -739,6 +1379,14 @@ type FreightCommodityWet2 struct {
 // May be one of ETFT, MMFT, OTHR, REIT
 type FundType2Code string
 
+func GetFundType2CodePointer(in string) *FundType2Code {
+	if in == "" {
+		return nil
+	}
+	out := FundType2Code(in)
+	return &out
+}
+
 type HaircutPortfolioSecurityIdentification1 struct {
 	PrtflHrcutOrMrgn *string   `json:"prtflHrcutOrMrgn,omitempty" xml:"PrtflHrcutOrMrgn,omitempty"`
 	Id               Security3 `json:"id,omitempty" xml:"Id"`
@@ -746,6 +1394,14 @@ type HaircutPortfolioSecurityIdentification1 struct {
 
 // Must match the pattern [A-Z]{2,2}[A-Z0-9]{9,9}[0-9]{1,1}
 type ISINOct2015Identifier string
+
+func GetISINOct2015IdentifierPointer(in string) *ISINOct2015Identifier {
+	if in == "" {
+		return nil
+	}
+	out := ISINOct2015Identifier(in)
+	return &out
+}
 
 type ISODate time.Time
 
@@ -787,6 +1443,14 @@ type IndustrialProductCommodityManufacturing1 struct {
 // May be one of A001, A002, A003, A004, A005, A006, A007, A008, A009, A010, A011, A012, A013, A014
 type InterestComputationMethod1Code string
 
+func GetInterestComputationMethod1CodePointer(in string) *InterestComputationMethod1Code {
+	if in == "" {
+		return nil
+	}
+	out := InterestComputationMethod1Code(in)
+	return &out
+}
+
 type InterestComputationMethodFormat6Choice struct {
 	Cd    *InterestComputationMethod1Code `json:"cd,omitempty" xml:"Cd,omitempty"`
 	Prtry *Max35Text                      `json:"prtry,omitempty" xml:"Prtry,omitempty"`
@@ -814,6 +1478,14 @@ type InterestRateContractTerm2 struct {
 
 // Must match the pattern [A-Z0-9]{18,18}[0-9]{2,2}
 type LEIIdentifier string
+
+func GetLEIIdentifierPointer(in string) *LEIIdentifier {
+	if in == "" {
+		return nil
+	}
+	out := LEIIdentifier(in)
+	return &out
+}
 
 type LoanData1 struct {
 	ClrSts          *Cleared8Choice                `json:"clrSts,omitempty" xml:"ClrSts,omitempty"`
@@ -951,6 +1623,14 @@ type LoanData44 struct {
 // Must match the pattern [A-Z0-9]{4,4}
 type MICIdentifier string
 
+func GetMICIdentifierPointer(in string) *MICIdentifier {
+	if in == "" {
+		return nil
+	}
+	out := MICIdentifier(in)
+	return &out
+}
+
 type MasterAgreement1 struct {
 	Tp                AgreementType1Choice `json:"tp,omitempty" xml:"Tp"`
 	Vrsn              *ISORestrictedYear   `json:"vrsn,omitempty" xml:"Vrsn,omitempty"`
@@ -960,14 +1640,46 @@ type MasterAgreement1 struct {
 // Must be at least 1 items long
 type Max350Text string
 
+func GetMax350TextPointer(in string) *Max350Text {
+	if in == "" {
+		return nil
+	}
+	out := Max350Text(in)
+	return &out
+}
+
 // Must be at least 1 items long
 type Max35Text string
+
+func GetMax35TextPointer(in string) *Max35Text {
+	if in == "" {
+		return nil
+	}
+	out := Max35Text(in)
+	return &out
+}
 
 // Must be at least 1 items long
 type Max50Text string
 
+func GetMax50TextPointer(in string) *Max50Text {
+	if in == "" {
+		return nil
+	}
+	out := Max50Text(in)
+	return &out
+}
+
 // Must be at least 1 items long
 type Max52Text string
+
+func GetMax52TextPointer(in string) *Max52Text {
+	if in == "" {
+		return nil
+	}
+	out := Max52Text(in)
+	return &out
+}
 
 type MetalCommodityNonPrecious1 struct {
 	BasePdct     AssetClassProductType7Code             `json:"basePdct,omitempty" xml:"BasePdct"`
@@ -984,14 +1696,46 @@ type MetalCommodityPrecious1 struct {
 // May be one of PSTN, TCTN
 type ModificationLevel1Code string
 
+func GetModificationLevel1CodePointer(in string) *ModificationLevel1Code {
+	if in == "" {
+		return nil
+	}
+	out := ModificationLevel1Code(in)
+	return &out
+}
+
 // Must match the pattern [A-U]{1,1}
 type NACEDomainIdentifier string
+
+func GetNACEDomainIdentifierPointer(in string) *NACEDomainIdentifier {
+	if in == "" {
+		return nil
+	}
+	out := NACEDomainIdentifier(in)
+	return &out
+}
 
 // May be one of NORE
 type NoReasonCode string
 
+func GetNoReasonCodePointer(in string) *NoReasonCode {
+	if in == "" {
+		return nil
+	}
+	out := NoReasonCode(in)
+	return &out
+}
+
 // May be one of NTAV
 type NotAvailable1Code string
+
+func GetNotAvailable1CodePointer(in string) *NotAvailable1Code {
+	if in == "" {
+		return nil
+	}
+	out := NotAvailable1Code(in)
+	return &out
+}
 
 type OrganisationIdentification9Choice struct {
 	LEI    *LEIIdentifier           `json:"lei,omitempty" xml:"LEI,omitempty"`
@@ -1068,6 +1812,14 @@ type RateAdjustment1 struct {
 // May be one of DAYS, MNTH, WEEK, YEAR
 type RateBasis1Code string
 
+func GetRateBasis1CodePointer(in string) *RateBasis1Code {
+	if in == "" {
+		return nil
+	}
+	out := RateBasis1Code(in)
+	return &out
+}
+
 type RebateRate1Choice struct {
 	Fxd  *string                 `json:"fxd,omitempty" xml:"Fxd,omitempty"`
 	Fltg *FloatingInterestRate10 `json:"fltg,omitempty" xml:"Fltg,omitempty"`
@@ -1075,6 +1827,14 @@ type RebateRate1Choice struct {
 
 // May be one of EGRN, EGAE, ETSB, NOAP
 type RepoTerminationOption2Code string
+
+func GetRepoTerminationOption2CodePointer(in string) *RepoTerminationOption2Code {
+	if in == "" {
+		return nil
+	}
+	out := RepoTerminationOption2Code(in)
+	return &out
+}
 
 type SecuritiesFinancingReportingTransactionReportV01 struct {
 	TradData    []TradeTransactionReport6Choice `json:"tradData,omitempty" xml:"TradData"`
@@ -1142,6 +1902,14 @@ type SettlementParties31Choice struct {
 
 // May be one of GENE, SPEC
 type SpecialCollateral1Code string
+
+func GetSpecialCollateral1CodePointer(in string) *SpecialCollateral1Code {
+	if in == "" {
+		return nil
+	}
+	out := SpecialCollateral1Code(in)
+	return &out
+}
 
 type SupplementaryData1 struct {
 	PlcAndNm *Max350Text                `json:"plcAndNm,omitempty" xml:"PlcAndNm,omitempty"`
@@ -1281,6 +2049,14 @@ type TransactionLoanData6Choice struct {
 
 // May be one of PIEC, TONS, FOOT, GBGA, USGA, GRAM, INCH, KILO, PUND, METR, CMET, MMET, LITR, CELI, MILI, GBOU, USOU, GBQA, USQA, GBPI, USPI, MILE, KMET, YARD, SQKI, HECT, ARES, SMET, SCMT, SMIL, SQMI, SQYA, SQFO, SQIN, ACRE
 type UnitOfMeasure1Code string
+
+func GetUnitOfMeasure1CodePointer(in string) *UnitOfMeasure1Code {
+	if in == "" {
+		return nil
+	}
+	out := UnitOfMeasure1Code(in)
+	return &out
+}
 
 type xsdDate time.Time
 
