@@ -949,7 +949,28 @@ func (cfg *Config) genSimpleType(t *xsd.SimpleType) ([]spec, error) {
 // Attach Marshal/Unmarshal methods to a simple type, if necessary.
 func (cfg *Config) addSpecMethods(s spec) (spec, error) {
 	t, ok := s.xsdType.(*xsd.SimpleType)
-	if !ok || !nonTrivialBuiltin(t.Base) {
+	if !ok {
+		return s, nil
+	}
+	if !nonTrivialBuiltin(t.Base) {
+		bType, ok := t.Base.(xsd.Builtin)
+		if !ok {
+			return s, nil
+		}
+		if bType == xsd.String {
+			cfg.logf("addSpecMethods: bType is string %+v", s)
+			pointerFunc := gen.Func("Get"+s.name+"Pointer").
+				//Receiver("t *"+name).
+				Args("in string").
+				Returns("*"+s.name).
+				Body(`if in == "" {
+						return nil
+						}
+						out := %s(in)
+						return &out`, s.name).
+				MustDecl()
+			s.methods = append(s.methods, pointerFunc)
+		}
 		return s, nil
 	}
 
