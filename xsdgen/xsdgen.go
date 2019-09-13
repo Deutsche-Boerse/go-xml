@@ -624,7 +624,11 @@ func (cfg *Config) genComplexType(t *xsd.ComplexType) ([]spec, error) {
 	var result []spec
 	var fields []ast.Expr
 	var overrides []fieldOverride
-	var helperTypes []xml.Name
+
+	s := spec{
+		doc:  t.Doc,
+		name: cfg.public(t.Name),
+	}
 
 	namegen := nameGenerator{cfg, make(map[string]struct{})}
 
@@ -667,7 +671,7 @@ func (cfg *Config) genComplexType(t *xsd.ComplexType) ([]spec, error) {
 				if !ok {
 					return nil, fmt.Errorf("missing helper type for %v", b)
 				}
-				helperTypes = append(helperTypes, xsd.XMLName(h.xsdType))
+				s.helperTypes = append(s.helperTypes, xsd.XMLName(h.xsdType))
 				overrides = append(overrides, fieldOverride{
 					FieldName: name,
 					FromType:  cfg.exprString(b),
@@ -711,6 +715,7 @@ func (cfg *Config) genComplexType(t *xsd.ComplexType) ([]spec, error) {
 		xsd.XMLName(t).Local, len(elements), len(attributes))
 
 	for _, el := range elements {
+
 		options := ""
 		if el.Nillable || el.Optional || t.IsChoice {
 			options = ",omitempty"
@@ -747,7 +752,7 @@ func (cfg *Config) genComplexType(t *xsd.ComplexType) ([]spec, error) {
 				if !ok {
 					return nil, fmt.Errorf("no helper type for type %v element %v", t.Name, el.Name)
 				}
-				helperTypes = append(helperTypes, xsd.XMLName(h.xsdType))
+				s.helperTypes = append(s.helperTypes, xsd.XMLName(h.xsdType))
 				typeName = h.name
 			}
 			_, isPtr := base.(*ast.StarExpr)
@@ -761,7 +766,31 @@ func (cfg *Config) genComplexType(t *xsd.ComplexType) ([]spec, error) {
 				IsPtr:        isPtr,
 			})
 		}
+
+		if cfg.addGetMethods {
+			var returnsPrefix string
+			bodyFormat := "return t.%s"
+			bodyArgs := []interface{}{name}
+			if el.Plural {
+				returnsPrefix = "[]"
+			} else if el.Nillable || el.Optional || t.IsChoice {
+				bodyFormat = `if t == nil || t.%s == nil {
+							return
+							}
+							return *t.%s`
+				bodyArgs = []interface{}{name, name}
+			}
+
+			getFunc := gen.Func("Get"+el.Name.Local).
+				Receiver("t *"+s.name).
+				Args().
+				Returns("out "+returnsPrefix+cfg.exprString(el.Type)).
+				Body(bodyFormat, bodyArgs...).
+				MustDecl()
+			s.methods = append(s.methods, getFunc)
+		}
 	}
+
 	for _, attr := range attributes {
 		options := ""
 		if attr.Optional {
@@ -794,7 +823,7 @@ func (cfg *Config) genComplexType(t *xsd.ComplexType) ([]spec, error) {
 					return nil, fmt.Errorf("no helper type for type %v attribute %v", t.Name, attr.Name)
 				}
 				typeName = h.name
-				helperTypes = append(helperTypes, xsd.XMLName(attr.Type))
+				s.helperTypes = append(s.helperTypes, xsd.XMLName(attr.Type))
 			}
 			overrides = append(overrides, fieldOverride{
 				DefaultValue: attr.Default,
@@ -806,14 +835,9 @@ func (cfg *Config) genComplexType(t *xsd.ComplexType) ([]spec, error) {
 			})
 		}
 	}
-	expr := gen.Struct(fields...)
-	s := spec{
-		doc:         t.Doc,
-		name:        cfg.public(t.Name),
-		expr:        expr,
-		xsdType:     t,
-		helperTypes: helperTypes,
-	}
+	s.expr = gen.Struct(fields...)
+	s.xsdType = t
+
 	if len(overrides) > 0 {
 		unmarshal, marshal, err := cfg.genComplexTypeMethods(t, overrides)
 		if err != nil {

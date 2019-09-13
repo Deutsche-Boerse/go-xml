@@ -22,6 +22,10 @@ func (cfg *Config) GenCode(data ...[]byte) (*Code, error) {
 		cfg.debugf("setting namespaces to %q", cfg.namespaces)
 	}
 	deps, err := xsd.Parse(data...)
+	//for i, d := range deps {
+	//	cfg.logf("dep %v: %+v", i, d)
+	//}
+
 	if err != nil {
 		return nil, err
 	}
@@ -97,6 +101,7 @@ func (cfg *Config) GenCLI(arguments ...string) error {
 		verbose          = fs.Bool("v", false, "print verbose output")
 		debug            = fs.Bool("vv", false, "print debug output")
 		decimalsAsString = fs.Bool("decimalsAsString", false, "represent decimals as string")
+		addGetMethods = fs.Bool("addGetMethods", false, "generate get methods for all fields")
 	)
 	fs.Var(&replaceRules, "r", "replacement rule 'regex -> repl' (can be used multiple times)")
 	fs.Var(&xmlns, "ns", "target namespace(s) to generate types for")
@@ -116,6 +121,10 @@ func (cfg *Config) GenCLI(arguments ...string) error {
 	}
 	if *packageName != "" {
 		cfg.Option(PackageName(*packageName))
+	}
+
+	if *addGetMethods {
+		cfg.Option(AddGetMethods(true))
 	}
 
 	if *decimalsAsString {
