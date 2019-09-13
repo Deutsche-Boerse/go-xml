@@ -44,8 +44,8 @@ type Config struct {
 	// if set, all decimals values would be marshalled/unmarshalled as string
 	// to avoid precision loss (by representing number as float64 type)
 	decimalsAsString bool
-
-	xsdFileNames []string
+	addGetMethods    bool
+	xsdFileNames     []string
 }
 
 type typeTransform func(xsd.Schema, xsd.Type) xsd.Type
@@ -861,6 +861,14 @@ func DecimalsAsString(enabled bool) Option {
 	return func(cfg *Config) Option {
 		prev := cfg.decimalsAsString
 		cfg.decimalsAsString = enabled
+		return DecimalsAsString(prev)
+	}
+}
+
+func AddGetMethods(enabled bool) Option {
+	return func(cfg *Config) Option {
+		prev := cfg.addGetMethods
+		cfg.addGetMethods = enabled
 		return DecimalsAsString(prev)
 	}
 }

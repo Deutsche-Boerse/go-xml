@@ -116,62 +116,6 @@ func saveFile(file sftrrepo.Document, filepath string) error {
 	if err != nil {
 		return err
 	}
-	//
-	//xmlEncoder := xml.NewEncoder(f)
-	//xmlEncoder.Indent("", "    ")
-	//StartElement, EndElement, CharData, Comment, ProcInst,
-
-	//pi := xml.ProcInst{
-	//	Target: "version",
-	//	Inst:   nil,
-	//}
-
-	//
-	////<xs:schema xmlns="urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01">
-	//se := xml.StartElement{
-	//	Name: xml.Name{
-	//		Space: "urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01",
-	//		Local: "Document",
-	//	},
-	//	Attr: []xml.Attr{
-	//		{
-	//			Name: xml.Name{
-	//				Space: "http://www.w3.org/2001/XMLSchema-instance",
-	//				Local: "schemaLocation",
-	//			},
-	//			Value: "urn:iso:std:iso:20022:tech:xsd:DRAFT2auth.052.001.01 DRAFT2auth.052.001.01",
-	//		},
-	//		//{
-	//		//	Name:  xml.Name{
-	//		//		//Space: "space2",
-	//		//		Local: "local2",
-	//		//	},
-	//		//	//Value: "value2",
-	//		//},
-	//	},
-	//}
-
-	//ee := se.End()
-	//
-	//err = xmlEncoder.EncodeToken(se)
-	//if err != nil {
-	//	return err
-	//}
-
-	//err = xmlEncoder.EncodeElement(file, se)
-	//if err != nil {
-	//	return err
-	//}
-	////
-	////err = xmlEncoder.EncodeToken(ee)
-	////if err != nil {
-	////	return err
-	////}
-	//
-	//err = xmlEncoder.Flush()
-	//if err != nil {
-	//	return err
-	//}
 
 	tmp := struct {
 		sftrrepo.Document
