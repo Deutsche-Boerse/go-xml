@@ -67,9 +67,15 @@ type AgriculturalCommodityDairy1 struct {
 }
 
 func (t *AgriculturalCommodityDairy1) GetBasePdct() (out AssetClassProductType1Code) {
+	if t == nil {
+		return
+	}
 	return t.BasePdct
 }
 func (t *AgriculturalCommodityDairy1) GetSubPdct() (out AssetClassSubProductType20Code) {
+	if t == nil {
+		return
+	}
 	return t.SubPdct
 }
 
@@ -79,9 +85,15 @@ type AgriculturalCommodityForestry1 struct {
 }
 
 func (t *AgriculturalCommodityForestry1) GetBasePdct() (out AssetClassProductType1Code) {
+	if t == nil {
+		return
+	}
 	return t.BasePdct
 }
 func (t *AgriculturalCommodityForestry1) GetSubPdct() (out AssetClassSubProductType21Code) {
+	if t == nil {
+		return
+	}
 	return t.SubPdct
 }
 
@@ -92,12 +104,21 @@ type AgriculturalCommodityGrain2 struct {
 }
 
 func (t *AgriculturalCommodityGrain2) GetBasePdct() (out AssetClassProductType1Code) {
+	if t == nil {
+		return
+	}
 	return t.BasePdct
 }
 func (t *AgriculturalCommodityGrain2) GetSubPdct() (out AssetClassSubProductType5Code) {
+	if t == nil {
+		return
+	}
 	return t.SubPdct
 }
 func (t *AgriculturalCommodityGrain2) GetAddtlSubPdct() (out AssetClassDetailedSubProductType30Code) {
+	if t == nil {
+		return
+	}
 	return t.AddtlSubPdct
 }
 
@@ -107,9 +128,15 @@ type AgriculturalCommodityLiveStock1 struct {
 }
 
 func (t *AgriculturalCommodityLiveStock1) GetBasePdct() (out AssetClassProductType1Code) {
+	if t == nil {
+		return
+	}
 	return t.BasePdct
 }
 func (t *AgriculturalCommodityLiveStock1) GetSubPdct() (out AssetClassSubProductType22Code) {
+	if t == nil {
+		return
+	}
 	return t.SubPdct
 }
 
@@ -120,12 +147,21 @@ type AgriculturalCommodityOilSeed1 struct {
 }
 
 func (t *AgriculturalCommodityOilSeed1) GetBasePdct() (out AssetClassProductType1Code) {
+	if t == nil {
+		return
+	}
 	return t.BasePdct
 }
 func (t *AgriculturalCommodityOilSeed1) GetSubPdct() (out AssetClassSubProductType1Code) {
+	if t == nil {
+		return
+	}
 	return t.SubPdct
 }
 func (t *AgriculturalCommodityOilSeed1) GetAddtlSubPdct() (out AssetClassDetailedSubProductType1Code) {
+	if t == nil {
+		return
+	}
 	return t.AddtlSubPdct
 }
 
@@ -136,12 +172,21 @@ type AgriculturalCommodityOliveOil2 struct {
 }
 
 func (t *AgriculturalCommodityOliveOil2) GetBasePdct() (out AssetClassProductType1Code) {
+	if t == nil {
+		return
+	}
 	return t.BasePdct
 }
 func (t *AgriculturalCommodityOliveOil2) GetSubPdct() (out AssetClassSubProductType3Code) {
+	if t == nil {
+		return
+	}
 	return t.SubPdct
 }
 func (t *AgriculturalCommodityOliveOil2) GetAddtlSubPdct() (out AssetClassDetailedSubProductType29Code) {
+	if t == nil {
+		return
+	}
 	return t.AddtlSubPdct
 }
 
@@ -151,9 +196,15 @@ type AgriculturalCommodityOther1 struct {
 }
 
 func (t *AgriculturalCommodityOther1) GetBasePdct() (out AssetClassProductType1Code) {
+	if t == nil {
+		return
+	}
 	return t.BasePdct
 }
 func (t *AgriculturalCommodityOther1) GetSubPdct() (out AssetClassSubProductType49Code) {
+	if t == nil {
+		return
+	}
 	return t.SubPdct
 }
 
@@ -163,9 +214,15 @@ type AgriculturalCommodityPotato1 struct {
 }
 
 func (t *AgriculturalCommodityPotato1) GetBasePdct() (out AssetClassProductType1Code) {
+	if t == nil {
+		return
+	}
 	return t.BasePdct
 }
 func (t *AgriculturalCommodityPotato1) GetSubPdct() (out AssetClassSubProductType45Code) {
+	if t == nil {
+		return
+	}
 	return t.SubPdct
 }
 
@@ -175,9 +232,15 @@ type AgriculturalCommoditySeafood1 struct {
 }
 
 func (t *AgriculturalCommoditySeafood1) GetBasePdct() (out AssetClassProductType1Code) {
+	if t == nil {
+		return
+	}
 	return t.BasePdct
 }
 func (t *AgriculturalCommoditySeafood1) GetSubPdct() (out AssetClassSubProductType23Code) {
+	if t == nil {
+		return
+	}
 	return t.SubPdct
 }
 
@@ -188,12 +251,21 @@ type AgriculturalCommoditySoft1 struct {
 }
 
 func (t *AgriculturalCommoditySoft1) GetBasePdct() (out AssetClassProductType1Code) {
+	if t == nil {
+		return
+	}
 	return t.BasePdct
 }
 func (t *AgriculturalCommoditySoft1) GetSubPdct() (out AssetClassSubProductType2Code) {
+	if t == nil {
+		return
+	}
 	return t.SubPdct
 }
 func (t *AgriculturalCommoditySoft1) GetAddtlSubPdct() (out AssetClassDetailedSubProductType2Code) {
+	if t == nil {
+		return
+	}
 	return t.AddtlSubPdct
 }
 
@@ -203,6 +275,9 @@ type AmountAndDirection61 struct {
 }
 
 func (t *AmountAndDirection61) GetAmt() (out ActiveCurrencyAnd13DecimalAmount) {
+	if t == nil {
+		return
+	}
 	return t.Amt
 }
 func (t *AmountAndDirection61) GetSgn() (out bool) {
@@ -606,6 +681,9 @@ type AssetClassCommodityInflation1 struct {
 }
 
 func (t *AssetClassCommodityInflation1) GetBasePdct() (out AssetClassProductType12Code) {
+	if t == nil {
+		return
+	}
 	return t.BasePdct
 }
 
@@ -632,6 +710,9 @@ type AssetClassCommodityMultiCommodityExotic1 struct {
 }
 
 func (t *AssetClassCommodityMultiCommodityExotic1) GetBasePdct() (out AssetClassProductType13Code) {
+	if t == nil {
+		return
+	}
 	return t.BasePdct
 }
 
@@ -640,6 +721,9 @@ type AssetClassCommodityOfficialEconomicStatistics1 struct {
 }
 
 func (t *AssetClassCommodityOfficialEconomicStatistics1) GetBasePdct() (out AssetClassProductType14Code) {
+	if t == nil {
+		return
+	}
 	return t.BasePdct
 }
 
@@ -648,6 +732,9 @@ type AssetClassCommodityOther1 struct {
 }
 
 func (t *AssetClassCommodityOther1) GetBasePdct() (out AssetClassProductType15Code) {
+	if t == nil {
+		return
+	}
 	return t.BasePdct
 }
 
@@ -1603,6 +1690,9 @@ func (t *Collateral15) GetCollValDt() (out ISODate) {
 	return *t.CollValDt
 }
 func (t *Collateral15) GetAsstTp() (out []CollateralType7Choice) {
+	if t == nil {
+		return
+	}
 	return t.AsstTp
 }
 func (t *Collateral15) GetNetXpsrCollstnInd() (out bool) {
@@ -1635,6 +1725,9 @@ type CollateralData3 struct {
 }
 
 func (t *CollateralData3) GetAsstTp() (out []CollateralType7Choice) {
+	if t == nil {
+		return
+	}
 	return t.AsstTp
 }
 func (t *CollateralData3) GetBsktIdr() (out SecurityIdentification26Choice) {
@@ -1649,6 +1742,9 @@ type CollateralData7 struct {
 }
 
 func (t *CollateralData7) GetTxCollData() (out TransactionCollateralData1Choice) {
+	if t == nil {
+		return
+	}
 	return t.TxCollData
 }
 
@@ -1668,6 +1764,9 @@ type CollateralFlag6 struct {
 }
 
 func (t *CollateralFlag6) GetHrcutOrMrgn() (out string) {
+	if t == nil {
+		return
+	}
 	return t.HrcutOrMrgn
 }
 
@@ -1718,12 +1817,21 @@ type CollateralType7Choice struct {
 }
 
 func (t *CollateralType7Choice) GetScty() (out []HaircutPortfolioSecurityIdentification1) {
+	if t == nil {
+		return
+	}
 	return t.Scty
 }
 func (t *CollateralType7Choice) GetCsh() (out []ActiveOrHistoricCurrencyAndAmount) {
+	if t == nil {
+		return
+	}
 	return t.Csh
 }
 func (t *CollateralType7Choice) GetCmmdty() (out []Commodity3) {
+	if t == nil {
+		return
+	}
 	return t.Cmmdty
 }
 
@@ -1816,12 +1924,21 @@ type CounterpartyData48 struct {
 }
 
 func (t *CounterpartyData48) GetRptgDtTm() (out ISODateTime) {
+	if t == nil {
+		return
+	}
 	return t.RptgDtTm
 }
 func (t *CounterpartyData48) GetRptSubmitgNtty() (out OrganisationIdentification9Choice) {
+	if t == nil {
+		return
+	}
 	return t.RptSubmitgNtty
 }
 func (t *CounterpartyData48) GetCtrPtyData() (out []CounterpartyData51) {
+	if t == nil {
+		return
+	}
 	return t.CtrPtyData
 }
 
@@ -1832,12 +1949,21 @@ type CounterpartyData49 struct {
 }
 
 func (t *CounterpartyData49) GetRptgDtTm() (out ISODateTime) {
+	if t == nil {
+		return
+	}
 	return t.RptgDtTm
 }
 func (t *CounterpartyData49) GetRptSubmitgNtty() (out OrganisationIdentification9Choice) {
+	if t == nil {
+		return
+	}
 	return t.RptSubmitgNtty
 }
 func (t *CounterpartyData49) GetCtrPtyData() (out []CounterpartyData50) {
+	if t == nil {
+		return
+	}
 	return t.CtrPtyData
 }
 
@@ -1847,9 +1973,15 @@ type CounterpartyData50 struct {
 }
 
 func (t *CounterpartyData50) GetRptgCtrPty() (out CounterpartyIdentification1) {
+	if t == nil {
+		return
+	}
 	return t.RptgCtrPty
 }
 func (t *CounterpartyData50) GetOthrCtrPty() (out CounterpartyIdentification2) {
+	if t == nil {
+		return
+	}
 	return t.OthrCtrPty
 }
 
@@ -1861,9 +1993,15 @@ type CounterpartyData51 struct {
 }
 
 func (t *CounterpartyData51) GetRptgCtrPty() (out CounterpartyIdentification1) {
+	if t == nil {
+		return
+	}
 	return t.RptgCtrPty
 }
 func (t *CounterpartyData51) GetOthrCtrPty() (out CounterpartyIdentification2) {
+	if t == nil {
+		return
+	}
 	return t.OthrCtrPty
 }
 func (t *CounterpartyData51) GetNttyRspnsblForRpt() (out OrganisationIdentification9Choice) {
@@ -1887,6 +2025,9 @@ type CounterpartyIdentification1 struct {
 }
 
 func (t *CounterpartyIdentification1) GetId() (out OrganisationIdentification9Choice) {
+	if t == nil {
+		return
+	}
 	return t.Id
 }
 func (t *CounterpartyIdentification1) GetNtr() (out CounterpartyTradeNature3Choice) {
@@ -1915,6 +2056,9 @@ type CounterpartyIdentification2 struct {
 }
 
 func (t *CounterpartyIdentification2) GetId() (out OrganisationIdentification9Choice) {
+	if t == nil {
+		return
+	}
 	return t.Id
 }
 func (t *CounterpartyIdentification2) GetBrnch() (out Branch2Choice) {
@@ -1942,6 +2086,9 @@ func (t *CounterpartyTradeNature3Choice) GetFI() (out FinancialPartyClassificati
 	return *t.FI
 }
 func (t *CounterpartyTradeNature3Choice) GetNFI() (out []NACEDomainIdentifier) {
+	if t == nil {
+		return
+	}
 	return t.NFI
 }
 
@@ -1961,6 +2108,9 @@ type Document struct {
 }
 
 func (t *Document) GetSctiesFincgRptgTxRpt() (out SecuritiesFinancingReportingTransactionReportV01) {
+	if t == nil {
+		return
+	}
 	return t.SctiesFincgRptgTxRpt
 }
 
@@ -1970,9 +2120,15 @@ type EnergyCommodityCoal1 struct {
 }
 
 func (t *EnergyCommodityCoal1) GetBasePdct() (out AssetClassProductType2Code) {
+	if t == nil {
+		return
+	}
 	return t.BasePdct
 }
 func (t *EnergyCommodityCoal1) GetSubPdct() (out AssetClassSubProductType24Code) {
+	if t == nil {
+		return
+	}
 	return t.SubPdct
 }
 
@@ -1982,9 +2138,15 @@ type EnergyCommodityDistillates1 struct {
 }
 
 func (t *EnergyCommodityDistillates1) GetBasePdct() (out AssetClassProductType2Code) {
+	if t == nil {
+		return
+	}
 	return t.BasePdct
 }
 func (t *EnergyCommodityDistillates1) GetSubPdct() (out AssetClassSubProductType25Code) {
+	if t == nil {
+		return
+	}
 	return t.SubPdct
 }
 
@@ -1995,12 +2157,21 @@ type EnergyCommodityElectricity1 struct {
 }
 
 func (t *EnergyCommodityElectricity1) GetBasePdct() (out AssetClassProductType2Code) {
+	if t == nil {
+		return
+	}
 	return t.BasePdct
 }
 func (t *EnergyCommodityElectricity1) GetSubPdct() (out AssetClassSubProductType6Code) {
+	if t == nil {
+		return
+	}
 	return t.SubPdct
 }
 func (t *EnergyCommodityElectricity1) GetAddtlSubPdct() (out AssetClassDetailedSubProductType5Code) {
+	if t == nil {
+		return
+	}
 	return t.AddtlSubPdct
 }
 
@@ -2010,9 +2181,15 @@ type EnergyCommodityInterEnergy1 struct {
 }
 
 func (t *EnergyCommodityInterEnergy1) GetBasePdct() (out AssetClassProductType2Code) {
+	if t == nil {
+		return
+	}
 	return t.BasePdct
 }
 func (t *EnergyCommodityInterEnergy1) GetSubPdct() (out AssetClassSubProductType26Code) {
+	if t == nil {
+		return
+	}
 	return t.SubPdct
 }
 
@@ -2022,9 +2199,15 @@ type EnergyCommodityLightEnd1 struct {
 }
 
 func (t *EnergyCommodityLightEnd1) GetBasePdct() (out AssetClassProductType2Code) {
+	if t == nil {
+		return
+	}
 	return t.BasePdct
 }
 func (t *EnergyCommodityLightEnd1) GetSubPdct() (out AssetClassSubProductType27Code) {
+	if t == nil {
+		return
+	}
 	return t.SubPdct
 }
 
@@ -2035,12 +2218,21 @@ type EnergyCommodityNaturalGas2 struct {
 }
 
 func (t *EnergyCommodityNaturalGas2) GetBasePdct() (out AssetClassProductType2Code) {
+	if t == nil {
+		return
+	}
 	return t.BasePdct
 }
 func (t *EnergyCommodityNaturalGas2) GetSubPdct() (out AssetClassSubProductType7Code) {
+	if t == nil {
+		return
+	}
 	return t.SubPdct
 }
 func (t *EnergyCommodityNaturalGas2) GetAddtlSubPdct() (out AssetClassDetailedSubProductType31Code) {
+	if t == nil {
+		return
+	}
 	return t.AddtlSubPdct
 }
 
@@ -2051,12 +2243,21 @@ type EnergyCommodityOil2 struct {
 }
 
 func (t *EnergyCommodityOil2) GetBasePdct() (out AssetClassProductType2Code) {
+	if t == nil {
+		return
+	}
 	return t.BasePdct
 }
 func (t *EnergyCommodityOil2) GetSubPdct() (out AssetClassSubProductType8Code) {
+	if t == nil {
+		return
+	}
 	return t.SubPdct
 }
 func (t *EnergyCommodityOil2) GetAddtlSubPdct() (out AssetClassDetailedSubProductType32Code) {
+	if t == nil {
+		return
+	}
 	return t.AddtlSubPdct
 }
 
@@ -2066,9 +2267,15 @@ type EnergyCommodityOther1 struct {
 }
 
 func (t *EnergyCommodityOther1) GetBasePdct() (out AssetClassProductType2Code) {
+	if t == nil {
+		return
+	}
 	return t.BasePdct
 }
 func (t *EnergyCommodityOther1) GetSubPdct() (out AssetClassSubProductType49Code) {
+	if t == nil {
+		return
+	}
 	return t.SubPdct
 }
 
@@ -2078,9 +2285,15 @@ type EnergyCommodityRenewableEnergy1 struct {
 }
 
 func (t *EnergyCommodityRenewableEnergy1) GetBasePdct() (out AssetClassProductType2Code) {
+	if t == nil {
+		return
+	}
 	return t.BasePdct
 }
 func (t *EnergyCommodityRenewableEnergy1) GetSubPdct() (out AssetClassSubProductType28Code) {
+	if t == nil {
+		return
+	}
 	return t.SubPdct
 }
 
@@ -2090,9 +2303,15 @@ type EnvironmentCommodityOther1 struct {
 }
 
 func (t *EnvironmentCommodityOther1) GetBasePdct() (out AssetClassProductType3Code) {
+	if t == nil {
+		return
+	}
 	return t.BasePdct
 }
 func (t *EnvironmentCommodityOther1) GetSubPdct() (out AssetClassSubProductType49Code) {
+	if t == nil {
+		return
+	}
 	return t.SubPdct
 }
 
@@ -2102,9 +2321,15 @@ type EnvironmentalCommodityCarbonRelated1 struct {
 }
 
 func (t *EnvironmentalCommodityCarbonRelated1) GetBasePdct() (out AssetClassProductType3Code) {
+	if t == nil {
+		return
+	}
 	return t.BasePdct
 }
 func (t *EnvironmentalCommodityCarbonRelated1) GetSubPdct() (out AssetClassSubProductType29Code) {
+	if t == nil {
+		return
+	}
 	return t.SubPdct
 }
 
@@ -2115,12 +2340,21 @@ type EnvironmentalCommodityEmission2 struct {
 }
 
 func (t *EnvironmentalCommodityEmission2) GetBasePdct() (out AssetClassProductType3Code) {
+	if t == nil {
+		return
+	}
 	return t.BasePdct
 }
 func (t *EnvironmentalCommodityEmission2) GetSubPdct() (out AssetClassSubProductType10Code) {
+	if t == nil {
+		return
+	}
 	return t.SubPdct
 }
 func (t *EnvironmentalCommodityEmission2) GetAddtlSubPdct() (out AssetClassDetailedSubProductType8Code) {
+	if t == nil {
+		return
+	}
 	return t.AddtlSubPdct
 }
 
@@ -2130,9 +2364,15 @@ type EnvironmentalCommodityWeather1 struct {
 }
 
 func (t *EnvironmentalCommodityWeather1) GetBasePdct() (out AssetClassProductType3Code) {
+	if t == nil {
+		return
+	}
 	return t.BasePdct
 }
 func (t *EnvironmentalCommodityWeather1) GetSubPdct() (out AssetClassSubProductType30Code) {
+	if t == nil {
+		return
+	}
 	return t.SubPdct
 }
 
@@ -2175,9 +2415,15 @@ type FertilizerCommodityAmmonia1 struct {
 }
 
 func (t *FertilizerCommodityAmmonia1) GetBasePdct() (out AssetClassProductType5Code) {
+	if t == nil {
+		return
+	}
 	return t.BasePdct
 }
 func (t *FertilizerCommodityAmmonia1) GetSubPdct() (out AssetClassSubProductType39Code) {
+	if t == nil {
+		return
+	}
 	return t.SubPdct
 }
 
@@ -2187,9 +2433,15 @@ type FertilizerCommodityDiammoniumPhosphate1 struct {
 }
 
 func (t *FertilizerCommodityDiammoniumPhosphate1) GetBasePdct() (out AssetClassProductType5Code) {
+	if t == nil {
+		return
+	}
 	return t.BasePdct
 }
 func (t *FertilizerCommodityDiammoniumPhosphate1) GetSubPdct() (out AssetClassSubProductType40Code) {
+	if t == nil {
+		return
+	}
 	return t.SubPdct
 }
 
@@ -2199,9 +2451,15 @@ type FertilizerCommodityOther1 struct {
 }
 
 func (t *FertilizerCommodityOther1) GetBasePdct() (out AssetClassProductType5Code) {
+	if t == nil {
+		return
+	}
 	return t.BasePdct
 }
 func (t *FertilizerCommodityOther1) GetSubPdct() (out AssetClassSubProductType49Code) {
+	if t == nil {
+		return
+	}
 	return t.SubPdct
 }
 
@@ -2211,9 +2469,15 @@ type FertilizerCommodityPotash1 struct {
 }
 
 func (t *FertilizerCommodityPotash1) GetBasePdct() (out AssetClassProductType5Code) {
+	if t == nil {
+		return
+	}
 	return t.BasePdct
 }
 func (t *FertilizerCommodityPotash1) GetSubPdct() (out AssetClassSubProductType41Code) {
+	if t == nil {
+		return
+	}
 	return t.SubPdct
 }
 
@@ -2223,9 +2487,15 @@ type FertilizerCommoditySulphur1 struct {
 }
 
 func (t *FertilizerCommoditySulphur1) GetBasePdct() (out AssetClassProductType5Code) {
+	if t == nil {
+		return
+	}
 	return t.BasePdct
 }
 func (t *FertilizerCommoditySulphur1) GetSubPdct() (out AssetClassSubProductType42Code) {
+	if t == nil {
+		return
+	}
 	return t.SubPdct
 }
 
@@ -2235,9 +2505,15 @@ type FertilizerCommodityUrea1 struct {
 }
 
 func (t *FertilizerCommodityUrea1) GetBasePdct() (out AssetClassProductType5Code) {
+	if t == nil {
+		return
+	}
 	return t.BasePdct
 }
 func (t *FertilizerCommodityUrea1) GetSubPdct() (out AssetClassSubProductType43Code) {
+	if t == nil {
+		return
+	}
 	return t.SubPdct
 }
 
@@ -2247,9 +2523,15 @@ type FertilizerCommodityUreaAndAmmoniumNitrate1 struct {
 }
 
 func (t *FertilizerCommodityUreaAndAmmoniumNitrate1) GetBasePdct() (out AssetClassProductType5Code) {
+	if t == nil {
+		return
+	}
 	return t.BasePdct
 }
 func (t *FertilizerCommodityUreaAndAmmoniumNitrate1) GetSubPdct() (out AssetClassSubProductType44Code) {
+	if t == nil {
+		return
+	}
 	return t.SubPdct
 }
 
@@ -2259,6 +2541,9 @@ type FinancialPartyClassification1Choice struct {
 }
 
 func (t *FinancialPartyClassification1Choice) GetClssfctn() (out []FinancialPartySectorType2Code) {
+	if t == nil {
+		return
+	}
 	return t.Clssfctn
 }
 func (t *FinancialPartyClassification1Choice) GetInvstmtFndClssfctn() (out FundType2Code) {
@@ -2285,9 +2570,15 @@ type FixedRate2 struct {
 }
 
 func (t *FixedRate2) GetRate() (out string) {
+	if t == nil {
+		return
+	}
 	return t.Rate
 }
 func (t *FixedRate2) GetDayCntBsis() (out InterestComputationMethodFormat6Choice) {
+	if t == nil {
+		return
+	}
 	return t.DayCntBsis
 }
 
@@ -2304,6 +2595,9 @@ func (t *FixedRate7) GetRate() (out string) {
 	return *t.Rate
 }
 func (t *FixedRate7) GetDayCntBsis() (out InterestComputationMethodFormat6Choice) {
+	if t == nil {
+		return
+	}
 	return t.DayCntBsis
 }
 func (t *FixedRate7) GetMrgnLnAmt() (out ActiveOrHistoricCurrencyAndAmount) {
@@ -2340,18 +2634,33 @@ type FloatingInterestRate10 struct {
 }
 
 func (t *FloatingInterestRate10) GetRefRate() (out BenchmarkCurveName8Choice) {
+	if t == nil {
+		return
+	}
 	return t.RefRate
 }
 func (t *FloatingInterestRate10) GetTerm() (out InterestRateContractTerm2) {
+	if t == nil {
+		return
+	}
 	return t.Term
 }
 func (t *FloatingInterestRate10) GetPmtFrqcy() (out InterestRateContractTerm2) {
+	if t == nil {
+		return
+	}
 	return t.PmtFrqcy
 }
 func (t *FloatingInterestRate10) GetRstFrqcy() (out InterestRateContractTerm2) {
+	if t == nil {
+		return
+	}
 	return t.RstFrqcy
 }
 func (t *FloatingInterestRate10) GetBsisPtSprd() (out string) {
+	if t == nil {
+		return
+	}
 	return t.BsisPtSprd
 }
 
@@ -2366,24 +2675,45 @@ type FloatingInterestRate12 struct {
 }
 
 func (t *FloatingInterestRate12) GetRefRate() (out BenchmarkCurveName8Choice) {
+	if t == nil {
+		return
+	}
 	return t.RefRate
 }
 func (t *FloatingInterestRate12) GetTerm() (out InterestRateContractTerm2) {
+	if t == nil {
+		return
+	}
 	return t.Term
 }
 func (t *FloatingInterestRate12) GetPmtFrqcy() (out InterestRateContractTerm2) {
+	if t == nil {
+		return
+	}
 	return t.PmtFrqcy
 }
 func (t *FloatingInterestRate12) GetRstFrqcy() (out InterestRateContractTerm2) {
+	if t == nil {
+		return
+	}
 	return t.RstFrqcy
 }
 func (t *FloatingInterestRate12) GetBsisPtSprd() (out string) {
+	if t == nil {
+		return
+	}
 	return t.BsisPtSprd
 }
 func (t *FloatingInterestRate12) GetRateAdjstmnt() (out []RateAdjustment1) {
+	if t == nil {
+		return
+	}
 	return t.RateAdjstmnt
 }
 func (t *FloatingInterestRate12) GetDayCntBsis() (out InterestComputationMethodFormat6Choice) {
+	if t == nil {
+		return
+	}
 	return t.DayCntBsis
 }
 
@@ -2427,6 +2757,9 @@ func (t *FloatingInterestRate16) GetBsisPtSprd() (out string) {
 	return *t.BsisPtSprd
 }
 func (t *FloatingInterestRate16) GetDayCntBsis() (out InterestComputationMethodFormat6Choice) {
+	if t == nil {
+		return
+	}
 	return t.DayCntBsis
 }
 
@@ -2436,9 +2769,15 @@ type FreightCommodityContainerShip1 struct {
 }
 
 func (t *FreightCommodityContainerShip1) GetBasePdct() (out AssetClassProductType4Code) {
+	if t == nil {
+		return
+	}
 	return t.BasePdct
 }
 func (t *FreightCommodityContainerShip1) GetSubPdct() (out AssetClassSubProductType46Code) {
+	if t == nil {
+		return
+	}
 	return t.SubPdct
 }
 
@@ -2449,12 +2788,21 @@ type FreightCommodityDry2 struct {
 }
 
 func (t *FreightCommodityDry2) GetBasePdct() (out AssetClassProductType4Code) {
+	if t == nil {
+		return
+	}
 	return t.BasePdct
 }
 func (t *FreightCommodityDry2) GetSubPdct() (out AssetClassSubProductType31Code) {
+	if t == nil {
+		return
+	}
 	return t.SubPdct
 }
 func (t *FreightCommodityDry2) GetAddtlSubPdct() (out AssetClassDetailedSubProductType33Code) {
+	if t == nil {
+		return
+	}
 	return t.AddtlSubPdct
 }
 
@@ -2464,9 +2812,15 @@ type FreightCommodityOther1 struct {
 }
 
 func (t *FreightCommodityOther1) GetBasePdct() (out AssetClassProductType4Code) {
+	if t == nil {
+		return
+	}
 	return t.BasePdct
 }
 func (t *FreightCommodityOther1) GetSubPdct() (out AssetClassSubProductType49Code) {
+	if t == nil {
+		return
+	}
 	return t.SubPdct
 }
 
@@ -2477,12 +2831,21 @@ type FreightCommodityWet2 struct {
 }
 
 func (t *FreightCommodityWet2) GetBasePdct() (out AssetClassProductType4Code) {
+	if t == nil {
+		return
+	}
 	return t.BasePdct
 }
 func (t *FreightCommodityWet2) GetSubPdct() (out AssetClassSubProductType32Code) {
+	if t == nil {
+		return
+	}
 	return t.SubPdct
 }
 func (t *FreightCommodityWet2) GetAddtlSubPdct() (out AssetClassDetailedSubProductType34Code) {
+	if t == nil {
+		return
+	}
 	return t.AddtlSubPdct
 }
 
@@ -2509,6 +2872,9 @@ func (t *HaircutPortfolioSecurityIdentification1) GetPrtflHrcutOrMrgn() (out str
 	return *t.PrtflHrcutOrMrgn
 }
 func (t *HaircutPortfolioSecurityIdentification1) GetId() (out Security3) {
+	if t == nil {
+		return
+	}
 	return t.Id
 }
 
@@ -2556,6 +2922,9 @@ type IndustrialProductCommodityConstruction1 struct {
 }
 
 func (t *IndustrialProductCommodityConstruction1) GetBasePdct() (out AssetClassProductType6Code) {
+	if t == nil {
+		return
+	}
 	return t.BasePdct
 }
 func (t *IndustrialProductCommodityConstruction1) GetSubPdct() (out AssetClassSubProductType33Code) {
@@ -2571,6 +2940,9 @@ type IndustrialProductCommodityManufacturing1 struct {
 }
 
 func (t *IndustrialProductCommodityManufacturing1) GetBasePdct() (out AssetClassProductType6Code) {
+	if t == nil {
+		return
+	}
 	return t.BasePdct
 }
 func (t *IndustrialProductCommodityManufacturing1) GetSubPdct() (out AssetClassSubProductType34Code) {
@@ -2669,9 +3041,15 @@ type InterestRateContractTerm2 struct {
 }
 
 func (t *InterestRateContractTerm2) GetUnit() (out RateBasis1Code) {
+	if t == nil {
+		return
+	}
 	return t.Unit
 }
 func (t *InterestRateContractTerm2) GetVal() (out string) {
+	if t == nil {
+		return
+	}
 	return t.Val
 }
 
@@ -2756,6 +3134,9 @@ func (t *LoanData1) GetCollDlvryMtd() (out CollateralDeliveryMethod1Code) {
 	return *t.CollDlvryMtd
 }
 func (t *LoanData1) GetTerm() (out []ContractTerm2Choice) {
+	if t == nil {
+		return
+	}
 	return t.Term
 }
 func (t *LoanData1) GetIntrstRate() (out InterestRate14Choice) {
@@ -2778,12 +3159,21 @@ type LoanData11 struct {
 }
 
 func (t *LoanData11) GetUnqTradIdr() (out Max52Text) {
+	if t == nil {
+		return
+	}
 	return t.UnqTradIdr
 }
 func (t *LoanData11) GetEvtDt() (out ISODate) {
+	if t == nil {
+		return
+	}
 	return t.EvtDt
 }
 func (t *LoanData11) GetTermntnDt() (out ISODate) {
+	if t == nil {
+		return
+	}
 	return t.TermntnDt
 }
 
@@ -2792,6 +3182,9 @@ type LoanData13 struct {
 }
 
 func (t *LoanData13) GetUnqTradIdr() (out Max52Text) {
+	if t == nil {
+		return
+	}
 	return t.UnqTradIdr
 }
 
@@ -2861,9 +3254,15 @@ type LoanData27 struct {
 }
 
 func (t *LoanData27) GetPrncplAmt() (out PrincipalAmount1) {
+	if t == nil {
+		return
+	}
 	return t.PrncplAmt
 }
 func (t *LoanData27) GetMtrtyDt() (out ISODate) {
+	if t == nil {
+		return
+	}
 	return t.MtrtyDt
 }
 
@@ -2879,6 +3278,9 @@ func (t *LoanData29) GetUnqTradIdr() (out Max52Text) {
 	return *t.UnqTradIdr
 }
 func (t *LoanData29) GetMstrAgrmt() (out MasterAgreement1) {
+	if t == nil {
+		return
+	}
 	return t.MstrAgrmt
 }
 
@@ -2915,6 +3317,9 @@ func (t *LoanData32) GetCcy() (out ActiveOrHistoricCurrencyCode) {
 	return *t.Ccy
 }
 func (t *LoanData32) GetMrgnLnAttr() (out []InterestRate15Choice) {
+	if t == nil {
+		return
+	}
 	return t.MrgnLnAttr
 }
 
@@ -2927,18 +3332,33 @@ type LoanData37 struct {
 }
 
 func (t *LoanData37) GetDlvryByVal() (out bool) {
+	if t == nil {
+		return
+	}
 	return t.DlvryByVal
 }
 func (t *LoanData37) GetCollDlvryMtd() (out CollateralDeliveryMethod1Code) {
+	if t == nil {
+		return
+	}
 	return t.CollDlvryMtd
 }
 func (t *LoanData37) GetTerm() (out []ContractTerm2Choice) {
+	if t == nil {
+		return
+	}
 	return t.Term
 }
 func (t *LoanData37) GetIntrstRate() (out InterestRate14Choice) {
+	if t == nil {
+		return
+	}
 	return t.IntrstRate
 }
 func (t *LoanData37) GetPrncplAmt() (out PrincipalAmount1) {
+	if t == nil {
+		return
+	}
 	return t.PrncplAmt
 }
 
@@ -3001,6 +3421,9 @@ func (t *LoanData39) GetCollDlvryMtd() (out CollateralDeliveryMethod1Code) {
 	return *t.CollDlvryMtd
 }
 func (t *LoanData39) GetTerm() (out []ContractTerm2Choice) {
+	if t == nil {
+		return
+	}
 	return t.Term
 }
 func (t *LoanData39) GetAsstTp() (out SecurityCommodity2Choice) {
@@ -3040,9 +3463,15 @@ type LoanData4 struct {
 }
 
 func (t *LoanData4) GetEvtDt() (out ISODate) {
+	if t == nil {
+		return
+	}
 	return t.EvtDt
 }
 func (t *LoanData4) GetTxLnData() (out TransactionLoanData4Choice) {
+	if t == nil {
+		return
+	}
 	return t.TxLnData
 }
 
@@ -3062,18 +3491,33 @@ type LoanData40 struct {
 }
 
 func (t *LoanData40) GetUnqTradIdr() (out Max52Text) {
+	if t == nil {
+		return
+	}
 	return t.UnqTradIdr
 }
 func (t *LoanData40) GetEvtDt() (out ISODate) {
+	if t == nil {
+		return
+	}
 	return t.EvtDt
 }
 func (t *LoanData40) GetCtrctTp() (out ExposureType6Code) {
+	if t == nil {
+		return
+	}
 	return t.CtrctTp
 }
 func (t *LoanData40) GetClrSts() (out Cleared8Choice) {
+	if t == nil {
+		return
+	}
 	return t.ClrSts
 }
 func (t *LoanData40) GetTradgVn() (out MICIdentifier) {
+	if t == nil {
+		return
+	}
 	return t.TradgVn
 }
 func (t *LoanData40) GetMstrAgrmt() (out MasterAgreement1) {
@@ -3083,12 +3527,21 @@ func (t *LoanData40) GetMstrAgrmt() (out MasterAgreement1) {
 	return *t.MstrAgrmt
 }
 func (t *LoanData40) GetExctnDtTm() (out ISODateTime) {
+	if t == nil {
+		return
+	}
 	return t.ExctnDtTm
 }
 func (t *LoanData40) GetValDt() (out ISODate) {
+	if t == nil {
+		return
+	}
 	return t.ValDt
 }
 func (t *LoanData40) GetTermntnDt() (out ISODate) {
+	if t == nil {
+		return
+	}
 	return t.TermntnDt
 }
 func (t *LoanData40) GetGnlColl() (out SpecialCollateral1Code) {
@@ -3104,6 +3557,9 @@ func (t *LoanData40) GetUnitPric() (out SecuritiesTransactionPrice2Choice) {
 	return *t.UnitPric
 }
 func (t *LoanData40) GetTxSpcfcData() (out TransactionLoanData6Choice) {
+	if t == nil {
+		return
+	}
 	return t.TxSpcfcData
 }
 
@@ -3119,6 +3575,9 @@ type LoanData41 struct {
 }
 
 func (t *LoanData41) GetDlvryByVal() (out bool) {
+	if t == nil {
+		return
+	}
 	return t.DlvryByVal
 }
 func (t *LoanData41) GetCollDlvryMtd() (out CollateralDeliveryMethod1Code) {
@@ -3128,21 +3587,39 @@ func (t *LoanData41) GetCollDlvryMtd() (out CollateralDeliveryMethod1Code) {
 	return *t.CollDlvryMtd
 }
 func (t *LoanData41) GetTerm() (out []ContractTerm2Choice) {
+	if t == nil {
+		return
+	}
 	return t.Term
 }
 func (t *LoanData41) GetAsstTp() (out SecurityCommodity2Choice) {
+	if t == nil {
+		return
+	}
 	return t.AsstTp
 }
 func (t *LoanData41) GetRbtRate() (out RebateRate1Choice) {
+	if t == nil {
+		return
+	}
 	return t.RbtRate
 }
 func (t *LoanData41) GetLnVal() (out string) {
+	if t == nil {
+		return
+	}
 	return t.LnVal
 }
 func (t *LoanData41) GetLndgFee() (out string) {
+	if t == nil {
+		return
+	}
 	return t.LndgFee
 }
 func (t *LoanData41) GetExclsvArrgmnt() (out bool) {
+	if t == nil {
+		return
+	}
 	return t.ExclsvArrgmnt
 }
 
@@ -3154,9 +3631,15 @@ type LoanData42 struct {
 }
 
 func (t *LoanData42) GetUnqTradIdr() (out Max52Text) {
+	if t == nil {
+		return
+	}
 	return t.UnqTradIdr
 }
 func (t *LoanData42) GetEvtDt() (out ISODate) {
+	if t == nil {
+		return
+	}
 	return t.EvtDt
 }
 func (t *LoanData42) GetCtrctTp() (out ExposureType6Code) {
@@ -3166,6 +3649,9 @@ func (t *LoanData42) GetCtrctTp() (out ExposureType6Code) {
 	return *t.CtrctTp
 }
 func (t *LoanData42) GetTxSpcfcData() (out TransactionLoanData5Choice) {
+	if t == nil {
+		return
+	}
 	return t.TxSpcfcData
 }
 
@@ -3179,9 +3665,15 @@ type LoanData43 struct {
 }
 
 func (t *LoanData43) GetUnqTradIdr() (out Max52Text) {
+	if t == nil {
+		return
+	}
 	return t.UnqTradIdr
 }
 func (t *LoanData43) GetEvtDt() (out ISODate) {
+	if t == nil {
+		return
+	}
 	return t.EvtDt
 }
 func (t *LoanData43) GetCtrctTp() (out ExposureType6Code) {
@@ -3203,6 +3695,9 @@ func (t *LoanData43) GetTermntnDt() (out ISODate) {
 	return *t.TermntnDt
 }
 func (t *LoanData43) GetTxSpcfcData() (out TransactionLoanData5Choice) {
+	if t == nil {
+		return
+	}
 	return t.TxSpcfcData
 }
 
@@ -3215,18 +3710,33 @@ type LoanData44 struct {
 }
 
 func (t *LoanData44) GetUnqTradIdr() (out Max52Text) {
+	if t == nil {
+		return
+	}
 	return t.UnqTradIdr
 }
 func (t *LoanData44) GetEvtDt() (out ISODate) {
+	if t == nil {
+		return
+	}
 	return t.EvtDt
 }
 func (t *LoanData44) GetCtrctTp() (out ExposureType6Code) {
+	if t == nil {
+		return
+	}
 	return t.CtrctTp
 }
 func (t *LoanData44) GetExctnDtTm() (out ISODateTime) {
+	if t == nil {
+		return
+	}
 	return t.ExctnDtTm
 }
 func (t *LoanData44) GetTxLnData() (out TransactionLoanData5Choice) {
+	if t == nil {
+		return
+	}
 	return t.TxLnData
 }
 
@@ -3248,6 +3758,9 @@ type MasterAgreement1 struct {
 }
 
 func (t *MasterAgreement1) GetTp() (out AgreementType1Choice) {
+	if t == nil {
+		return
+	}
 	return t.Tp
 }
 func (t *MasterAgreement1) GetVrsn() (out ISORestrictedYear) {
@@ -3314,12 +3827,21 @@ type MetalCommodityNonPrecious1 struct {
 }
 
 func (t *MetalCommodityNonPrecious1) GetBasePdct() (out AssetClassProductType7Code) {
+	if t == nil {
+		return
+	}
 	return t.BasePdct
 }
 func (t *MetalCommodityNonPrecious1) GetSubPdct() (out AssetClassSubProductType15Code) {
+	if t == nil {
+		return
+	}
 	return t.SubPdct
 }
 func (t *MetalCommodityNonPrecious1) GetAddtlSubPdct() (out AssetClassDetailedSubProductType10Code) {
+	if t == nil {
+		return
+	}
 	return t.AddtlSubPdct
 }
 
@@ -3330,12 +3852,21 @@ type MetalCommodityPrecious1 struct {
 }
 
 func (t *MetalCommodityPrecious1) GetBasePdct() (out AssetClassProductType7Code) {
+	if t == nil {
+		return
+	}
 	return t.BasePdct
 }
 func (t *MetalCommodityPrecious1) GetSubPdct() (out AssetClassSubProductType16Code) {
+	if t == nil {
+		return
+	}
 	return t.SubPdct
 }
 func (t *MetalCommodityPrecious1) GetAddtlSubPdct() (out AssetClassDetailedSubProductType11Code) {
+	if t == nil {
+		return
+	}
 	return t.AddtlSubPdct
 }
 
@@ -3414,6 +3945,9 @@ type OtherC10CommodityDeliverable2 struct {
 }
 
 func (t *OtherC10CommodityDeliverable2) GetBasePdct() (out AssetClassProductType11Code) {
+	if t == nil {
+		return
+	}
 	return t.BasePdct
 }
 func (t *OtherC10CommodityDeliverable2) GetSubPdct() (out AssetClassSubProductType47Code) {
@@ -3429,6 +3963,9 @@ type OtherC10CommodityNonDeliverable2 struct {
 }
 
 func (t *OtherC10CommodityNonDeliverable2) GetBasePdct() (out AssetClassProductType11Code) {
+	if t == nil {
+		return
+	}
 	return t.BasePdct
 }
 func (t *OtherC10CommodityNonDeliverable2) GetSubPdct() (out AssetClassSubProductType48Code) {
@@ -3444,6 +3981,9 @@ type PaperCommodityContainerBoard1 struct {
 }
 
 func (t *PaperCommodityContainerBoard1) GetBasePdct() (out AssetClassProductType8Code) {
+	if t == nil {
+		return
+	}
 	return t.BasePdct
 }
 func (t *PaperCommodityContainerBoard1) GetSubPdct() (out AssetClassSubProductType35Code) {
@@ -3459,6 +3999,9 @@ type PaperCommodityNewsprint1 struct {
 }
 
 func (t *PaperCommodityNewsprint1) GetBasePdct() (out AssetClassProductType8Code) {
+	if t == nil {
+		return
+	}
 	return t.BasePdct
 }
 func (t *PaperCommodityNewsprint1) GetSubPdct() (out AssetClassSubProductType36Code) {
@@ -3474,6 +4017,9 @@ type PaperCommodityPulp1 struct {
 }
 
 func (t *PaperCommodityPulp1) GetBasePdct() (out AssetClassProductType8Code) {
+	if t == nil {
+		return
+	}
 	return t.BasePdct
 }
 func (t *PaperCommodityPulp1) GetSubPdct() (out AssetClassSubProductType37Code) {
@@ -3489,6 +4035,9 @@ type PaperCommodityRecoveredPaper1 struct {
 }
 
 func (t *PaperCommodityRecoveredPaper1) GetBasePdct() (out AssetClassProductType8Code) {
+	if t == nil {
+		return
+	}
 	return t.BasePdct
 }
 func (t *PaperCommodityRecoveredPaper1) GetSubPdct() (out AssetClassSubProductType38Code) {
@@ -3504,6 +4053,9 @@ type PaperCommodityRecoveredPaper2 struct {
 }
 
 func (t *PaperCommodityRecoveredPaper2) GetBasePdct() (out AssetClassProductType8Code) {
+	if t == nil {
+		return
+	}
 	return t.BasePdct
 }
 func (t *PaperCommodityRecoveredPaper2) GetSubPdct() (out AssetClassSubProductType49Code) {
@@ -3519,9 +4071,15 @@ type PolypropyleneCommodityOther1 struct {
 }
 
 func (t *PolypropyleneCommodityOther1) GetBasePdct() (out AssetClassProductType9Code) {
+	if t == nil {
+		return
+	}
 	return t.BasePdct
 }
 func (t *PolypropyleneCommodityOther1) GetSubPdct() (out AssetClassSubProductType49Code) {
+	if t == nil {
+		return
+	}
 	return t.SubPdct
 }
 
@@ -3531,6 +4089,9 @@ type PolypropyleneCommodityPlastic1 struct {
 }
 
 func (t *PolypropyleneCommodityPlastic1) GetBasePdct() (out AssetClassProductType9Code) {
+	if t == nil {
+		return
+	}
 	return t.BasePdct
 }
 func (t *PolypropyleneCommodityPlastic1) GetSubPdct() (out AssetClassSubProductType18Code) {
@@ -3547,12 +4108,21 @@ type PrincipalAmount1 struct {
 }
 
 func (t *PrincipalAmount1) GetValDtAmt() (out string) {
+	if t == nil {
+		return
+	}
 	return t.ValDtAmt
 }
 func (t *PrincipalAmount1) GetMtrtyDtAmt() (out string) {
+	if t == nil {
+		return
+	}
 	return t.MtrtyDtAmt
 }
 func (t *PrincipalAmount1) GetCcy() (out ActiveOrHistoricCurrencyCode) {
+	if t == nil {
+		return
+	}
 	return t.Ccy
 }
 
@@ -3562,9 +4132,15 @@ type Quantity13 struct {
 }
 
 func (t *Quantity13) GetVal() (out string) {
+	if t == nil {
+		return
+	}
 	return t.Val
 }
 func (t *Quantity13) GetUnitOfMeasr() (out UnitOfMeasure1Code) {
+	if t == nil {
+		return
+	}
 	return t.UnitOfMeasr
 }
 
@@ -3592,9 +4168,15 @@ type RateAdjustment1 struct {
 }
 
 func (t *RateAdjustment1) GetRate() (out string) {
+	if t == nil {
+		return
+	}
 	return t.Rate
 }
 func (t *RateAdjustment1) GetAdjstmntDt() (out ISODate) {
+	if t == nil {
+		return
+	}
 	return t.AdjstmntDt
 }
 
@@ -3644,9 +4226,15 @@ type SecuritiesFinancingReportingTransactionReportV01 struct {
 }
 
 func (t *SecuritiesFinancingReportingTransactionReportV01) GetTradData() (out []TradeTransactionReport6Choice) {
+	if t == nil {
+		return
+	}
 	return t.TradData
 }
 func (t *SecuritiesFinancingReportingTransactionReportV01) GetSplmtryData() (out []SupplementaryData1) {
+	if t == nil {
+		return
+	}
 	return t.SplmtryData
 }
 
@@ -3831,6 +4419,9 @@ func (t *Security4) GetIssr() (out SecurityIssuer1) {
 	return *t.Issr
 }
 func (t *Security4) GetTp() (out []SecuritiesLendingType3Choice) {
+	if t == nil {
+		return
+	}
 	return t.Tp
 }
 func (t *Security4) GetUnitPric() (out SecuritiesTransactionPrice2Choice) {
@@ -3894,9 +4485,15 @@ type SecurityIssuer1 struct {
 }
 
 func (t *SecurityIssuer1) GetLEI() (out LEIIdentifier) {
+	if t == nil {
+		return
+	}
 	return t.LEI
 }
 func (t *SecurityIssuer1) GetJursdctnCtry() (out CountryCode) {
+	if t == nil {
+		return
+	}
 	return t.JursdctnCtry
 }
 
@@ -3941,6 +4538,9 @@ func (t *SupplementaryData1) GetPlcAndNm() (out Max350Text) {
 	return *t.PlcAndNm
 }
 func (t *SupplementaryData1) GetEnvlp() (out SupplementaryDataEnvelope1) {
+	if t == nil {
+		return
+	}
 	return t.Envlp
 }
 
@@ -3949,6 +4549,9 @@ type SupplementaryDataEnvelope1 struct {
 }
 
 func (t *SupplementaryDataEnvelope1) Get() (out string) {
+	if t == nil {
+		return
+	}
 	return t.Item
 }
 
@@ -3967,15 +4570,27 @@ func (t *TradeEarlyTermination2) GetTechRcrdId() (out Max35Text) {
 	return *t.TechRcrdId
 }
 func (t *TradeEarlyTermination2) GetCtrPtyData() (out CounterpartyData49) {
+	if t == nil {
+		return
+	}
 	return t.CtrPtyData
 }
 func (t *TradeEarlyTermination2) GetLnData() (out LoanData11) {
+	if t == nil {
+		return
+	}
 	return t.LnData
 }
 func (t *TradeEarlyTermination2) GetCollData() (out CollateralFlag6) {
+	if t == nil {
+		return
+	}
 	return t.CollData
 }
 func (t *TradeEarlyTermination2) GetSplmtryData() (out []SupplementaryData1) {
+	if t == nil {
+		return
+	}
 	return t.SplmtryData
 }
 
@@ -3993,12 +4608,21 @@ func (t *TradeError2) GetTechRcrdId() (out Max35Text) {
 	return *t.TechRcrdId
 }
 func (t *TradeError2) GetCtrPtyData() (out CounterpartyData49) {
+	if t == nil {
+		return
+	}
 	return t.CtrPtyData
 }
 func (t *TradeError2) GetUnqTxIdr() (out Max52Text) {
+	if t == nil {
+		return
+	}
 	return t.UnqTxIdr
 }
 func (t *TradeError2) GetSplmtryData() (out []SupplementaryData1) {
+	if t == nil {
+		return
+	}
 	return t.SplmtryData
 }
 
@@ -4018,9 +4642,15 @@ func (t *TradeNewTransaction6) GetTechRcrdId() (out Max35Text) {
 	return *t.TechRcrdId
 }
 func (t *TradeNewTransaction6) GetCtrPtyData() (out CounterpartyData48) {
+	if t == nil {
+		return
+	}
 	return t.CtrPtyData
 }
 func (t *TradeNewTransaction6) GetLnData() (out LoanData44) {
+	if t == nil {
+		return
+	}
 	return t.LnData
 }
 func (t *TradeNewTransaction6) GetCollData() (out TransactionCollateralData1Choice) {
@@ -4030,9 +4660,15 @@ func (t *TradeNewTransaction6) GetCollData() (out TransactionCollateralData1Choi
 	return *t.CollData
 }
 func (t *TradeNewTransaction6) GetLvlTp() (out ModificationLevel1Code) {
+	if t == nil {
+		return
+	}
 	return t.LvlTp
 }
 func (t *TradeNewTransaction6) GetSplmtryData() (out []SupplementaryData1) {
+	if t == nil {
+		return
+	}
 	return t.SplmtryData
 }
 
@@ -4051,15 +4687,27 @@ func (t *TradeTransactionCollateralUpdate2) GetTechRcrdId() (out Max35Text) {
 	return *t.TechRcrdId
 }
 func (t *TradeTransactionCollateralUpdate2) GetCtrPtyData() (out CounterpartyData49) {
+	if t == nil {
+		return
+	}
 	return t.CtrPtyData
 }
 func (t *TradeTransactionCollateralUpdate2) GetLnData() (out LoanData4) {
+	if t == nil {
+		return
+	}
 	return t.LnData
 }
 func (t *TradeTransactionCollateralUpdate2) GetCollData() (out CollateralData7) {
+	if t == nil {
+		return
+	}
 	return t.CollData
 }
 func (t *TradeTransactionCollateralUpdate2) GetSplmtryData() (out []SupplementaryData1) {
+	if t == nil {
+		return
+	}
 	return t.SplmtryData
 }
 
@@ -4079,6 +4727,9 @@ func (t *TradeTransactionCorrection6) GetTechRcrdId() (out Max35Text) {
 	return *t.TechRcrdId
 }
 func (t *TradeTransactionCorrection6) GetCtrPtyData() (out CounterpartyData48) {
+	if t == nil {
+		return
+	}
 	return t.CtrPtyData
 }
 func (t *TradeTransactionCorrection6) GetLnData() (out LoanData43) {
@@ -4094,9 +4745,15 @@ func (t *TradeTransactionCorrection6) GetCollData() (out CollateralData7) {
 	return *t.CollData
 }
 func (t *TradeTransactionCorrection6) GetLvlTp() (out ModificationLevel1Code) {
+	if t == nil {
+		return
+	}
 	return t.LvlTp
 }
 func (t *TradeTransactionCorrection6) GetSplmtryData() (out []SupplementaryData1) {
+	if t == nil {
+		return
+	}
 	return t.SplmtryData
 }
 
@@ -4116,6 +4773,9 @@ func (t *TradeTransactionModification7) GetTechRcrdId() (out Max35Text) {
 	return *t.TechRcrdId
 }
 func (t *TradeTransactionModification7) GetCtrPtyData() (out CounterpartyData48) {
+	if t == nil {
+		return
+	}
 	return t.CtrPtyData
 }
 func (t *TradeTransactionModification7) GetLnData() (out LoanData42) {
@@ -4131,9 +4791,15 @@ func (t *TradeTransactionModification7) GetCollData() (out TransactionCollateral
 	return *t.CollData
 }
 func (t *TradeTransactionModification7) GetLvlTp() (out ModificationLevel1Code) {
+	if t == nil {
+		return
+	}
 	return t.LvlTp
 }
 func (t *TradeTransactionModification7) GetSplmtryData() (out []SupplementaryData1) {
+	if t == nil {
+		return
+	}
 	return t.SplmtryData
 }
 
@@ -4153,6 +4819,9 @@ func (t *TradeTransactionPositionComponent2) GetTechRcrdId() (out Max35Text) {
 	return *t.TechRcrdId
 }
 func (t *TradeTransactionPositionComponent2) GetCtrPtyData() (out CounterpartyData48) {
+	if t == nil {
+		return
+	}
 	return t.CtrPtyData
 }
 func (t *TradeTransactionPositionComponent2) GetLnData() (out LoanData40) {
@@ -4168,9 +4837,15 @@ func (t *TradeTransactionPositionComponent2) GetCollData() (out CollateralData3)
 	return *t.CollData
 }
 func (t *TradeTransactionPositionComponent2) GetLvlTp() (out ModificationLevel1Code) {
+	if t == nil {
+		return
+	}
 	return t.LvlTp
 }
 func (t *TradeTransactionPositionComponent2) GetSplmtryData() (out []SupplementaryData1) {
+	if t == nil {
+		return
+	}
 	return t.SplmtryData
 }
 
@@ -4250,18 +4925,33 @@ func (t *TradeValuationUpdate2) GetTechRcrdId() (out Max35Text) {
 	return *t.TechRcrdId
 }
 func (t *TradeValuationUpdate2) GetCtrPtyData() (out CounterpartyData48) {
+	if t == nil {
+		return
+	}
 	return t.CtrPtyData
 }
 func (t *TradeValuationUpdate2) GetUnqTxIdr() (out Max52Text) {
+	if t == nil {
+		return
+	}
 	return t.UnqTxIdr
 }
 func (t *TradeValuationUpdate2) GetEvtDt() (out ISODate) {
+	if t == nil {
+		return
+	}
 	return t.EvtDt
 }
 func (t *TradeValuationUpdate2) GetMktVal() (out string) {
+	if t == nil {
+		return
+	}
 	return t.MktVal
 }
 func (t *TradeValuationUpdate2) GetSplmtryData() (out []SupplementaryData1) {
+	if t == nil {
+		return
+	}
 	return t.SplmtryData
 }
 
