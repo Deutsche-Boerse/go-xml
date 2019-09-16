@@ -769,7 +769,10 @@ func (cfg *Config) genComplexType(t *xsd.ComplexType) ([]spec, error) {
 
 		if cfg.addGetMethods {
 			var returnsPrefix string
-			bodyFormat := "return t.%s"
+			bodyFormat :=  `if t == nil{
+							return
+							}
+							return t.%s`
 			bodyArgs := []interface{}{name}
 			if el.Plural {
 				returnsPrefix = "[]"
