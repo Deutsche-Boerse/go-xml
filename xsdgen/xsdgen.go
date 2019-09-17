@@ -476,21 +476,23 @@ func (cfg *Config) flatten1(t xsd.Type, push func(xsd.Type), depth int) xsd.Type
 		if nonTrivialBuiltin(t.Base) {
 			return t
 		}
-		if len(t.Restriction.Enum) > 0 {
-			t.Doc = "May be one of " + strings.Join(t.Restriction.Enum, ", ")
-			return t
-		}
-		if t.Restriction.Pattern != nil {
-			t.Doc = "Must match the pattern " + t.Restriction.Pattern.String()
-			return t
-		}
-		if t.Restriction.MaxLength != 0 {
-			t.Doc = "May be no more than " + strconv.Itoa(t.Restriction.MaxLength) + " items long"
-			return t
-		}
-		if t.Restriction.MinLength != 0 {
-			t.Doc = "Must be at least " + strconv.Itoa(t.Restriction.MinLength) + " items long"
-			return t
+		if cfg.generateBuiltinTypes {
+			if len(t.Restriction.Enum) > 0 {
+				t.Doc = "May be one of " + strings.Join(t.Restriction.Enum, ", ")
+				return t
+			}
+			if t.Restriction.Pattern != nil {
+				t.Doc = "Must match the pattern " + t.Restriction.Pattern.String()
+				return t
+			}
+			if t.Restriction.MaxLength != 0 {
+				t.Doc = "May be no more than " + strconv.Itoa(t.Restriction.MaxLength) + " items long"
+				return t
+			}
+			if t.Restriction.MinLength != 0 {
+				t.Doc = "Must be at least " + strconv.Itoa(t.Restriction.MinLength) + " items long"
+				return t
+			}
 		}
 		return t.Base
 	case *xsd.ComplexType:
@@ -769,7 +771,7 @@ func (cfg *Config) genComplexType(t *xsd.ComplexType) ([]spec, error) {
 
 		if cfg.addGetMethods {
 			var returnsPrefix string
-			bodyFormat :=  `if t == nil{
+			bodyFormat := `if t == nil{
 							return
 							}
 							return t.%s`
@@ -784,7 +786,7 @@ func (cfg *Config) genComplexType(t *xsd.ComplexType) ([]spec, error) {
 				bodyArgs = []interface{}{name, name}
 			}
 
-			getFunc := gen.Func("Get"+el.Name.Local).
+			getFunc := gen.Func("Get"+name.(*ast.Ident).Name).
 				Receiver("t *"+s.name).
 				Args().
 				Returns("out "+returnsPrefix+cfg.exprString(el.Type)).
