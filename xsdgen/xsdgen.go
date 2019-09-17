@@ -784,7 +784,7 @@ func (cfg *Config) genComplexType(t *xsd.ComplexType) ([]spec, error) {
 				bodyArgs = []interface{}{name, name}
 			}
 
-			getFunc := gen.Func("Get"+el.Name.Local).
+			getFunc := gen.Func("Get"+name.(*ast.Ident).Name).
 				Receiver("t *"+s.name).
 				Args().
 				Returns("out "+returnsPrefix+cfg.exprString(el.Type)).
