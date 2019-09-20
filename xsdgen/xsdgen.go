@@ -1044,7 +1044,15 @@ func (cfg *Config) addSpecMethods(s spec) (spec, error) {
 				MustDecl()
 			s.methods = append(s.methods, pointerFunc)
 		}
+
 		return s, nil
+	} else if isTimeTypeBuiltin(t.Base) {
+		getter := gen.Func("GetTime").
+			Receiver("t *" + s.name).
+			Returns("time.Time").
+			Body(`return t.Time`).
+			MustDecl()
+		s.methods = append(s.methods, getter)
 	}
 
 	helper, ok := cfg.helperTypes[xsd.XMLName(t.Base)]
