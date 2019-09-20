@@ -594,13 +594,13 @@ func (cfg *Config) addStandardHelpers() {
 	cfg.helperFuncs = make(map[string]*ast.FuncDecl)
 	fns := []*gen.Function{
 		gen.Func("_unmarshalTime").
-			Args("text []byte", "t *time.Time", "format string").
+			Args("text []byte", "t *"+timeXSD, "format string").
 			Returns("err error").
 			Body(`
 				s := string(bytes.TrimSpace(text))
-				*t, err = time.Parse(format, s)
+				t.Time, err = time.Parse(format, s)
 				if _, ok := err.(*time.ParseError); ok {
-					*t, err = time.Parse(format + "Z07:00", s)
+					t.Time, err = time.Parse(format + "Z07:00", s)
 				}
 				return err
 			`),
@@ -622,23 +622,39 @@ func (cfg *Config) addStandardHelpers() {
 	}
 
 	for timeType, timeSpec := range timeTypes {
-		name := "xsd" + timeType.String()
+		name := "XSD" + timeType.String()
 		cfg.helperTypes[xsd.XMLName(timeType)] = spec{
-			name:    name,
-			expr:    builtinExpr(cfg, timeType),
+			name: name,
+			expr:    &ast.Ident{Name: timeXSD},
 			private: true,
 			xsdType: timeType,
 			methods: []*ast.FuncDecl{
+				gen.Func("Create" + name).
+					Args("in time.Time").
+					Returns("*" + name).
+					Body(fmt.Sprintf(`if in.IsZero() {
+						return nil
+						}
+						return &%s{Time: in}`, name)).
+					MustDecl(),
+				gen.Func("GetTime").
+					Receiver("t *"+name).
+					Returns("out time.Time").
+					Body(`if t == nil {
+						return
+						}
+						return t.Time`).
+					MustDecl(),
 				gen.Func("UnmarshalText").
 					Receiver("t *"+name).
 					Args("text []byte").
 					Returns("error").
-					Body(`return _unmarshalTime(text, (*time.Time)(t), %q)`, timeSpec).
+					Body(`return _unmarshalTime(text, (*timeXSD)(t), %q)`, timeSpec).
 					MustDecl(),
 				gen.Func("MarshalText").
 					Receiver("t "+name).
 					Returns("[]byte", "error").
-					Body(`return []byte((time.Time)(t).Format(%q)), nil`, timeSpec).
+					Body(`return []byte((t.Time).Format(%q)), nil`, timeSpec).
 					MustDecl(),
 				// workaround golang.org/issues/11939
 				gen.Func("MarshalXML").
@@ -646,7 +662,7 @@ func (cfg *Config) addStandardHelpers() {
 					Args("e *xml.Encoder", "start xml.StartElement").
 					Returns("error").
 					Body(`
-						if (time.Time)(t).IsZero() {
+						if t.Time.IsZero() {
 							return nil
 						}
 						m, err := t.MarshalText()
@@ -660,7 +676,7 @@ func (cfg *Config) addStandardHelpers() {
 					Args("name xml.Name").
 					Returns("xml.Attr", "error").
 					Body(`
-						if (time.Time)(t).IsZero() {
+						if t.Time.IsZero() {
 							return xml.Attr{}, nil
 						}
 						m, err := t.MarshalText()
