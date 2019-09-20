@@ -43,10 +43,11 @@ type Config struct {
 
 	// if set, all decimals values would be marshalled/unmarshalled as string
 	// to avoid precision loss (by representing number as float64 type)
-	decimalsAsString     bool
-	addGetMethods        bool
-	generateBuiltinTypes bool
-	xsdFileNames         []string
+	decimalsAsString            bool
+	addGetMethods               bool
+	generateBuiltinTypes        bool
+	marshalDatetimeWithTimezone bool
+	xsdFileNames                []string
 }
 
 type typeTransform func(xsd.Schema, xsd.Type) xsd.Type
@@ -610,21 +611,17 @@ func (cfg *Config) addStandardHelpers() {
 	}
 
 	cfg.helperTypes = make(map[xml.Name]spec)
-	timeTypes := map[xsd.Builtin]string{
-		xsd.Date:       "2006-01-02",
-		xsd.DateTime:   "2006-01-02T15:04:05.999999999",
-		xsd.GDay:       "---02",
-		xsd.GMonth:     "--01",
-		xsd.GMonthDay:  "--01-02",
-		xsd.GYear:      "2006",
-		xsd.GYearMonth: "2006-01",
-		xsd.Time:       "15:04:05.999999999",
-	}
 
+	var timeSpecMarshal string
 	for timeType, timeSpec := range timeTypes {
 		name := "XSD" + timeType.String()
+		if timeType == xsd.DateTime && cfg.marshalDatetimeWithTimezone {
+			timeSpecMarshal = datetimeWithTZ
+		} else {
+			timeSpecMarshal = timeSpec
+		}
 		cfg.helperTypes[xsd.XMLName(timeType)] = spec{
-			name: name,
+			name:    name,
 			expr:    &ast.Ident{Name: timeXSD},
 			private: true,
 			xsdType: timeType,
@@ -638,7 +635,7 @@ func (cfg *Config) addStandardHelpers() {
 						return &%s{Time: in}`, name)).
 					MustDecl(),
 				gen.Func("GetTime").
-					Receiver("t *"+name).
+					Receiver("t *" + name).
 					Returns("out time.Time").
 					Body(`if t == nil {
 						return
@@ -654,7 +651,7 @@ func (cfg *Config) addStandardHelpers() {
 				gen.Func("MarshalText").
 					Receiver("t "+name).
 					Returns("[]byte", "error").
-					Body(`return []byte((t.Time).Format(%q)), nil`, timeSpec).
+					Body(`return []byte((t.Time).Format(%q)), nil`, timeSpecMarshal).
 					MustDecl(),
 				// workaround golang.org/issues/11939
 				gen.Func("MarshalXML").
@@ -895,5 +892,13 @@ func GenerateBuiltinTypes(enabled bool) Option {
 		prev := cfg.generateBuiltinTypes
 		cfg.generateBuiltinTypes = enabled
 		return GenerateBuiltinTypes(prev)
+	}
+}
+
+func DatetimeWithTZ(enabled bool) Option {
+	return func(cfg *Config) Option {
+		prev := cfg.marshalDatetimeWithTimezone
+		cfg.marshalDatetimeWithTimezone = enabled
+		return DatetimeWithTZ(prev)
 	}
 }
