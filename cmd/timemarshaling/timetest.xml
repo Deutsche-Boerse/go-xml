@@ -1,0 +1,12 @@
+<dbr:reportFile xmlns:dbr="http://deutsche-boerse.com/DBRegHub">
+    <dbr:zerTs>2006-08-19T19:27:14+02:00</dbr:zerTs>
+    <dbr:oneTs>2006-08-19T19:27:14+02:00</dbr:oneTs>
+    <dbr:mulTs>2006-08-19T19:27:14+02:00</dbr:mulTs>
+    <dbr:mulTs>2006-08-19T19:27:14+02:00</dbr:mulTs>
+    <dbr:mulTs>2006-08-19T19:27:14+02:00</dbr:mulTs>
+    <dbr:zerDt>2006-08-19</dbr:zerDt>
+    <dbr:oneDt>2006-08-19</dbr:oneDt>
+    <dbr:zerSt>ahoj</dbr:zerSt>
+    <dbr:oneSt>ahoj</dbr:oneSt>
+    <dbr:evtDt>2006-08-19</dbr:evtDt>
+</dbr:reportFile>

@@ -172,7 +172,7 @@ func (cfg *Config) gen(primaries, deps []xsd.Schema) (*Code, error) {
 			primaries[i].Types = prev
 		}
 	}
-
+	var usesTime bool
 	for _, primary := range primaries {
 		cfg.debugf("flattening type hierarchy for schema %q", primary.TargetNS)
 		types := cfg.flatten(primary.Types)
@@ -183,6 +183,9 @@ func (cfg *Config) gen(primaries, deps []xsd.Schema) (*Code, error) {
 				errList = append(errList, fmt.Errorf("gen type %q: %v",
 					xsd.XMLName(t).Local, err))
 			} else {
+				if isTimeTypeBuiltin(t) {
+					usesTime = true
+				}
 				for _, s := range specs {
 					code.names[xsd.XMLName(s.xsdType)] = s.name
 					code.decls[s.name] = s
@@ -199,6 +202,25 @@ func (cfg *Config) gen(primaries, deps []xsd.Schema) (*Code, error) {
 		cfg.debugf("running user-defined post-processing functions")
 		for name, s := range code.decls {
 			code.decls[name] = cfg.postprocessType(s)
+		}
+	}
+
+	if usesTime {
+		code.decls[timeXSD] = spec{
+			name: timeXSD,
+			expr: &ast.StructType{
+				Fields: &ast.FieldList{
+					List: []*ast.Field{{Type: &ast.Ident{Name: "time.Time"}}},
+				},
+			},
+			methods: []*ast.FuncDecl{
+				gen.Func("GetTime").
+					Receiver("t *" + timeXSD).
+					Returns("time.Time").
+					Body(`return t.Time`).
+					MustDecl(),
+			},
+			helperFuncs: []string{"_unmarshalTime"},
 		}
 	}
 
@@ -674,13 +696,15 @@ func (cfg *Config) genComplexType(t *xsd.ComplexType) ([]spec, error) {
 					return nil, fmt.Errorf("missing helper type for %v", b)
 				}
 				s.helperTypes = append(s.helperTypes, xsd.XMLName(h.xsdType))
-				overrides = append(overrides, fieldOverride{
-					FieldName: name,
-					FromType:  cfg.exprString(b),
-					Tag:       tag,
-					ToType:    h.name,
-					Type:      b,
-				})
+				if !isTimeTypeBuiltin(b) {
+					overrides = append(overrides, fieldOverride{
+						FieldName: name,
+						FromType:  cfg.exprString(b),
+						Tag:       tag,
+						ToType:    h.name,
+						Type:      b,
+					})
+				}
 			}
 			fields = append(fields, namegen.unique(name), expr, gen.String(tag))
 		default:
@@ -758,34 +782,49 @@ func (cfg *Config) genComplexType(t *xsd.ComplexType) ([]spec, error) {
 				typeName = h.name
 			}
 			_, isPtr := base.(*ast.StarExpr)
-			overrides = append(overrides, fieldOverride{
-				DefaultValue: el.Default,
-				FieldName:    name.(*ast.Ident).Name,
-				FromType:     cfg.exprString(el.Type),
-				Tag:          tag,
-				ToType:       typeName,
-				Type:         el.Type,
-				IsPtr:        isPtr,
-			})
+			if !isTimeTypeBuiltin(el.Type) {
+				overrides = append(overrides, fieldOverride{
+					DefaultValue: el.Default,
+					FieldName:    name.(*ast.Ident).Name,
+					FromType:     cfg.exprString(el.Type),
+					Tag:          tag,
+					ToType:       typeName,
+					Type:         el.Type,
+					IsPtr:        isPtr,
+				})
+			}
 		}
 
 		if cfg.addGetMethods {
 			var returnsPrefix string
 			bodyFormat := `if t == nil{
 							return
-							}
+							} 
 							return t.%s`
 			bodyArgs := []interface{}{name}
+
 			if el.Plural {
 				returnsPrefix = "[]"
-			} else if el.Nillable || el.Optional || t.IsChoice {
-				bodyFormat = `if t == nil || t.%s == nil {
+			} else {
+				if nonTrivialBuiltin(el.Type) {
+					returnsPrefix = "*"
+					if !el.Nillable && !el.Optional && !t.IsChoice {
+						bodyFormat = `if t == nil{
 							return
-							}
-							return *t.%s`
-				bodyArgs = []interface{}{name, name}
-			}
+							} 
+							return &t.%s`
+					}
 
+				} else {
+					if el.Nillable || el.Optional || t.IsChoice {
+						bodyFormat = `if t == nil || t.%s == nil {
+								return
+								}
+								return *t.%s`
+						bodyArgs = append(bodyArgs, name)
+					}
+				}
+			}
 			getFunc := gen.Func("Get"+name.(*ast.Ident).Name).
 				Receiver("t *"+s.name).
 				Args().
@@ -830,14 +869,16 @@ func (cfg *Config) genComplexType(t *xsd.ComplexType) ([]spec, error) {
 				typeName = h.name
 				s.helperTypes = append(s.helperTypes, xsd.XMLName(attr.Type))
 			}
-			overrides = append(overrides, fieldOverride{
-				DefaultValue: attr.Default,
-				FieldName:    name.(*ast.Ident).Name,
-				FromType:     cfg.exprString(attr.Type),
-				Tag:          tag,
-				ToType:       typeName,
-				Type:         attr.Type,
-			})
+			if !isTimeTypeBuiltin(attr.Type) {
+				overrides = append(overrides, fieldOverride{
+					DefaultValue: attr.Default,
+					FieldName:    name.(*ast.Ident).Name,
+					FromType:     cfg.exprString(attr.Type),
+					Tag:          tag,
+					ToType:       typeName,
+					Type:         attr.Type,
+				})
+			}
 		}
 	}
 	s.expr = gen.Struct(fields...)
@@ -1000,7 +1041,15 @@ func (cfg *Config) addSpecMethods(s spec) (spec, error) {
 				MustDecl()
 			s.methods = append(s.methods, pointerFunc)
 		}
+
 		return s, nil
+	} else if isTimeTypeBuiltin(t.Base) {
+		getter := gen.Func("GetTime").
+			Receiver("t *" + s.name).
+			Returns("time.Time").
+			Body(`return t.Time`).
+			MustDecl()
+		s.methods = append(s.methods, getter)
 	}
 
 	helper, ok := cfg.helperTypes[xsd.XMLName(t.Base)]
