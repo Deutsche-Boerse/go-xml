@@ -43,10 +43,11 @@ type Config struct {
 
 	// if set, all decimals values would be marshalled/unmarshalled as string
 	// to avoid precision loss (by representing number as float64 type)
-	decimalsAsString     bool
-	addGetMethods        bool
-	generateBuiltinTypes bool
-	xsdFileNames         []string
+	decimalsAsString            bool
+	addGetMethods               bool
+	generateBuiltinTypes        bool
+	marshalDatetimeWithTimezone bool
+	xsdFileNames                []string
 }
 
 type typeTransform func(xsd.Schema, xsd.Type) xsd.Type
@@ -594,13 +595,13 @@ func (cfg *Config) addStandardHelpers() {
 	cfg.helperFuncs = make(map[string]*ast.FuncDecl)
 	fns := []*gen.Function{
 		gen.Func("_unmarshalTime").
-			Args("text []byte", "t *time.Time", "format string").
+			Args("text []byte", "t *"+timeXSD, "format string").
 			Returns("err error").
 			Body(`
 				s := string(bytes.TrimSpace(text))
-				*t, err = time.Parse(format, s)
+				t.Time, err = time.Parse(format, s)
 				if _, ok := err.(*time.ParseError); ok {
-					*t, err = time.Parse(format + "Z07:00", s)
+					t.Time, err = time.Parse(format + "Z07:00", s)
 				}
 				return err
 			`),
@@ -610,35 +611,47 @@ func (cfg *Config) addStandardHelpers() {
 	}
 
 	cfg.helperTypes = make(map[xml.Name]spec)
-	timeTypes := map[xsd.Builtin]string{
-		xsd.Date:       "2006-01-02",
-		xsd.DateTime:   "2006-01-02T15:04:05.999999999",
-		xsd.GDay:       "---02",
-		xsd.GMonth:     "--01",
-		xsd.GMonthDay:  "--01-02",
-		xsd.GYear:      "2006",
-		xsd.GYearMonth: "2006-01",
-		xsd.Time:       "15:04:05.999999999",
-	}
 
+	var timeSpecMarshal string
 	for timeType, timeSpec := range timeTypes {
-		name := "xsd" + timeType.String()
+		name := "XSD" + timeType.String()
+		if timeType == xsd.DateTime && cfg.marshalDatetimeWithTimezone {
+			timeSpecMarshal = datetimeWithTZ
+		} else {
+			timeSpecMarshal = timeSpec
+		}
 		cfg.helperTypes[xsd.XMLName(timeType)] = spec{
 			name:    name,
-			expr:    builtinExpr(cfg, timeType),
+			expr:    &ast.Ident{Name: timeXSD},
 			private: true,
 			xsdType: timeType,
 			methods: []*ast.FuncDecl{
+				gen.Func("Create" + name).
+					Args("in time.Time").
+					Returns("*" + name).
+					Body(fmt.Sprintf(`if in.IsZero() {
+						return nil
+						}
+						return &%s{Time: in}`, name)).
+					MustDecl(),
+				gen.Func("GetTime").
+					Receiver("t *" + name).
+					Returns("out time.Time").
+					Body(`if t == nil {
+						return
+						}
+						return t.Time`).
+					MustDecl(),
 				gen.Func("UnmarshalText").
 					Receiver("t *"+name).
 					Args("text []byte").
 					Returns("error").
-					Body(`return _unmarshalTime(text, (*time.Time)(t), %q)`, timeSpec).
+					Body(`return _unmarshalTime(text, (*timeXSD)(t), %q)`, timeSpec).
 					MustDecl(),
 				gen.Func("MarshalText").
 					Receiver("t "+name).
 					Returns("[]byte", "error").
-					Body(`return []byte((time.Time)(t).Format(%q)), nil`, timeSpec).
+					Body(`return []byte((t.Time).Format(%q)), nil`, timeSpecMarshal).
 					MustDecl(),
 				// workaround golang.org/issues/11939
 				gen.Func("MarshalXML").
@@ -646,7 +659,7 @@ func (cfg *Config) addStandardHelpers() {
 					Args("e *xml.Encoder", "start xml.StartElement").
 					Returns("error").
 					Body(`
-						if (time.Time)(t).IsZero() {
+						if t.Time.IsZero() {
 							return nil
 						}
 						m, err := t.MarshalText()
@@ -660,7 +673,7 @@ func (cfg *Config) addStandardHelpers() {
 					Args("name xml.Name").
 					Returns("xml.Attr", "error").
 					Body(`
-						if (time.Time)(t).IsZero() {
+						if t.Time.IsZero() {
 							return xml.Attr{}, nil
 						}
 						m, err := t.MarshalText()
@@ -879,5 +892,13 @@ func GenerateBuiltinTypes(enabled bool) Option {
 		prev := cfg.generateBuiltinTypes
 		cfg.generateBuiltinTypes = enabled
 		return GenerateBuiltinTypes(prev)
+	}
+}
+
+func DatetimeWithTZ(enabled bool) Option {
+	return func(cfg *Config) Option {
+		prev := cfg.marshalDatetimeWithTimezone
+		cfg.marshalDatetimeWithTimezone = enabled
+		return DatetimeWithTZ(prev)
 	}
 }

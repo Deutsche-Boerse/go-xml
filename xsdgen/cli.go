@@ -103,6 +103,7 @@ func (cfg *Config) GenCLI(arguments ...string) error {
 		decimalsAsString     = fs.Bool("decimalsAsString", false, "represent decimals as string")
 		addGetMethods        = fs.Bool("addGetMethods", false, "generate get methods for all fields")
 		generateBuiltinTypes = fs.Bool("generateBuiltinTypes", false, "generate types for builtin types with restrictions")
+		marshalDatetimeWithTimezone        = fs.Bool("marshalDatetimeWithTimezone", false, "marsahl datetime to 2006-01-02T15:04:05.999999999Z07:00")
 	)
 	fs.Var(&replaceRules, "r", "replacement rule 'regex -> repl' (can be used multiple times)")
 	fs.Var(&xmlns, "ns", "target namespace(s) to generate types for")
@@ -129,6 +130,9 @@ func (cfg *Config) GenCLI(arguments ...string) error {
 	}
 	if *generateBuiltinTypes {
 		cfg.Option(GenerateBuiltinTypes(true))
+	}
+	if *marshalDatetimeWithTimezone {
+		cfg.Option(DatetimeWithTZ(true))
 	}
 	if *decimalsAsString {
 		cfg.Option(DecimalsAsString(true))
