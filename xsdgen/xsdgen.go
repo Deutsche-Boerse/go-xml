@@ -825,9 +825,6 @@ func (cfg *Config) genComplexType(t *xsd.ComplexType) ([]spec, error) {
 					}
 				}
 			}
-
-			cfg.logf(bodyFormat, bodyArgs...)
-
 			getFunc := gen.Func("Get"+name.(*ast.Ident).Name).
 				Receiver("t *"+s.name).
 				Args().

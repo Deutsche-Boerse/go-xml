@@ -7,6 +7,8 @@ import (
 )
 
 const timeXSD = "timeXSD"
+const datetimeWithTZ = "2006-01-02T15:04:05.999999999Z07:00"
+
 
 var timeTypes = map[xsd.Builtin]string{
 	xsd.Date:       "2006-01-02",
