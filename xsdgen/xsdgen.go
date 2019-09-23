@@ -172,7 +172,7 @@ func (cfg *Config) gen(primaries, deps []xsd.Schema) (*Code, error) {
 			primaries[i].Types = prev
 		}
 	}
-	var usesTime bool
+
 	for _, primary := range primaries {
 		cfg.debugf("flattening type hierarchy for schema %q", primary.TargetNS)
 		types := cfg.flatten(primary.Types)
@@ -183,9 +183,6 @@ func (cfg *Config) gen(primaries, deps []xsd.Schema) (*Code, error) {
 				errList = append(errList, fmt.Errorf("gen type %q: %v",
 					xsd.XMLName(t).Local, err))
 			} else {
-				if isTimeTypeBuiltin(t) {
-					usesTime = true
-				}
 				for _, s := range specs {
 					code.names[xsd.XMLName(s.xsdType)] = s.name
 					code.decls[s.name] = s
@@ -205,29 +202,36 @@ func (cfg *Config) gen(primaries, deps []xsd.Schema) (*Code, error) {
 		}
 	}
 
-	if usesTime {
-		code.decls[timeXSD] = spec{
-			name: timeXSD,
-			expr: &ast.StructType{
-				Fields: &ast.FieldList{
-					List: []*ast.Field{{Type: &ast.Ident{Name: "time.Time"}}},
-				},
-			},
-			methods: []*ast.FuncDecl{
-				gen.Func("GetTime").
-					Receiver("t *" + timeXSD).
-					Returns("time.Time").
-					Body(`return t.Time`).
-					MustDecl(),
-			},
-			helperFuncs: []string{"_unmarshalTime"},
-		}
-	}
-
 	for t, s := range code.decls {
 		cfg.debugf("processing dependencies for type %v", t)
 		for _, dep := range s.helperTypes {
 			if h, ok := cfg.helperTypes[dep]; ok {
+				if isTimeTypeBuiltin(h.xsdType) {
+					code.decls[timeXSD] = spec{
+						name: timeXSD,
+						expr: &ast.StructType{
+							Fields: &ast.FieldList{
+								List: []*ast.Field{{Type: &ast.Ident{Name: "time.Time"}}},
+							},
+						},
+						methods: []*ast.FuncDecl{
+							gen.Func("GetTime").
+								Receiver("t *" + timeXSD).
+								Returns("time.Time").
+								Body(`return t.Time`).
+								MustDecl(),
+							gen.Func(timeXSDCreator).
+								Args("in time.Time").
+								Returns("*" + timeXSD).
+								Body(fmt.Sprintf(`if in.IsZero() {
+						return nil
+						}
+						return &%s{Time: in}`, timeXSD)).
+								MustDecl(),
+						},
+						helperFuncs: []string{"_unmarshalTime"},
+					}
+				}
 				code.decls[h.name] = h
 				delete(cfg.helperTypes, dep)
 			}
@@ -1044,12 +1048,32 @@ func (cfg *Config) addSpecMethods(s spec) (spec, error) {
 
 		return s, nil
 	} else if isTimeTypeBuiltin(t.Base) {
-		getter := gen.Func("GetTime").
-			Receiver("t *" + s.name).
-			Returns("time.Time").
-			Body(`return t.Time`).
-			MustDecl()
-		s.methods = append(s.methods, getter)
+		timeMethods := []*ast.FuncDecl{
+			gen.Func("Create" + s.name + "Pointer").
+				Args("in time.Time").
+				Returns("*" + s.name).
+				Body(fmt.Sprintf(`if p := %s(in); p != nil {
+						out := %s(*p)
+						return &out
+						}
+						return nil`, timeXSDCreator, s.name)).
+				MustDecl(),
+			gen.Func("Create" + s.name).
+				Args("in time.Time").
+				Returns("out " + s.name).
+				Body(fmt.Sprintf(`if p := %s(in); p != nil {
+						return %s(*p)
+						}
+						return`, timeXSDCreator, s.name)).
+				MustDecl(),
+			gen.Func("GetTime").
+				Receiver("t *" + s.name).
+				Returns("time.Time").
+				Body(`return t.Time`).
+				MustDecl(),
+
+		}
+		s.methods = append(s.methods, timeMethods...)
 	}
 
 	helper, ok := cfg.helperTypes[xsd.XMLName(t.Base)]

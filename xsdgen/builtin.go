@@ -7,6 +7,7 @@ import (
 )
 
 const timeXSD = "timeXSD"
+const timeXSDCreator = "makeTimeXSDPointer"
 const datetimeWithTZ = "2006-01-02T15:04:05.999999999Z07:00"
 
 
