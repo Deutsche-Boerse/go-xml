@@ -626,13 +626,22 @@ func (cfg *Config) addStandardHelpers() {
 			private: true,
 			xsdType: timeType,
 			methods: []*ast.FuncDecl{
-				gen.Func("Create" + name).
+				gen.Func("Create" + name + "Pointer").
 					Args("in time.Time").
 					Returns("*" + name).
-					Body(fmt.Sprintf(`if in.IsZero() {
-						return nil
+					Body(fmt.Sprintf(`if p := %s(in); p != nil {
+						out := %s(*p)
+						return &out
 						}
-						return &%s{Time: in}`, name)).
+						return nil`, timeXSDCreator, name)).
+					MustDecl(),
+				gen.Func("Create" + name).
+					Args("in time.Time").
+					Returns("out " + name).
+					Body(fmt.Sprintf(`if p := %s(in); p != nil {
+						return %s(*p)
+						}
+						return`, timeXSDCreator, name)).
 					MustDecl(),
 				gen.Func("GetTime").
 					Receiver("t *" + name).
