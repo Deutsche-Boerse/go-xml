@@ -13,6 +13,19 @@ const (
 
 type EvtDt XSDDate
 
+func CreateEvtDtPointer(in time.Time) *EvtDt {
+	if p := makeTimeXSDPointer(in); p != nil {
+		out := EvtDt(*p)
+		return &out
+	}
+	return nil
+}
+func CreateEvtDt(in time.Time) (out EvtDt) {
+	if p := makeTimeXSDPointer(in); p != nil {
+		return EvtDt(*p)
+	}
+	return
+}
 func (t *EvtDt) GetTime() time.Time {
 	return t.Time
 }
@@ -23,15 +36,41 @@ func (t EvtDt) MarshalText() ([]byte, error) {
 	return XSDDate(t).MarshalText()
 }
 
+type ISODateTime XSDDateTime
+
+func CreateISODateTimePointer(in time.Time) *ISODateTime {
+	if p := makeTimeXSDPointer(in); p != nil {
+		out := ISODateTime(*p)
+		return &out
+	}
+	return nil
+}
+func CreateISODateTime(in time.Time) (out ISODateTime) {
+	if p := makeTimeXSDPointer(in); p != nil {
+		return ISODateTime(*p)
+	}
+	return
+}
+func (t *ISODateTime) GetTime() time.Time {
+	return t.Time
+}
+func (t *ISODateTime) UnmarshalText(text []byte) error {
+	return (*XSDDateTime)(t).UnmarshalText(text)
+}
+func (t ISODateTime) MarshalText() ([]byte, error) {
+	return XSDDateTime(t).MarshalText()
+}
+
 type ReportFile struct {
-	ZerTs *XSDDateTime  `json:"zerTs,omitempty" xml:"zerTs,omitempty"`
-	OneTs XSDDateTime   `json:"oneTs,omitempty" xml:"oneTs"`
-	MulTs []XSDDateTime `json:"mulTs,omitempty" xml:"mulTs,omitempty"`
-	ZerDt *XSDDate      `json:"zerDt,omitempty" xml:"zerDt,omitempty"`
-	OneDt XSDDate       `json:"oneDt,omitempty" xml:"oneDt"`
-	ZerSt *string       `json:"zerSt,omitempty" xml:"zerSt,omitempty"`
-	OneSt string        `json:"oneSt,omitempty" xml:"oneSt"`
-	EvtDt EvtDt         `json:"evtDt,omitempty" xml:"evtDt"`
+	ZerTs    *XSDDateTime  `json:"zerTs,omitempty" xml:"zerTs,omitempty"`
+	OneTs    XSDDateTime   `json:"oneTs,omitempty" xml:"oneTs"`
+	MulTs    []XSDDateTime `json:"mulTs,omitempty" xml:"mulTs,omitempty"`
+	ZerDt    *XSDDate      `json:"zerDt,omitempty" xml:"zerDt,omitempty"`
+	OneDt    XSDDate       `json:"oneDt,omitempty" xml:"oneDt"`
+	ZerSt    *string       `json:"zerSt,omitempty" xml:"zerSt,omitempty"`
+	OneSt    string        `json:"oneSt,omitempty" xml:"oneSt"`
+	RptgDtTm ISODateTime   `json:"rptgDtTm,omitempty" xml:"RptgDtTm"`
+	EvtDt    EvtDt         `json:"evtDt,omitempty" xml:"evtDt"`
 }
 
 func (t *ReportFile) GetZerTs() (out *XSDDateTime) {
@@ -76,6 +115,12 @@ func (t *ReportFile) GetOneSt() (out string) {
 	}
 	return t.OneSt
 }
+func (t *ReportFile) GetRptgDtTm() (out ISODateTime) {
+	if t == nil {
+		return
+	}
+	return t.RptgDtTm
+}
 func (t *ReportFile) GetEvtDt() (out EvtDt) {
 	if t == nil {
 		return
@@ -85,11 +130,18 @@ func (t *ReportFile) GetEvtDt() (out EvtDt) {
 
 type XSDDate timeXSD
 
-func CreateXSDDate(in time.Time) *XSDDate {
-	if in.IsZero() {
-		return nil
+func CreateXSDDatePointer(in time.Time) *XSDDate {
+	if p := makeTimeXSDPointer(in); p != nil {
+		out := XSDDate(*p)
+		return &out
 	}
-	return &XSDDate{Time: in}
+	return nil
+}
+func CreateXSDDate(in time.Time) (out XSDDate) {
+	if p := makeTimeXSDPointer(in); p != nil {
+		return XSDDate(*p)
+	}
+	return
 }
 func (t *XSDDate) GetTime() (out time.Time) {
 	if t == nil {
@@ -131,11 +183,18 @@ func _unmarshalTime(text []byte, t *timeXSD, format string) (err error) {
 
 type XSDDateTime timeXSD
 
-func CreateXSDDateTime(in time.Time) *XSDDateTime {
-	if in.IsZero() {
-		return nil
+func CreateXSDDateTimePointer(in time.Time) *XSDDateTime {
+	if p := makeTimeXSDPointer(in); p != nil {
+		out := XSDDateTime(*p)
+		return &out
 	}
-	return &XSDDateTime{Time: in}
+	return nil
+}
+func CreateXSDDateTime(in time.Time) (out XSDDateTime) {
+	if p := makeTimeXSDPointer(in); p != nil {
+		return XSDDateTime(*p)
+	}
+	return
 }
 func (t *XSDDateTime) GetTime() (out time.Time) {
 	if t == nil {
@@ -173,4 +232,10 @@ type timeXSD struct {
 
 func (t *timeXSD) GetTime() time.Time {
 	return t.Time
+}
+func makeTimeXSDPointer(in time.Time) *timeXSD {
+	if in.IsZero() {
+		return nil
+	}
+	return &timeXSD{Time: in}
 }
