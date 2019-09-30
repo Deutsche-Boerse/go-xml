@@ -68,6 +68,7 @@ type Element struct {
 	Attr []xml.Attr
 	// Used for resolving prefixed strings in extra attribute values.
 	xmltree.Scope
+	InChoice bool
 }
 
 // An Attribute describes the key=value pairs that may appear within the
