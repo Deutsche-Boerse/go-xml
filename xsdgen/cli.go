@@ -22,9 +22,6 @@ func (cfg *Config) GenCode(data ...[]byte) (*Code, error) {
 		cfg.debugf("setting namespaces to %q", cfg.namespaces)
 	}
 	deps, err := xsd.Parse(data...)
-	//for i, d := range deps {
-	//	cfg.logf("dep %v: %+v", i, d)
-	//}
 
 	if err != nil {
 		return nil, err
