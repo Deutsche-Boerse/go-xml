@@ -433,7 +433,6 @@ func expandComplexShorthand(root *xmltree.Element) {
 
 Loop:
 	for _, el := range root.SearchFunc(isComplexType) {
-		el.IsChoice = el.IsComplexTypeChoice()
 		newChildren := make([]xmltree.Element, 0, len(el.Children))
 		restrict := xmltree.Element{
 			Scope:    el.Scope,
@@ -582,9 +581,9 @@ func (s *Schema) parseSelfType(root *xmltree.Element) *ComplexType {
 
 // http://www.w3.org/TR/2004/REC-xmlschema-1-20041028/structures.html#element-complexType
 func (s *Schema) parseComplexType(root *xmltree.Element) *ComplexType {
+
 	var t ComplexType
 	var doc annotation
-	t.IsChoice = root.IsChoice
 	t.Name = root.ResolveDefault(root.Attr("", "name"), s.TargetNS)
 	t.Abstract = parseBool(root.Attr("", "abstract"))
 	t.Mixed = parseBool(root.Attr("", "mixed"))
@@ -661,6 +660,19 @@ func (t *ComplexType) parseComplexContent(ns string, root *xmltree.Element) {
 					t.Elements[existing] = joinElem(t.Elements[existing], elt)
 				}
 			}
+			for _, choicePart := range el.Search(schemaNS, "choice") {
+				for _, v := range choicePart.Search(schemaNS, "element") {
+					elt := parseElement(ns, v)
+					elt.InChoice = true
+					if existing, ok := usedElt[elt.Name]; !ok {
+						usedElt[elt.Name] = len(t.Elements)
+						t.Elements = append(t.Elements, elt)
+					} else {
+						t.Elements[existing] = joinElem(t.Elements[existing], elt)
+					}
+
+				}
+			}
 
 			for _, v := range el.Search(schemaNS, "attribute") {
 				t.Attributes = append(t.Attributes, parseAttribute(ns, v))
@@ -683,6 +695,7 @@ func joinElem(a, b Element) Element {
 	a.Plural = a.Plural || b.Plural
 	a.Optional = a.Optional || b.Optional
 	a.Nillable = a.Nillable || b.Nillable
+	a.InChoice = a.InChoice || b.InChoice
 
 	if a.Default != b.Default {
 		a.Default = ""

@@ -68,6 +68,7 @@ type Element struct {
 	Attr []xml.Attr
 	// Used for resolving prefixed strings in extra attribute values.
 	xmltree.Scope
+	InChoice bool
 }
 
 // An Attribute describes the key=value pairs that may appear within the
@@ -171,10 +172,6 @@ type ComplexType struct {
 	// If true, this type is allowed to contain character data that is
 	// not part of any sub-element.
 	Mixed bool
-	// if complex type elements are defined as choice,
-	// only one of them can be present and all others should be nil.
-	// Therefore all (accept Plural) elements should be pointers
-	IsChoice bool
 }
 
 func (*ComplexType) isType() {}

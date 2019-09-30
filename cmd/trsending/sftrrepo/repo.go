@@ -1987,31 +1987,79 @@ func (t *HaircutPortfolioSecurityIdentification1) GetId() (out Security3) {
 	return t.Id
 }
 
-type ISODate time.Time
+type ISODate XSDDate
 
+func CreateISODatePointer(in time.Time) *ISODate {
+	if p := makeTimeXSDPointer(in); p != nil {
+		out := ISODate(*p)
+		return &out
+	}
+	return nil
+}
+func CreateISODate(in time.Time) (out ISODate) {
+	if p := makeTimeXSDPointer(in); p != nil {
+		return ISODate(*p)
+	}
+	return
+}
+func (t *ISODate) GetTime() time.Time {
+	return t.Time
+}
 func (t *ISODate) UnmarshalText(text []byte) error {
-	return (*xsdDate)(t).UnmarshalText(text)
+	return (*XSDDate)(t).UnmarshalText(text)
 }
 func (t ISODate) MarshalText() ([]byte, error) {
-	return xsdDate(t).MarshalText()
+	return XSDDate(t).MarshalText()
 }
 
-type ISODateTime time.Time
+type ISODateTime XSDDateTime
 
+func CreateISODateTimePointer(in time.Time) *ISODateTime {
+	if p := makeTimeXSDPointer(in); p != nil {
+		out := ISODateTime(*p)
+		return &out
+	}
+	return nil
+}
+func CreateISODateTime(in time.Time) (out ISODateTime) {
+	if p := makeTimeXSDPointer(in); p != nil {
+		return ISODateTime(*p)
+	}
+	return
+}
+func (t *ISODateTime) GetTime() time.Time {
+	return t.Time
+}
 func (t *ISODateTime) UnmarshalText(text []byte) error {
-	return (*xsdDateTime)(t).UnmarshalText(text)
+	return (*XSDDateTime)(t).UnmarshalText(text)
 }
 func (t ISODateTime) MarshalText() ([]byte, error) {
-	return xsdDateTime(t).MarshalText()
+	return XSDDateTime(t).MarshalText()
 }
 
-type ISORestrictedYear time.Time
+type ISORestrictedYear XSDGYear
 
+func CreateISORestrictedYearPointer(in time.Time) *ISORestrictedYear {
+	if p := makeTimeXSDPointer(in); p != nil {
+		out := ISORestrictedYear(*p)
+		return &out
+	}
+	return nil
+}
+func CreateISORestrictedYear(in time.Time) (out ISORestrictedYear) {
+	if p := makeTimeXSDPointer(in); p != nil {
+		return ISORestrictedYear(*p)
+	}
+	return
+}
+func (t *ISORestrictedYear) GetTime() time.Time {
+	return t.Time
+}
 func (t *ISORestrictedYear) UnmarshalText(text []byte) error {
-	return (*xsdGYear)(t).UnmarshalText(text)
+	return (*XSDGYear)(t).UnmarshalText(text)
 }
 func (t ISORestrictedYear) MarshalText() ([]byte, error) {
-	return xsdGYear(t).MarshalText()
+	return XSDGYear(t).MarshalText()
 }
 
 type IndustrialProductCommodityConstruction1 struct {
@@ -4116,16 +4164,35 @@ func (t *TransactionLoanData6Choice) GetSctiesLndg() (out LoanData41) {
 	return *t.SctiesLndg
 }
 
-type xsdDate time.Time
+type XSDDate timeXSD
 
-func (t *xsdDate) UnmarshalText(text []byte) error {
-	return _unmarshalTime(text, (*time.Time)(t), "2006-01-02")
+func CreateXSDDatePointer(in time.Time) *XSDDate {
+	if p := makeTimeXSDPointer(in); p != nil {
+		out := XSDDate(*p)
+		return &out
+	}
+	return nil
 }
-func (t xsdDate) MarshalText() ([]byte, error) {
-	return []byte((time.Time)(t).Format("2006-01-02")), nil
+func CreateXSDDate(in time.Time) (out XSDDate) {
+	if p := makeTimeXSDPointer(in); p != nil {
+		return XSDDate(*p)
+	}
+	return
 }
-func (t xsdDate) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	if (time.Time)(t).IsZero() {
+func (t *XSDDate) GetTime() (out time.Time) {
+	if t == nil {
+		return
+	}
+	return t.Time
+}
+func (t *XSDDate) UnmarshalText(text []byte) error {
+	return _unmarshalTime(text, (*timeXSD)(t), "2006-01-02")
+}
+func (t XSDDate) MarshalText() ([]byte, error) {
+	return []byte((t.Time).Format("2006-01-02")), nil
+}
+func (t XSDDate) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	if t.Time.IsZero() {
 		return nil
 	}
 	m, err := t.MarshalText()
@@ -4134,32 +4201,51 @@ func (t xsdDate) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	}
 	return e.EncodeElement(m, start)
 }
-func (t xsdDate) MarshalXMLAttr(name xml.Name) (xml.Attr, error) {
-	if (time.Time)(t).IsZero() {
+func (t XSDDate) MarshalXMLAttr(name xml.Name) (xml.Attr, error) {
+	if t.Time.IsZero() {
 		return xml.Attr{}, nil
 	}
 	m, err := t.MarshalText()
 	return xml.Attr{Name: name, Value: string(m)}, err
 }
-func _unmarshalTime(text []byte, t *time.Time, format string) (err error) {
+func _unmarshalTime(text []byte, t *timeXSD, format string) (err error) {
 	s := string(bytes.TrimSpace(text))
-	*t, err = time.Parse(format, s)
+	t.Time, err = time.Parse(format, s)
 	if _, ok := err.(*time.ParseError); ok {
-		*t, err = time.Parse(format+"Z07:00", s)
+		t.Time, err = time.Parse(format+"Z07:00", s)
 	}
 	return err
 }
 
-type xsdDateTime time.Time
+type XSDDateTime timeXSD
 
-func (t *xsdDateTime) UnmarshalText(text []byte) error {
-	return _unmarshalTime(text, (*time.Time)(t), "2006-01-02T15:04:05.999999999")
+func CreateXSDDateTimePointer(in time.Time) *XSDDateTime {
+	if p := makeTimeXSDPointer(in); p != nil {
+		out := XSDDateTime(*p)
+		return &out
+	}
+	return nil
 }
-func (t xsdDateTime) MarshalText() ([]byte, error) {
-	return []byte((time.Time)(t).Format("2006-01-02T15:04:05.999999999")), nil
+func CreateXSDDateTime(in time.Time) (out XSDDateTime) {
+	if p := makeTimeXSDPointer(in); p != nil {
+		return XSDDateTime(*p)
+	}
+	return
 }
-func (t xsdDateTime) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	if (time.Time)(t).IsZero() {
+func (t *XSDDateTime) GetTime() (out time.Time) {
+	if t == nil {
+		return
+	}
+	return t.Time
+}
+func (t *XSDDateTime) UnmarshalText(text []byte) error {
+	return _unmarshalTime(text, (*timeXSD)(t), "2006-01-02T15:04:05.999999999")
+}
+func (t XSDDateTime) MarshalText() ([]byte, error) {
+	return []byte((t.Time).Format("2006-01-02T15:04:05.999999999")), nil
+}
+func (t XSDDateTime) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	if t.Time.IsZero() {
 		return nil
 	}
 	m, err := t.MarshalText()
@@ -4168,24 +4254,43 @@ func (t xsdDateTime) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	}
 	return e.EncodeElement(m, start)
 }
-func (t xsdDateTime) MarshalXMLAttr(name xml.Name) (xml.Attr, error) {
-	if (time.Time)(t).IsZero() {
+func (t XSDDateTime) MarshalXMLAttr(name xml.Name) (xml.Attr, error) {
+	if t.Time.IsZero() {
 		return xml.Attr{}, nil
 	}
 	m, err := t.MarshalText()
 	return xml.Attr{Name: name, Value: string(m)}, err
 }
 
-type xsdGYear time.Time
+type XSDGYear timeXSD
 
-func (t *xsdGYear) UnmarshalText(text []byte) error {
-	return _unmarshalTime(text, (*time.Time)(t), "2006")
+func CreateXSDGYearPointer(in time.Time) *XSDGYear {
+	if p := makeTimeXSDPointer(in); p != nil {
+		out := XSDGYear(*p)
+		return &out
+	}
+	return nil
 }
-func (t xsdGYear) MarshalText() ([]byte, error) {
-	return []byte((time.Time)(t).Format("2006")), nil
+func CreateXSDGYear(in time.Time) (out XSDGYear) {
+	if p := makeTimeXSDPointer(in); p != nil {
+		return XSDGYear(*p)
+	}
+	return
 }
-func (t xsdGYear) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	if (time.Time)(t).IsZero() {
+func (t *XSDGYear) GetTime() (out time.Time) {
+	if t == nil {
+		return
+	}
+	return t.Time
+}
+func (t *XSDGYear) UnmarshalText(text []byte) error {
+	return _unmarshalTime(text, (*timeXSD)(t), "2006")
+}
+func (t XSDGYear) MarshalText() ([]byte, error) {
+	return []byte((t.Time).Format("2006")), nil
+}
+func (t XSDGYear) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	if t.Time.IsZero() {
 		return nil
 	}
 	m, err := t.MarshalText()
@@ -4194,10 +4299,24 @@ func (t xsdGYear) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	}
 	return e.EncodeElement(m, start)
 }
-func (t xsdGYear) MarshalXMLAttr(name xml.Name) (xml.Attr, error) {
-	if (time.Time)(t).IsZero() {
+func (t XSDGYear) MarshalXMLAttr(name xml.Name) (xml.Attr, error) {
+	if t.Time.IsZero() {
 		return xml.Attr{}, nil
 	}
 	m, err := t.MarshalText()
 	return xml.Attr{Name: name, Value: string(m)}, err
+}
+
+type timeXSD struct {
+	time.Time
+}
+
+func (t *timeXSD) GetTime() time.Time {
+	return t.Time
+}
+func makeTimeXSDPointer(in time.Time) *timeXSD {
+	if in.IsZero() {
+		return nil
+	}
+	return &timeXSD{Time: in}
 }
