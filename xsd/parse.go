@@ -433,7 +433,6 @@ func expandComplexShorthand(root *xmltree.Element) {
 
 Loop:
 	for _, el := range root.SearchFunc(isComplexType) {
-		el.IsChoice = el.IsComplexTypeChoice()
 		newChildren := make([]xmltree.Element, 0, len(el.Children))
 		restrict := xmltree.Element{
 			Scope:    el.Scope,
@@ -585,7 +584,6 @@ func (s *Schema) parseComplexType(root *xmltree.Element) *ComplexType {
 
 	var t ComplexType
 	var doc annotation
-	t.IsChoice = root.IsChoice
 	t.Name = root.ResolveDefault(root.Attr("", "name"), s.TargetNS)
 	t.Abstract = parseBool(root.Attr("", "abstract"))
 	t.Mixed = parseBool(root.Attr("", "mixed"))

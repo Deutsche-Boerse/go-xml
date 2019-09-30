@@ -747,7 +747,7 @@ func (cfg *Config) genComplexType(t *xsd.ComplexType) ([]spec, error) {
 	for _, el := range elements {
 
 		options := ""
-		if el.Nillable || el.Optional || t.IsChoice || el.InChoice {
+		if el.Nillable || el.Optional || el.InChoice {
 			options = ",omitempty"
 		}
 		tag := fmt.Sprintf(`json:"%s,omitempty" xml:"%s%s"`, toJsonName(el.Name.Local), el.Name.Local, options)
@@ -770,7 +770,7 @@ func (cfg *Config) genComplexType(t *xsd.ComplexType) ([]spec, error) {
 		}
 		if el.Plural {
 			base = &ast.ArrayType{Elt: base}
-		} else if el.Nillable || el.Optional || t.IsChoice || el.InChoice {
+		} else if el.Nillable || el.Optional || el.InChoice {
 			base = &ast.StarExpr{X: base}
 		}
 
@@ -812,7 +812,7 @@ func (cfg *Config) genComplexType(t *xsd.ComplexType) ([]spec, error) {
 			} else {
 				if nonTrivialBuiltin(el.Type) {
 					returnsPrefix = "*"
-					if !el.Nillable && !el.Optional && !t.IsChoice && !el.InChoice {
+					if !el.Nillable && !el.Optional && !el.InChoice {
 						bodyFormat = `if t == nil{
 							return
 							} 
@@ -820,7 +820,7 @@ func (cfg *Config) genComplexType(t *xsd.ComplexType) ([]spec, error) {
 					}
 
 				} else {
-					if el.Nillable || el.Optional || t.IsChoice || el.InChoice {
+					if el.Nillable || el.Optional || el.InChoice {
 						bodyFormat = `if t == nil || t.%s == nil {
 								return
 								}
