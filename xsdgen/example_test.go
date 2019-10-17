@@ -76,8 +76,10 @@ func ExampleIgnoreAttributes() {
 
 	// Output: package ws
 	//
+	// const Namespace0 string = "http://www.example.com/"
+	//
 	// type ArrayOfString struct {
-	// 	Items []string `xml:",any"`
+	// 	Items []string `xml:",innerxml"`
 	// }
 }
 
@@ -104,9 +106,11 @@ func ExampleIgnoreElements() {
 
 	// Output: package ws
 	//
+	// const Namespace0 string = "http://www.example.com/"
+	//
 	// type Person struct {
-	// 	Name     string `json:"name,omitempty" xml:"http://www.example.com/ name"`
-	//	Deceased bool   `json:"deceased,omitempty" xml:"http://www.example.com/ deceased"`
+	// 	Name     string `json:"name,omitempty" xml:"name"`
+	//	Deceased bool   `json:"deceased,omitempty" xml:"deceased"`
 	// }
 }
 
@@ -129,8 +133,7 @@ func ExamplePackageName() {
 
 	// Output: package postal
 	//
-	// // May be no more than 10 items long
-	// type Zipcode string
+	//const Namespace0 string = "http://www.example.com/"
 }
 
 func ExampleReplace() {
@@ -151,8 +154,10 @@ func ExampleReplace() {
 
 	// Output: package ws
 	//
+	//const Namespace0 string = "http://www.example.com/"
+	//
 	// type StringArray struct {
-	// 	Items     []string `xml:",any"`
+	// 	Items     []string `xml:",innerxml"`
 	// 	ArrayType string   `xml:"arrayType,attr,omitempty"`
 	// }
 }
@@ -178,8 +183,10 @@ func ExampleHandleSOAPArrayType() {
 
 	// Output: package ws
 	//
+	//const Namespace0 string = "http://www.example.com/"
+	//
 	// type BoolArray struct {
-	// 	Items  []bool `xml:",any"`
+	// 	Items  []bool `xml:",innerxml"`
 	// 	Offset string `xml:"offset,attr,omitempty"`
 	// 	Id     string `xml:"id,attr,omitempty"`
 	// 	Href   string `xml:"href,attr,omitempty"`
@@ -213,6 +220,8 @@ func ExampleSOAPArrayAsSlice() {
 	// Output: package ws
 	//
 	// import "encoding/xml"
+	//
+	// const Namespace0 string = "http://www.example.com/"
 	//
 	// type BoolArray []bool
 	//
@@ -270,76 +279,90 @@ func ExampleUseFieldNames() {
 
 	// Output: package ws
 	//
-	// import (
-	// 	"bytes"
-	// 	"encoding/xml"
-	// 	"time"
-	// )
+	//import (
+	//	"bytes"
+	//	"encoding/xml"
+	//	"time"
+	//)
 	//
-	// type Book struct {
-	//	Title     string    `json:"title,omitempty" xml:"http://www.example.com/ title"`
-	//	Published time.Time `json:"published,omitempty" xml:"http://www.example.com/ published"`
-	//	Author    string    `json:"author,omitempty" xml:"http://www.example.com/ author"`
-	// }
+	//const Namespace0 string = "http://www.example.com/"
 	//
-	// func (t *Book) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	// 	type T Book
-	// 	var layout struct {
-	// 		*T
-	// 		Published *xsdDate `json:"published,omitempty" xml:"http://www.example.com/ published"`
-	// 	}
-	// 	layout.T = (*T)(t)
-	// 	layout.Published = (*xsdDate)(&layout.T.Published)
-	// 	return e.EncodeElement(layout, start)
-	// }
-	// func (t *Book) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
-	// 	type T Book
-	// 	var overlay struct {
-	// 		*T
-	// 		Published *xsdDate `json:"published,omitempty" xml:"http://www.example.com/ published"`
-	// 	}
-	// 	overlay.T = (*T)(t)
-	// 	overlay.Published = (*xsdDate)(&overlay.T.Published)
-	// 	return d.DecodeElement(&overlay, &start)
-	// }
+	//type Book struct {
+	//	Title     string  `json:"title,omitempty" xml:"title"`
+	//	Published XSDDate `json:"published,omitempty" xml:"published"`
+	//	Author    string  `json:"author,omitempty" xml:"author"`
+	//}
 	//
-	// type Library struct {
-	// 	Book []Book `json:"book,omitempty" xml:"http://www.example.com/ book"`
-	// }
+	//type Library struct {
+	//	Book []Book `json:"book,omitempty" xml:"book"`
+	//}
 	//
-	// type xsdDate time.Time
+	//type XSDDate timeXSD
 	//
-	// func (t *xsdDate) UnmarshalText(text []byte) error {
-	// 	return _unmarshalTime(text, (*time.Time)(t), "2006-01-02")
-	// }
-	// func (t xsdDate) MarshalText() ([]byte, error) {
-	// 	return []byte((time.Time)(t).Format("2006-01-02")), nil
-	// }
-	// func (t xsdDate) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	// 	if (time.Time)(t).IsZero() {
-	// 		return nil
-	// 	}
-	// 	m, err := t.MarshalText()
-	// 	if err != nil {
-	// 		return err
-	// 	}
-	// 	return e.EncodeElement(m, start)
-	// }
-	// func (t xsdDate) MarshalXMLAttr(name xml.Name) (xml.Attr, error) {
-	// 	if (time.Time)(t).IsZero() {
-	// 		return xml.Attr{}, nil
-	// 	}
-	// 	m, err := t.MarshalText()
-	// 	return xml.Attr{Name: name, Value: string(m)}, err
-	// }
-	// func _unmarshalTime(text []byte, t *time.Time, format string) (err error) {
-	// 	s := string(bytes.TrimSpace(text))
-	// 	*t, err = time.Parse(format, s)
-	// 	if _, ok := err.(*time.ParseError); ok {
-	// 		*t, err = time.Parse(format+"Z07:00", s)
-	// 	}
-	// 	return err
-	// }
+	//func CreateXSDDatePointer(in time.Time) *XSDDate {
+	//	if p := makeTimeXSDPointer(in); p != nil {
+	//		out := XSDDate(*p)
+	//		return &out
+	//	}
+	//	return nil
+	//}
+	//func CreateXSDDate(in time.Time) (out XSDDate) {
+	//	if p := makeTimeXSDPointer(in); p != nil {
+	//		return XSDDate(*p)
+	//	}
+	//	return
+	//}
+	//func (t *XSDDate) GetTime() (out time.Time) {
+	//	if t == nil {
+	//		return
+	//	}
+	//	return t.Time
+	//}
+	//func (t *XSDDate) UnmarshalText(text []byte) error {
+	//	return _unmarshalTime(text, (*timeXSD)(t), "2006-01-02")
+	//}
+	//func (t XSDDate) MarshalText() ([]byte, error) {
+	//	return []byte((t.Time).Format("2006-01-02")), nil
+	//}
+	//func (t XSDDate) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	//	if t.Time.IsZero() {
+	//		return nil
+	//	}
+	//	m, err := t.MarshalText()
+	//	if err != nil {
+	//		return err
+	//	}
+	//	return e.EncodeElement(m, start)
+	//}
+	//func (t XSDDate) MarshalXMLAttr(name xml.Name) (xml.Attr, error) {
+	//	if t.Time.IsZero() {
+	//		return xml.Attr{}, nil
+	//	}
+	//	m, err := t.MarshalText()
+	//	return xml.Attr{Name: name, Value: string(m)}, err
+	//}
+	//func _unmarshalTime(text []byte, t *timeXSD, format string) (err error) {
+	//	s := string(bytes.TrimSpace(text))
+	//	t.Time, err = time.Parse(format, s)
+	//	if _, ok := err.(*time.ParseError); ok {
+	//		t.Time, err = time.Parse(format+"Z07:00", s)
+	//	}
+	//	return err
+	//}
+	//
+	//type timeXSD struct {
+	//	time.Time
+	//}
+	//
+	//func (t *timeXSD) GetTime() time.Time {
+	//	return t.Time
+	//}
+	//func makeTimeXSDPointer(in time.Time) *timeXSD {
+	//	if in.IsZero() {
+	//		return nil
+	//	}
+	//	return &timeXSD{Time: in}
+	//}
 
 }
 
@@ -374,45 +397,45 @@ func ExampleOptionalDatetimeNoPointer() {
 	//	"time"
 	//)
 	//
-	//type Clock struct {
-	//	Timestamp time.Time `json:"timestamp,omitempty" xml:"http://www.example.com/ timestamp,omitempty"`
-	//}
+	//const Namespace0 string = "http://www.example.com/"
 	//
-	//func (t *Clock) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	//	type T Clock
-	//	var layout struct {
-	//		*T
-	//		Timestamp *xsdDateTime `json:"timestamp,omitempty" xml:"http://www.example.com/ timestamp,omitempty"`
-	//	}
-	//	layout.T = (*T)(t)
-	//	layout.Timestamp = (*xsdDateTime)(&layout.T.Timestamp)
-	//	return e.EncodeElement(layout, start)
-	//}
-	//func (t *Clock) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
-	//	type T Clock
-	//	var overlay struct {
-	//		*T
-	//		Timestamp *xsdDateTime `json:"timestamp,omitempty" xml:"http://www.example.com/ timestamp,omitempty"`
-	//	}
-	//	overlay.T = (*T)(t)
-	//	overlay.Timestamp = (*xsdDateTime)(&overlay.T.Timestamp)
-	//	return d.DecodeElement(&overlay, &start)
+	//type Clock struct {
+	//	Timestamp *XSDDateTime `json:"timestamp,omitempty" xml:"timestamp,omitempty"`
 	//}
 	//
 	//type TimeType struct {
-	//	Clock []Clock `json:"clock,omitempty" xml:"http://www.example.com/ clock"`
+	//	Clock []Clock `json:"clock,omitempty" xml:"clock"`
 	//}
 	//
-	//type xsdDateTime time.Time
+	//type XSDDateTime timeXSD
 	//
-	//func (t *xsdDateTime) UnmarshalText(text []byte) error {
-	//	return _unmarshalTime(text, (*time.Time)(t), "2006-01-02T15:04:05.999999999")
+	//func CreateXSDDateTimePointer(in time.Time) *XSDDateTime {
+	//	if p := makeTimeXSDPointer(in); p != nil {
+	//		out := XSDDateTime(*p)
+	//		return &out
+	//	}
+	//	return nil
 	//}
-	//func (t xsdDateTime) MarshalText() ([]byte, error) {
-	//	return []byte((time.Time)(t).Format("2006-01-02T15:04:05.999999999")), nil
+	//func CreateXSDDateTime(in time.Time) (out XSDDateTime) {
+	//	if p := makeTimeXSDPointer(in); p != nil {
+	//		return XSDDateTime(*p)
+	//	}
+	//	return
 	//}
-	//func (t xsdDateTime) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	//	if (time.Time)(t).IsZero() {
+	//func (t *XSDDateTime) GetTime() (out time.Time) {
+	//	if t == nil {
+	//		return
+	//	}
+	//	return t.Time
+	//}
+	//func (t *XSDDateTime) UnmarshalText(text []byte) error {
+	//	return _unmarshalTime(text, (*timeXSD)(t), "2006-01-02T15:04:05.999999999")
+	//}
+	//func (t XSDDateTime) MarshalText() ([]byte, error) {
+	//	return []byte((t.Time).Format("2006-01-02T15:04:05.999999999")), nil
+	//}
+	//func (t XSDDateTime) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	//	if t.Time.IsZero() {
 	//		return nil
 	//	}
 	//	m, err := t.MarshalText()
@@ -421,20 +444,34 @@ func ExampleOptionalDatetimeNoPointer() {
 	//	}
 	//	return e.EncodeElement(m, start)
 	//}
-	//func (t xsdDateTime) MarshalXMLAttr(name xml.Name) (xml.Attr, error) {
-	//	if (time.Time)(t).IsZero() {
+	//func (t XSDDateTime) MarshalXMLAttr(name xml.Name) (xml.Attr, error) {
+	//	if t.Time.IsZero() {
 	//		return xml.Attr{}, nil
 	//	}
 	//	m, err := t.MarshalText()
 	//	return xml.Attr{Name: name, Value: string(m)}, err
 	//}
-	//func _unmarshalTime(text []byte, t *time.Time, format string) (err error) {
+	//func _unmarshalTime(text []byte, t *timeXSD, format string) (err error) {
 	//	s := string(bytes.TrimSpace(text))
-	//	*t, err = time.Parse(format, s)
+	//	t.Time, err = time.Parse(format, s)
 	//	if _, ok := err.(*time.ParseError); ok {
-	//		*t, err = time.Parse(format+"Z07:00", s)
+	//		t.Time, err = time.Parse(format+"Z07:00", s)
 	//	}
 	//	return err
+	//}
+	//
+	//type timeXSD struct {
+	//	time.Time
+	//}
+	//
+	//func (t *timeXSD) GetTime() time.Time {
+	//	return t.Time
+	//}
+	//func makeTimeXSDPointer(in time.Time) *timeXSD {
+	//	if in.IsZero() {
+	//		return nil
+	//	}
+	//	return &timeXSD{Time: in}
 	//}
 
 }
@@ -465,12 +502,14 @@ func ExampleDecimalsAsString() {
 
 	// Output: package ws
 	//
+	//const Namespace0 string = "http://www.example.com/"
+	//
 	//type Monetary struct {
-	//	Wallet []Wallet `json:"wallet,omitempty" xml:"http://www.example.com/ wallet"`
+	//	Wallet []Wallet `json:"wallet,omitempty" xml:"wallet"`
 	//}
 	//
 	//type Wallet struct {
-	//	Amount string `json:"amount,omitempty" xml:"http://www.example.com/ amount"`
+	//	Amount string `json:"amount,omitempty" xml:"amount"`
 	//}
 
 }
