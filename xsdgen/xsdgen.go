@@ -757,7 +757,8 @@ func (cfg *Config) genComplexType(t *xsd.ComplexType) ([]spec, error) {
 		}
 		name := namegen.element(el.Name)
 		if el.Wildcard {
-			tag = `xml:",any"`
+			// `xml:",any"` is not supported by Go decoder. we need to use innerxml instead
+			tag = `xml:",innerxml"`
 			if el.Plural {
 				name = ast.NewIdent("Items")
 			} else {
