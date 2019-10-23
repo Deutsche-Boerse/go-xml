@@ -1,4 +1,4 @@
-[![GoDoc](https://godoc.org/aqwari.net/xml?status.svg)](https://godoc.org/aqwari.net/xml) [![Build Status](https://travis-ci.org/droyo/go-xml.svg?branch=master)](https://travis-ci.org/droyo/go-xml)
+[![GoDoc](https://godoc.org/github.com/Deutsche-Boerse/go-xml?status.svg)](https://godoc.org/github.com/Deutsche-Boerse/go-xml) [![Build Status](https://travis-ci.org/droyo/go-xml.svg?branch=master)](https://travis-ci.org/droyo/go-xml)
 ## UPDATE:
 This fork of `go-xml` repository extends the functionality as follows:
  * Adding json annotations to xsdvalidator output
@@ -9,7 +9,7 @@ This fork of `go-xml` repository extends the functionality as follows:
 Requires go 1.9 or greater for golang.org/x/html dependency.
 
 ```
-go get aqwari.net/xml/...
+go get github.com/Deutsche-Boerse/go-xml/...
 ```
 
 This repository contains a collection of Go packages for working

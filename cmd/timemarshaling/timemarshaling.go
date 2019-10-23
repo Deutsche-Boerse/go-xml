@@ -1,7 +1,7 @@
 package main
 
 import (
-	"aqwari.net/xml/cmd/timemarshaling/timetest"
+	"github.com/Deutsche-Boerse/go-xml/cmd/timemarshaling/timetest"
 	"bufio"
 	"encoding/xml"
 	"log"

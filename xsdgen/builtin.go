@@ -3,7 +3,7 @@ package xsdgen
 import (
 	"go/ast"
 
-	"aqwari.net/xml/xsd"
+	"github.com/Deutsche-Boerse/go-xml/xsd"
 )
 
 const timeXSD = "timeXSD"
