@@ -1,4 +1,4 @@
-module aqwari.net/xml
+module github.com/Deutsche-Boerse/go-xml
 
 go 1.12
 

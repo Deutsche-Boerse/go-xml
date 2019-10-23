@@ -1,11 +1,11 @@
-package main // import "aqwari.net/xml/cmd/wsdlgen"
+package main // import "github.com/Deutsche-Boerse/go-xml/cmd/wsdlgen"
 
 import (
 	"log"
 	"os"
 
-	"aqwari.net/xml/wsdlgen"
-	"aqwari.net/xml/xsdgen"
+	"github.com/Deutsche-Boerse/go-xml/wsdlgen"
+	"github.com/Deutsche-Boerse/go-xml/xsdgen"
 )
 
 func main() {
