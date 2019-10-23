@@ -1,7 +1,7 @@
 package main
 
 import (
-	"aqwari.net/xml/cmd/trsending/sftrrepo"
+	"github.com/Deutsche-Boerse/go-xml/cmd/trsending/sftrrepo"
 	"encoding/xml"
 	"fmt"
 	"log"
