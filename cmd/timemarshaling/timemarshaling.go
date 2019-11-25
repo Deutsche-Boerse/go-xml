@@ -1,9 +1,9 @@
 package main
 
 import (
-	"github.com/Deutsche-Boerse/go-xml/cmd/timemarshaling/timetest"
 	"bufio"
 	"encoding/xml"
+	"github.com/Deutsche-Boerse/go-xml/cmd/timemarshaling/timetest"
 	"log"
 	"os"
 	"time"
@@ -15,8 +15,21 @@ func main() {
 	if err != nil {
 		log.Fatalf("cannot unmarshal: %s", err)
 	}
-	log.Printf("%+v \n", unmarshaled)
+	mapit(unmarshaled)
+	marshalIt(unmarshaled)
 
+	unmarshaled = timetest.ReportFile{
+		ZerTs:    nil,
+		OneTs:    timetest.XSDDateTime{time.Now()},
+		MulTs:    nil,
+		ZerDt:    nil,
+		OneDt:    timetest.XSDDate{time.Now()},
+		ZerSt:    nil,
+		OneSt:    "",
+		RptgDtTm: timetest.ISODateTime{time.Now()},
+		EvtDt:    timetest.EvtDt{time.Now()},
+	}
+	log.Printf("%+v \n", unmarshaled)
 
 	mapit(unmarshaled)
 	marshalIt(unmarshaled)
@@ -43,7 +56,6 @@ func createStruct(filename string) (timetest.ReportFile, error) {
 	err = dec.Decode(&data)
 
 	return data, err
-
 
 }
 
@@ -77,16 +89,12 @@ type mystruct struct {
 	EvtDt string
 }
 
-
-
 func timeToDateStringNoPointer(t time.Time) string {
 	if t.IsZero() {
 		return ""
 	}
-	return  t.Format("2006-01-02")
+	return t.Format("2006-01-02")
 }
-
-
 
 func timeToDatetimeStringNoPointer(t time.Time) string {
 	if t.IsZero() {
