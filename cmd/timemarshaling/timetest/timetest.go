@@ -206,7 +206,7 @@ func (t *XSDDateTime) UnmarshalText(text []byte) error {
 	return _unmarshalTime(text, (*timeXSD)(t), "2006-01-02T15:04:05.999999999")
 }
 func (t XSDDateTime) MarshalText() ([]byte, error) {
-	return []byte((t.Time).Format("2006-01-02T15:04:05.999999999Z07:00")), nil
+	return []byte((t.Time).Format("2006-01-02T15:04:05Z07:00")), nil
 }
 func (t XSDDateTime) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	if t.Time.IsZero() {
