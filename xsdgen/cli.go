@@ -89,18 +89,18 @@ func (cfg *Config) GenSource(files ...string) ([]byte, error) {
 // same as those passed to the xsdgen command.
 func (cfg *Config) GenCLI(arguments ...string) error {
 	var (
-		err                  error
-		replaceRules         commandline.ReplaceRuleList
-		xmlns                commandline.Strings
-		fs                   = flag.NewFlagSet("xsdgen", flag.ExitOnError)
-		packageName          = fs.String("pkg", "", "name of the the generated package")
-		output               = fs.String("o", "xsdgen_output.go", "name of the output file")
-		verbose              = fs.Bool("v", false, "print verbose output")
-		debug                = fs.Bool("vv", false, "print debug output")
-		decimalsAsString     = fs.Bool("decimalsAsString", false, "represent decimals as string")
-		addGetMethods        = fs.Bool("addGetMethods", false, "generate get methods for all fields")
-		generateBuiltinTypes = fs.Bool("generateBuiltinTypes", false, "generate types for builtin types with restrictions")
-		marshalDatetimeWithTimezone        = fs.Bool("marshalDatetimeWithTimezone", false, "marsahl datetime to 2006-01-02T15:04:05.999999999Z07:00")
+		err                         error
+		replaceRules                commandline.ReplaceRuleList
+		xmlns                       commandline.Strings
+		fs                          = flag.NewFlagSet("xsdgen", flag.ExitOnError)
+		packageName                 = fs.String("pkg", "", "name of the the generated package")
+		output                      = fs.String("o", "xsdgen_output.go", "name of the output file")
+		verbose                     = fs.Bool("v", false, "print verbose output")
+		debug                       = fs.Bool("vv", false, "print debug output")
+		decimalsAsString            = fs.Bool("decimalsAsString", false, "represent decimals as string")
+		addGetMethods               = fs.Bool("addGetMethods", false, "generate get methods for all fields")
+		generateBuiltinTypes        = fs.Bool("generateBuiltinTypes", false, "generate types for builtin types with restrictions")
+		marshalDatetimeWithTimezone = fs.Bool("marshalDatetimeWithTimezone", false, "marsahl datetime to 2006-01-02T15:04:05Z07:00")
 	)
 	fs.Var(&replaceRules, "r", "replacement rule 'regex -> repl' (can be used multiple times)")
 	fs.Var(&xmlns, "ns", "target namespace(s) to generate types for")
