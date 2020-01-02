@@ -1,9 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSpy v2019 rel. 3 sp1 (http://www.altova.com) by Martin Kubacka (Deloitte Advisory s.r.o.) -->
-<!-- 
-    Version 000.10 / release 0.1 of XML upload file for Deutsche Börse AG's Regulatory Reporting Hub. Further information about this schema can be found in the correpsonding Inbound File specification.
-	Only to be used for uploading to the Regulatory Reporting Hub. 
--->
 <xs:schema xmlns="http://deutsche-boerse.com/DBRegHub" xmlns:xs="http://www.w3.org/2001/XMLSchema"
            targetNamespace="http://deutsche-boerse.com/DBRegHub" elementFormDefault="qualified" version="000.10">
     <xs:element name="reportFile" id="SF0013">
